@@ -47,4 +47,9 @@ public class Record {
     public void setScore(int score) {
         this.score = score;
     }
+
+    public String dataToString() {
+        String s = this.name + " " + this.score + " " + " " + this.codeMaker + " " + this.data;
+        return s;
+    }
 }

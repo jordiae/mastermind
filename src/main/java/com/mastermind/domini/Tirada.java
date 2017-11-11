@@ -23,4 +23,8 @@ public class Tirada {
     public void setResposta(Resposta resposta) {
         this.resposta = resposta;
     }
+
+    public String dataToString() {
+        return codi.dataToString() + " " + resposta.dataToString();
+    }
 }

@@ -57,4 +57,8 @@ public class Resposta {
     public void setnWhites(int nWhites) {
         this.nWhites = nWhites;
     }
+
+    public String dataToString() {
+        return nBlacks + " " + nWhites;
+    }
 }

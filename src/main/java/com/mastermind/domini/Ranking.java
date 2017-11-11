@@ -15,6 +15,11 @@ public class Ranking {
         recordsGuardats = 0;
     }
 
+    public String dataToString() {
+        String s = recordList.toString() + " " + puntuacioMinima + " " + recordsGuardats;
+        return s;
+    }
+
     public int getRecordsGuardats() {return recordsGuardats;}
 
     public ArrayList<Record> getRecordList() {return recordList;}

@@ -54,4 +54,8 @@ public class Taulell {
     public int getMaxTorn(int maxTorn) {
         return maxTorn;
     }
+
+    public String dataToString() {
+        return torn + " " + codiSolucio.dataToString() + " " + tirades.toString() + " " + maxTorn;
+    }
 }

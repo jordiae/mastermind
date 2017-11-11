@@ -68,6 +68,11 @@ public class Partida {
         this.time = time;
     }
 
+    public String dataToString() {
+        String s = this.ID + " " + this.difficulty + " " + String.valueOf(this.codeMaker) + " " + String.valueOf(this.help) + " " + this.time.getTime() + " " + this.taulell.dataToString();
+        return s;
+    }
+
     private boolean fesTirada(Codi codi){
         return this.taulell.ferTirada(codi);
     } // int -> boolean

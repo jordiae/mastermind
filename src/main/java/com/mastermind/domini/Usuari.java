@@ -32,4 +32,8 @@ public class Usuari {
         ++numPartidesGuardades;
         return true;
     }
+
+    public String dataToString() {
+        return partidaList.toString() + " " + numPartidesGuardades + " " + nom + " " + contrasenya;
+    }
 }

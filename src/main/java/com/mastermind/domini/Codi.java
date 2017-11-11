@@ -19,4 +19,8 @@ public class Codi {
 
         this.peces = peces;
     }
+
+    public String dataToString() {
+        return peces.toString();
+    }
 }
