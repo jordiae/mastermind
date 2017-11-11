@@ -3,49 +3,24 @@ package com.mastermind.domini;/* By Jordi Armengol. 6/11/17*/
 import java.util.ArrayList;
 
 public class Resposta {
-    private ArrayList<Integer> peces;
-    private Codi codi;
-    private Codi solucio;
-    private int BLACK = 1;
-    private int WHITE = 0;
+    private int nBlacks = 0;
+    private int nWhites = 0;
 
-    public Resposta(ArrayList<Integer> peces) {
-        this.peces = peces;
-    }
 
-    public Resposta(Codi codi, Codi solucio) {
-        this.peces = peces;
-    }
-
-    public ArrayList<Integer> getPeces() {
-        return peces;
-    }
-
-    public void setPeces(ArrayList<Integer> peces) {
-        this.peces = peces;
-    }
-
-    public Codi getCodi() {
-        return codi;
-    }
-
-    public void setCodi(Codi codi) {
-        this.codi = codi;
+    public Resposta() {
     }
 
     // 1: negre (color i posicio), 0: blanc (color pero no posicio)
-    public void calcularResposta() {
-        ArrayList<Integer> r = new ArrayList<Integer>();
+    public void calcularResposta(Codi codi, Codi solucio) {
         ArrayList<Integer> c = codi.getPeces();
         ArrayList<Integer> s = solucio.getPeces();
-        boolean blackFound = false;
         int i = 0;
-        while (!blackFound && i < c.size()){
+        while (i < c.size()){
 
 
             if (c.get(i).equals(s.get(i))) {
-                r.add(BLACK);
-                blackFound = true;
+                nBlacks++;
+                s.remove(i);
             }
 
             else {
@@ -53,7 +28,8 @@ public class Resposta {
                 int j = 0;
                 while (!whiteFound && j < s.size()) {
                     if (c.get(i).equals(s.get(j))) {
-                        r.add(WHITE);
+                        nWhites++;
+                        s.remove(j);
                         whiteFound = true;
                     }
                     else {
@@ -61,17 +37,24 @@ public class Resposta {
                     }
 
                 }
-                i++;
             }
+            i++;
         }
-        this.peces = r;
     }
 
-    public Codi getSolucio() {
-        return solucio;
+    public int getnBlacks() {
+        return nBlacks;
     }
 
-    public void setSolucio(Codi solucio) {
-        this.solucio = solucio;
+    public void setnBlacks(int nBlacks) {
+        this.nBlacks = nBlacks;
+    }
+
+    public int getnWhites() {
+        return nWhites;
+    }
+
+    public void setnWhites(int nWhites) {
+        this.nWhites = nWhites;
     }
 }

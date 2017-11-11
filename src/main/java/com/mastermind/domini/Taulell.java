@@ -35,8 +35,8 @@ public class Taulell {
             return false;
     }
     private Resposta respondre(Codi codi) {
-        Resposta resposta = new Resposta(codi,codiSolucio);
-        resposta.calcularResposta();
+        Resposta resposta = new Resposta();
+        resposta.calcularResposta(codi,codiSolucio);
         return resposta ;
     }
 
