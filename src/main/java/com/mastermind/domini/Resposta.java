@@ -3,14 +3,16 @@ package com.mastermind.domini;/* By Jordi Armengol. 6/11/17*/
 import java.util.ArrayList;
 
 public class Resposta {
-    private int nBlacks = 0;
-    private int nWhites = 0;
+    private int nBlacks;
+    private int nWhites;
 
 
     public Resposta() {
+        nBlacks = 0;
+        nWhites = 0;
     }
 
-    // 1: negre (color i posicio), 0: blanc (color pero no posicio)
+    // negre (color i posicio), blanc (color pero no posicio)
     public void calcularResposta(Codi codi, Codi solucio) {
         ArrayList<Integer> c = codi.getPeces();
         ArrayList<Integer> s = solucio.getPeces();
