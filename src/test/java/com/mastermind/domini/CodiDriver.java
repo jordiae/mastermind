@@ -17,17 +17,19 @@ public class CodiDriver {
         availableOptions.add("1 - public Codi(ArrayList<Integer> peces)");
         availableOptions.add("2 - public ArrayList<Integer> getPeces()");
         availableOptions.add("3 - public void setPeces(ArrayList<Integer> peces)");
-        availableOptions.add("4 - public ArrayList<Integer> getPeces()");
-        availableOptions.add("5 - public String dataToString()");
-        availableOptions.add("6 - public void setFitnessScore(int s)");
-        availableOptions.add("7 - public int getFitnessScore()");
+        availableOptions.add("4 - public String dataToString()");
+        availableOptions.add("5 - public void setFitnessScore(int s)");
+        availableOptions.add("6 - public int getFitnessScore()");
         while (runDriver) {
             System.out.println("CodiDriver");
             System.out.println("Mètodes disponibles:");
             for (String s : availableOptions) {
                 System.out.println(s);
             }
-            int option = System.in.read();
+            int option;
+            Scanner scanner = new Scanner(System.in);
+            option = scanner.nextInt();
+            System.out.println(option);
             switch (option) {
                 case 0:
                     runDriver = false;
@@ -58,6 +60,7 @@ public class CodiDriver {
 
     }
     private static void runCodi() {
+        System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
         ArrayList<Integer> p = readNumsFromCommandLine();
         codi = new Codi(p);
         constructorExecuted = true;
@@ -71,6 +74,7 @@ public class CodiDriver {
     }
 
     private static void runSetPeces() {
+        System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
         ArrayList<Integer> p = readNumsFromCommandLine();
         codi.setPeces(p);
 
@@ -95,7 +99,7 @@ public class CodiDriver {
             if (numScanner.hasNextInt()) {
                 numbers.add (numScanner.nextInt());
             } else {
-                System.out.println("You didn't provide enough numbers");
+                System.out.println("Error: no suficients nombres");
                 break;
             }
         }
@@ -109,7 +113,8 @@ public class CodiDriver {
 
     private static void runSetFitnessScore() throws IOException {
         int f;
-        f = System.in.read();
+        Scanner scanner = new Scanner(System.in);
+        f = scanner.nextInt();
         codi.setFitnessScore(f);
 
     }
