@@ -16,22 +16,23 @@ public class Resposta {
     public void calcularResposta(Codi codi, Codi solucio) {
         ArrayList<Integer> c = codi.getPeces();
         ArrayList<Integer> s = solucio.getPeces();
+        ArrayList<Integer> s_visited = new ArrayList<Integer>();
         int i = 0;
         while (i < c.size()){
 
 
-            if (c.get(i).equals(s.get(i))) {
+            if (c.get(i).equals(s.get(i)) && ! s_visited.contains(s.get(i))) {
                 nBlacks++;
-                s.remove(i);
+                s_visited.add(s.get(i));
             }
 
             else {
                 boolean whiteFound = false;
                 int j = 0;
                 while (!whiteFound && j < s.size()) {
-                    if (c.get(i).equals(s.get(j))) {
+                    if (c.get(i).equals(s.get(j)) && ! s_visited.contains(s.get(i))) {
                         nWhites++;
-                        s.remove(j);
+                        s_visited.add(s.get(i));
                         whiteFound = true;
                     }
                     else {

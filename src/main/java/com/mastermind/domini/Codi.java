@@ -23,4 +23,6 @@ public class Codi {
     public String dataToString() {
         return peces.toString();
     }
+
+    public void setPeca(int pos, int col){peces.set(pos, col);}
 }
