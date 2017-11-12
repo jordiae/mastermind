@@ -19,6 +19,8 @@ public class CodiDriver {
         availableOptions.add("3 - public void setPeces(ArrayList<Integer> peces)");
         availableOptions.add("4 - public ArrayList<Integer> getPeces()");
         availableOptions.add("5 - public String dataToString()");
+        availableOptions.add("6 - public void setFitnessScore(int s)");
+        availableOptions.add("7 - public int getFitnessScore()");
         while (runDriver) {
             System.out.println("CodiDriver");
             System.out.println("Mètodes disponibles:");
@@ -26,7 +28,7 @@ public class CodiDriver {
                 System.out.println(s);
             }
             int option = System.in.read();
-            switch(option) {
+            switch (option) {
                 case 0:
                     runDriver = false;
                     break;
@@ -41,6 +43,14 @@ public class CodiDriver {
                     break;
                 case 4:
                     runDataToString();
+                    break;
+                case 5:
+                    runSetFitnessScore();
+                    break;
+                case 6:
+                    runGetFitnessScore();
+                    break;
+                default:
                     break;
             }
         }
@@ -92,5 +102,17 @@ public class CodiDriver {
 
         return numbers;
     }
+
+    private static void runGetFitnessScore() {
+        System.out.println(codi.getFitnessScore());
+    }
+
+    private static void runSetFitnessScore() throws IOException {
+        int f;
+        f = System.in.read();
+        codi.setFitnessScore(f);
+
+    }
+
 
 }

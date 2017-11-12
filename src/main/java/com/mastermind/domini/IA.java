@@ -45,7 +45,7 @@ public class IA {
         Comparator<Codi> comp = new Comparator<Codi>() {
             @Override
             public int compare(Codi o1, Codi o2) {
-                return o1.getFitness_score() - o2.getFitness_score();
+                return o1.getFitnessScore() - o2.getFitnessScore();
             }
         };
 
@@ -65,7 +65,7 @@ public class IA {
 
                 if (!sons.contains(c)){
                     int fitness = fitness_score(c, prevGuess);
-                    c.setFitness_score(fitness);
+                    c.setFitnessScore(fitness);
                     sons.add(c);
                     if (fitness == 0 && !elegibles.contains(c)) elegibles.add(c);
                 }
