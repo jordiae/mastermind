@@ -8,6 +8,11 @@ public class Tirada {
         this.resposta = new Resposta();
     }
 
+    public Tirada(Codi c, Resposta r) {
+        this.codi = c;
+        this.resposta = r;
+    }
+
     public Codi getCodi() {
         return codi;
     }
