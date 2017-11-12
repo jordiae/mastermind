@@ -3,9 +3,9 @@ package com.mastermind.domini;/* By Jordi Armengol. 6/11/17*/
 public class Tirada {
     private Codi codi;
     private Resposta resposta;
-    public Tirada(Codi c, Resposta r) {
+    public Tirada(Codi c) {
         this.codi = c;
-        this.resposta = r;
+        this.resposta = new Resposta();
     }
 
     public Codi getCodi() {
