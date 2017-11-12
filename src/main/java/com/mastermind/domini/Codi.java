@@ -23,7 +23,7 @@ public class Codi {
     }
 
     public String dataToString() {
-        return peces.toString();
+        return peces.toString() + " " + fitness_score;
     }
 
     public void setPeca(int pos, int col){peces.set(pos, col);}
