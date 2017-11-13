@@ -54,4 +54,13 @@ public class Taulell {
     public String dataToString() {
         return torn + " " + codiSolucio.dataToString() + " " + tirades.toString() + " " + maxTorn;
     }
+
+    public ArrayList<Tirada> getTirades() {
+        return tirades;
+    }
+
+    public void setTirades(ArrayList<Tirada> t) {
+        this.tirades = t;
+    }
+
 }

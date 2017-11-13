@@ -21,7 +21,9 @@ public class TaulellDriver {
         availableOptions.add("6 - public void setCodiSolucio(Codi codiSolucio)");
         availableOptions.add("7 - public void setMaxTorn(int maxTorn)");
         availableOptions.add("8 - public int getMaxTorn()");
-        availableOptions.add("9 - public String dataToString()");
+        availableOptions.add("9 - public ArrayList<Tirada> getTirades()");
+        availableOptions.add("10 - public void setTirades(ArrayList<Tirada> t)");
+        availableOptions.add("11 - public String dataToString()");
 
         while (runDriver) {
             System.out.println("CodiDriver");
@@ -62,6 +64,12 @@ public class TaulellDriver {
                     runGetMaxTorn();
                     break;
                 case 9:
+                    runGetTirades();
+                    break;
+                case 10:
+                    runSetTirades();
+                    break;
+                case 11:
                     runDataToString();
                     break;
                 default:
@@ -134,6 +142,36 @@ public class TaulellDriver {
     }
     private static void runGetMaxTorn() {
         System.out.println(taulell.getMaxTorn());
+    }
+
+    private static void runSetTirades() {
+        System.out.println("Escriu el nombre de tirades, salt de línia, i les tirades");
+        System.out.println("Per cada tirada, el nombre d'elements del codi, salt de linia, i els elements de codi separats per un espai. Després nWhites i nBlacks separats per un salt de línia");
+        Scanner scanner = new Scanner(System.in);
+        int nTirades = scanner.nextInt();
+        ArrayList<Tirada> tirades = new ArrayList<Tirada>();
+        for (int i = 0; i < nTirades; i++) {
+            ArrayList<Integer> cTirada = readNumsFromCommandLine();
+            Codi codiTirada = new Codi(cTirada);
+            int nWhites = scanner.nextInt();
+            int nBlacks = scanner.nextInt();
+            Resposta resposta = new Resposta();
+            resposta.setnWhites(nWhites);
+            resposta.setnBlacks(nBlacks);
+            Tirada tirada = new Tirada(codiTirada,resposta);
+            tirades.add(tirada);
+
+        }
+        taulell.setTirades(tirades);
+    }
+
+    private static void runGetTirades() {
+        String s = "";
+        ArrayList<Tirada> tirs = taulell.getTirades();
+        for (Tirada t : tirs) {
+            s += t.dataToString() + " ";
+        }
+        System.out.println(s);
     }
 
     private static void runDataToString() {
