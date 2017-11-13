@@ -24,7 +24,8 @@ public class Taulell {
     }
 
     public boolean ferTirada(Codi codi) {
-        Resposta resposta = respondre(codi);
+        Resposta resposta = new Resposta();
+        resposta.calcularResposta(codi,codiSolucio);
         if (torn < maxTorn) {
             Tirada tirada = new Tirada(codi, resposta);
             tirades.add(tirada);
@@ -33,11 +34,6 @@ public class Taulell {
         }
         else
             return false;
-    }
-    private Resposta respondre(Codi codi) {
-        Resposta resposta = new Resposta();
-        resposta.calcularResposta(codi,codiSolucio);
-        return resposta ;
     }
 
     public Codi getCodiSolucio() {
@@ -51,7 +47,7 @@ public class Taulell {
     public void setMaxTorn(int maxTorn) {
         this.maxTorn = maxTorn;
     }
-    public int getMaxTorn(int maxTorn) {
+    public int getMaxTorn() {
         return maxTorn;
     }
 
