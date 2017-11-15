@@ -103,8 +103,8 @@ public class UsuariDriver {
     }
 
     private static void runAfegirPartida() {
-        Partida partida = new Partida();
-        System.out.println(usuari.afegirPartida(partida));
+    //    Partida partida = new Partida();
+     //   System.out.println(usuari.afegirPartida(partida));
     }
 
     private static void runDataToString() {
