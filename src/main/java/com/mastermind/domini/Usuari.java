@@ -22,9 +22,13 @@ public class Usuari {
 
     public String getContrasenya() {return contrasenya;}
 
-    public ArrayList<Partida> getPartidesGuardades() {return partidaList;}
+    public void setNom(String nom) {this.nom = nom;}
+
+    public void setContrasenya(String contrasenya) {this.contrasenya = contrasenya;}
 
     public int getNumPartidesGuardades() {return numPartidesGuardades;}
+
+    public ArrayList<Partida> getPartidesGuardades() {return partidaList;}
 
     public boolean afegirPartida(Partida partida){
         if (numPartidesGuardades == NUM_PARTIDES_MAX) return false;
