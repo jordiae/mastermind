@@ -11,7 +11,7 @@ public class Ranking {
     private int recordsGuardats;
 
     public Ranking() {
-        recordList = new ArrayList<>(NUM_RECORD_MAX);
+        recordList = new ArrayList<>();
         recordsGuardats = 0;
     }
 
