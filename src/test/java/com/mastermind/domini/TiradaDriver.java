@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class TiradaDriver {
     private static Tirada tirada;
-    static boolean constructorExecuted;
     public static void main(String[] args) throws IOException {
-        constructorExecuted = false;
         boolean runDriver = true;
         ArrayList<String> availableOptions = new ArrayList<String>();
         availableOptions.add("0 - Exit driver");
@@ -67,7 +65,6 @@ public class TiradaDriver {
         ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         tirada = new Tirada(codi);
-        constructorExecuted = true;
     }
     private static void runTiradaCodiResposta() {
         System.out.println("Escriu el nombre d'elements del codi de tirada, salt de línia i els elements separats amb un espai.");
@@ -83,7 +80,6 @@ public class TiradaDriver {
         resposta.setnWhites(nWhites);
         resposta.setnBlacks(nBlacks);
         tirada = new Tirada(codi,resposta);
-        constructorExecuted = true;
     }
     private static void runGetCodi() {
         System.out.println(tirada.getCodi().dataToString());
@@ -114,8 +110,5 @@ public class TiradaDriver {
         String s = tirada.dataToString();
         System.out.println(s);
     }
-
-
-
 
 }

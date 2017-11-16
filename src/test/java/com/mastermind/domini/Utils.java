@@ -17,7 +17,7 @@ public class Utils {
                 if (numScanner.hasNextInt()) {
                     numbers.add (numScanner.nextInt());
                 } else {
-                    System.out.println("Error: no suficients nombres");
+                    System.out.println("Error: no suficients nombres.");
                     break;
                 }
             }

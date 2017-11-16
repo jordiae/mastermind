@@ -6,11 +6,8 @@ import java.util.Scanner;
 
 public class RespostaDriver {
     private static Resposta resposta;
-    static boolean constructorExecuted;
-
 
     public static void main(String[] args) throws IOException {
-        constructorExecuted = false;
         boolean runDriver = true;
         ArrayList<String> availableOptions = new ArrayList<String>();
         availableOptions.add("0 - Exit driver");
@@ -67,13 +64,12 @@ public class RespostaDriver {
 
     private static void runResposta() {
         resposta = new Resposta();
-        constructorExecuted = true;
     }
     private static void runCalcularResposta() {
-        System.out.println("Escriu el nombre d'elements del codi a intriduir, salt de línia i els elements separats amb un espai.");
+        System.out.println("Escriu el nombre d'elements del codi a introduir, salt de línia i els elements separats amb un espai.");
         ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
-        System.out.println("Escriu el nombre d'elements del codi solució a intriduir, salt de línia i els elements separats amb un espai.");
+        System.out.println("Escriu el nombre d'elements del codi solució a introduir, salt de línia i els elements separats amb un espai.");
         ArrayList<Integer> s = Utils.readNumsFromCommandLine();
         Codi codiSolucio = new Codi(s);
         resposta.calcularResposta(codi,codiSolucio);

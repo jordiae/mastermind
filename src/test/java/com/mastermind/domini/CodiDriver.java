@@ -1,25 +1,23 @@
 package com.mastermind.domini;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CodiDriver {
     private static Codi codi;
-    static boolean constructorExecuted;
+    private static Scanner scanner;
 
     public static void main(String[] args) throws IOException {
-        constructorExecuted = false;
         boolean runDriver = true;
         ArrayList<String> availableOptions = new ArrayList<String>();
         availableOptions.add("0 - Exit driver");
         availableOptions.add("1 - public Codi(ArrayList<Integer> peces)");
         availableOptions.add("2 - public ArrayList<Integer> getPeces()");
         availableOptions.add("3 - public void setPeces(ArrayList<Integer> peces)");
-        availableOptions.add("4 - public String dataToString()");
-        availableOptions.add("5 - public void setFitnessScore(int s)");
-        availableOptions.add("6 - public int getFitnessScore()");
+        availableOptions.add("4 - public void setPeca(int pos, int col)");
+        availableOptions.add("5 - public boolean same(Codi c)");
+        availableOptions.add("6 - public String dataToString()");
         while (runDriver) {
             System.out.println("CodiDriver");
             System.out.println("Mètodes disponibles:");
@@ -27,7 +25,7 @@ public class CodiDriver {
                 System.out.println(s);
             }
             int option;
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             option = scanner.nextInt();
             System.out.println(option);
             switch (option) {
@@ -44,13 +42,13 @@ public class CodiDriver {
                     runSetPeces();
                     break;
                 case 4:
-                    runDataToString();
+                    runSetPeca();
                     break;
                 case 5:
-                    runSetFitnessScore();
+                    runSame();
                     break;
                 case 6:
-                    runGetFitnessScore();
+                    runDataToString();
                     break;
                 default:
                     break;
@@ -63,39 +61,41 @@ public class CodiDriver {
         System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
         ArrayList<Integer> p = Utils.readNumsFromCommandLine();
         codi = new Codi(p);
-        constructorExecuted = true;
-
     }
 
     private static void runGetPeces() {
         String s = codi.getPeces().toString();
         System.out.println(s);
-
     }
 
     private static void runSetPeces() {
         System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
         ArrayList<Integer> p = Utils.readNumsFromCommandLine();
         codi.setPeces(p);
+    }
 
+    private static void runSetPeca() {
+        System.out.println("Escriu la posició i el color.");
+        int pos = scanner.nextInt();
+        int col = scanner.nextInt();
+        codi.setPeca(pos,col);
+    }
+
+    private static void runSame() {
+        System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
+        ArrayList<Integer> s = Utils.readNumsFromCommandLine();
+        Codi same = new Codi(s);
+        if (codi.same(same)) {
+            System.out.println("TRUE");
+        }
+        else {
+            System.out.println("FALSE");
+        }
     }
 
     private static void runDataToString() {
         String s = codi.dataToString();
         System.out.println(s);
     }
-
-
-
-
-    private static void runGetFitnessScore() {
-
-    }
-
-    private static void runSetFitnessScore() throws IOException {
-
-
-    }
-
 
 }
