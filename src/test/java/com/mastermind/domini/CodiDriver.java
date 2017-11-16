@@ -108,14 +108,11 @@ public class CodiDriver {
     }
 
     private static void runGetFitnessScore() {
-        System.out.println(codi.getFitnessScore());
+
     }
 
     private static void runSetFitnessScore() throws IOException {
-        int f;
-        Scanner scanner = new Scanner(System.in);
-        f = scanner.nextInt();
-        codi.setFitnessScore(f);
+
 
     }
 

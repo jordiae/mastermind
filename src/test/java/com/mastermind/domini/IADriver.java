@@ -2,6 +2,7 @@ package com.mastermind.domini;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class IADriver {
@@ -18,7 +19,7 @@ public class IADriver {
         availableOptions.add("2 - public Codi nextGuess()");
         availableOptions.add("3 - public void updateLastGuess(int nBlack, int nWhite)");
         while (runDriver) {
-            System.out.println("CodiDriver");
+            System.out.println("IADriver");
             System.out.println("Mètodes disponibles:");
             for (String s : availableOptions) {
                 System.out.println(s);
@@ -60,9 +61,9 @@ public class IADriver {
     }
 
     private  static void  runUpdateLastGuess() {
-        System.out.println("Digues el nombre de peces blanques i negres que vols col·locar respectivament");
-        int nWhite = scanner.nextInt();
+        System.out.println("Digues el nombre de peces negres i blanques que vols col·locar respectivament");
         int nBlack = scanner.nextInt();
+        int nWhite = scanner.nextInt();
         ia.updateLastGuess(nBlack,nWhite);
     }
 }

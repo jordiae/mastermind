@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 public class Codi {
     private ArrayList<Integer> peces;
-    private int fitnessScore;
 
     public ArrayList<Integer> getPeces() {
         return peces;
@@ -17,22 +16,19 @@ public class Codi {
     }
 
     public Codi(ArrayList<Integer> peces) {
-        this.fitnessScore = -1;
-
         this.peces = peces;
     }
 
     public String dataToString() {
-        return peces.toString() + " " + fitnessScore;
+        return peces.toString();
     }
 
     public void setPeca(int pos, int col){peces.set(pos, col);}
 
-    public void setFitnessScore(int s){
-        this.fitnessScore = s;
-    }
 
-    public int getFitnessScore() {
-        return fitnessScore;
+    public boolean same(Codi c){
+        for (int i = 0; i < c.getPeces().size(); ++i)
+            if (c.getPeces().get(i) != this.peces.get(i)) return false;
+        return true;
     }
 }

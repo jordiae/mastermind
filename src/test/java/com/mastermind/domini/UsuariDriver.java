@@ -1,7 +1,9 @@
 package com.mastermind.domini;
 
 import java.io.IOException;
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class UsuariDriver {
@@ -17,10 +19,12 @@ public class UsuariDriver {
         availableOptions.add("1 - public Usuari(String nom, String contrasenya)");
         availableOptions.add("2 - public String getNom()");
         availableOptions.add("3 - public String getContrasenya()");
-        availableOptions.add("4 - public int getNumPartidesGuardades()");
-        availableOptions.add("5 - public ArrayList<Partida> getPartidesGuardades()");
-        availableOptions.add("6 - public boolean afegirPartida(Partida partida)");
-        availableOptions.add("7 - public String dataToString()");
+        availableOptions.add("4 - public void setNom(String nom)");
+        availableOptions.add("5 - public void setContrasenya(String contrasenya)");
+        availableOptions.add("6 - public int getNumPartidesGuardades()");
+        availableOptions.add("7 - public ArrayList<Partida> getPartidesGuardades()");
+        availableOptions.add("8 - public boolean afegirPartida(Partida partida)");
+        availableOptions.add("9 - public String dataToString()");
         while (runDriver) {
             System.out.println("UsuariDriver");
             System.out.println("Mètodes disponibles:");
@@ -103,8 +107,13 @@ public class UsuariDriver {
     }
 
     private static void runAfegirPartida() {
-    //    Partida partida = new Partida();
-     //   System.out.println(usuari.afegirPartida(partida));
+        System.out.println("S'afegirà una instància de partida amb uns parametres qualsevols.");
+        Random rand = new Random();
+        int id = rand.nextInt((int) 1e6);
+        int dificulty = rand.nextInt(3);
+        Time time = new Time(rand.nextInt((int) 1e6));
+        Partida partida = new Partida(id,dificulty,true,true,time,null);
+        System.out.println(usuari.afegirPartida(partida));
     }
 
     private static void runDataToString() {

@@ -16,35 +16,32 @@ public class Resposta {
     public void calcularResposta(Codi codi, Codi solucio) {
         ArrayList<Integer> c = codi.getPeces();
         ArrayList<Integer> s = solucio.getPeces();
-        ArrayList<Integer> s_visited = new ArrayList<Integer>();
-        int i = 0;
-        while (i < c.size()){
-
-
-            if (c.get(i).equals(s.get(i)) && ! s_visited.contains(s.get(i))) {
-                nBlacks++;
-                s_visited.add(s.get(i));
+        ArrayList<Integer> black = new ArrayList<>();
+        ArrayList<Integer> white = new ArrayList<>();
+        nWhites = nBlacks = 0;
+        for (int i = 0; i < s.size(); ++i) {
+            if (c.get(i) == s.get(i)) {
+                ++nBlacks;
+                black.add(c.get(i));
             }
-
-            else {
-                boolean whiteFound = false;
-                int j = 0;
-                while (!whiteFound && j < s.size()) {
-                    if (c.get(i).equals(s.get(j)) && ! s_visited.contains(s.get(i))) {
-                        nWhites++;
-                        s_visited.add(s.get(i));
-                        whiteFound = true;
+        }
+        for (int i = 0; i < s.size(); ++i) {
+            int color = s.get(i);
+            for (int j = 0; j < c.size(); ++j) {
+                if (j != i && c.get(j) == color) {
+                    if (!black.contains(color) && ! white.contains(color)) {
+                        ++nWhites;
+                        white.add(color);
                     }
-                    else {
-                        j++;
-                    }
-
                 }
             }
-            i++;
         }
+
+
+
     }
 
+ 
     public int getnBlacks() {
         return nBlacks;
     }
