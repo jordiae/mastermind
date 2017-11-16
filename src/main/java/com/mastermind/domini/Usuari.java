@@ -14,7 +14,7 @@ public class Usuari {
     public Usuari(String nom, String contrasenya) {
         this.nom = nom;
         this.contrasenya = contrasenya;
-        partidaList = new ArrayList<>(NUM_PARTIDES_MAX);
+        partidaList = new ArrayList<>();
         numPartidesGuardades = 0;
     }
 
@@ -31,7 +31,10 @@ public class Usuari {
     public ArrayList<Partida> getPartidesGuardades() {return partidaList;}
 
     public boolean afegirPartida(Partida partida){
-        if (numPartidesGuardades == NUM_PARTIDES_MAX) return false;
+        if (numPartidesGuardades == NUM_PARTIDES_MAX) {
+            partidaList.remove(0);
+            --numPartidesGuardades;
+        }
         partidaList.add(partida);
         ++numPartidesGuardades;
         return true;
