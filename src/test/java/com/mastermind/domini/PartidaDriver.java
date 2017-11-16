@@ -19,21 +19,21 @@ public class PartidaDriver {
 
 
         ArrayList<String> availableOptions = new ArrayList<String>();
-        availableOptions.add("0 - Exit driver");
+        availableOptions.add("0 -  Exit driver");
         availableOptions.add("1 -  public Partida(int ID, int difficulty, boolean codeMaker, boolean help, Time time, Taulell taulell)");
-        availableOptions.add("2 -   public int getDifficulty()");
-        availableOptions.add("3 - public int getID()");
-        availableOptions.add("4 - public Time getTime()");
+        availableOptions.add("2 -  public int getDifficulty()");
+        availableOptions.add("3 -  public int getID()");
+        availableOptions.add("4 -  public Time getTime()");
         availableOptions.add("5 -  public boolean isCodeMaker()");
-        availableOptions.add("6 - public boolean isHelp()");
-        availableOptions.add("7 - public void setCodeMaker(boolean codeMaker)");
-        availableOptions.add("8 - public void setDifficulty(int difficulty)");
+        availableOptions.add("6 -  public boolean isHelp()");
+        availableOptions.add("7 -  public void setCodeMaker(boolean codeMaker)");
+        availableOptions.add("8 -  public void setDifficulty(int difficulty)");
         availableOptions.add("9 -  public void setHelp(boolean help))");
-        availableOptions.add("10 -  public void setID(int ID)");
+        availableOptions.add("10 - public void setID(int ID)");
         availableOptions.add("11 - public void setTime(Time time)");
         availableOptions.add("12 - public String dataToString()");
-        availableOptions.add("13 -  private boolean fesTirada(Codi codi)");
-        availableOptions.add("14 -  private int getPuntuacio()");
+        availableOptions.add("13 - private boolean fesTirada(Codi codi)");
+        availableOptions.add("14 - private int getPuntuacio()");
 
         while (run) {
             System.out.println("PartidaDriver");
@@ -157,11 +157,14 @@ public class PartidaDriver {
         System.out.println("introdueix help(bool): ");
         Boolean b2 = scan.nextBoolean();
         scan.nextLine();
-        Date date = new Date();
-        long diff = date.getTime();
-        System.out.println("Time: " + diff);
+        System.out.println("Introdueix temps acumulat: hores, minuts i segons.");
+        int h  = scan.nextInt();
+        int m  = scan.nextInt();
+        int s  = scan.nextInt();
+        scan.nextLine();
+        Time timeE = Time.valueOf(h + ":" + m + ":" + s);
         Taulell t = new Taulell(1, new Codi(new ArrayList<Integer>()), new ArrayList<Tirada>(), 1);
-        partida = new Partida(id, dif, b, b2, new Time(date.getTime()), t);
+        partida = new Partida(id, dif, b, b2, timeE, t);
     }
 
     private static void runGetDifficulty(){
@@ -219,9 +222,15 @@ public class PartidaDriver {
     }
 
     private static void runSetTime(){
-        Date d = new Date();
-        partida.setTime(new Time(d.getTime()));
-        System.out.println("Time: " + d.getTime());
+        System.out.println("Introdueix temps acumulat: hores, minuts i segons.");
+        int h  = scan.nextInt();
+        scan.nextLine();
+        int m  = scan.nextInt();
+        scan.nextLine();
+        int s  = scan.nextInt();
+        scan.nextLine();
+        Time.valueOf(h + ":" + m + ":" + s);
+        System.out.println("Temps de la partida: " + partida.getTime());
     }
 
     private static void  runDataToString(){
