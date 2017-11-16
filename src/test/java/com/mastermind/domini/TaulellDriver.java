@@ -85,7 +85,7 @@ public class TaulellDriver {
         Scanner scanner = new Scanner(System.in);
         t = scanner.nextInt();
         System.out.println("Escriu el nombre d'elements del codi solució, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
 
         System.out.println("Escriu el nombre de tirades, salt de línia, i les tirades");
@@ -93,7 +93,7 @@ public class TaulellDriver {
         int nTirades = scanner.nextInt();
         ArrayList<Tirada> tirades = new ArrayList<Tirada>();
         for (int i = 0; i < nTirades; i++) {
-            ArrayList<Integer> cTirada = readNumsFromCommandLine();
+            ArrayList<Integer> cTirada = Utils.readNumsFromCommandLine();
             Codi codiTirada = new Codi(cTirada);
             int nWhites = scanner.nextInt();
             int nBlacks = scanner.nextInt();
@@ -121,7 +121,7 @@ public class TaulellDriver {
     }
     private static void runFerTirada() {
         System.out.println("Escriu el nombre d'elements del codi de la nova tirada, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         taulell.ferTirada(codi);
     }
@@ -130,7 +130,7 @@ public class TaulellDriver {
     }
     private static void runSetCodiSolucio() {
         System.out.println("Escriu el nombre d'elements del codi solució, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         taulell.setCodiSolucio(codi);
     }
@@ -151,7 +151,7 @@ public class TaulellDriver {
         int nTirades = scanner.nextInt();
         ArrayList<Tirada> tirades = new ArrayList<Tirada>();
         for (int i = 0; i < nTirades; i++) {
-            ArrayList<Integer> cTirada = readNumsFromCommandLine();
+            ArrayList<Integer> cTirada = Utils.readNumsFromCommandLine();
             Codi codiTirada = new Codi(cTirada);
             int nWhites = scanner.nextInt();
             int nBlacks = scanner.nextInt();
@@ -179,26 +179,5 @@ public class TaulellDriver {
         System.out.println(s);
     }
 
-
-    private static ArrayList<Integer> readNumsFromCommandLine() {
-
-        Scanner s = new Scanner(System.in);
-
-        int count = s.nextInt();
-        s.nextLine(); // throw away the newline.
-
-        ArrayList<Integer> numbers = new ArrayList<Integer>(count);
-        Scanner numScanner = new Scanner(s.nextLine());
-        for (int i = 0; i < count; i++) {
-            if (numScanner.hasNextInt()) {
-                numbers.add (numScanner.nextInt());
-            } else {
-                System.out.println("Error: no suficients nombres");
-                break;
-            }
-        }
-
-        return numbers;
-    }
 
 }

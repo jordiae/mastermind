@@ -6,9 +6,7 @@ import java.util.Scanner;
 
 public class TiradaDriver {
     private static Tirada tirada;
-    static boolean constructorExecuted;
     public static void main(String[] args) throws IOException {
-        constructorExecuted = false;
         boolean runDriver = true;
         ArrayList<String> availableOptions = new ArrayList<String>();
         availableOptions.add("0 - Exit driver");
@@ -64,14 +62,13 @@ public class TiradaDriver {
 
     private static void runTiradaCodi() {
         System.out.println("Escriu el nombre d'elements del codi de tirada, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         tirada = new Tirada(codi);
-        constructorExecuted = true;
     }
     private static void runTiradaCodiResposta() {
         System.out.println("Escriu el nombre d'elements del codi de tirada, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         System.out.println("Escriu nWhites de la resposta.");
         int nWhites;
@@ -83,14 +80,13 @@ public class TiradaDriver {
         resposta.setnWhites(nWhites);
         resposta.setnBlacks(nBlacks);
         tirada = new Tirada(codi,resposta);
-        constructorExecuted = true;
     }
     private static void runGetCodi() {
         System.out.println(tirada.getCodi().dataToString());
     }
     private static void runSetCodi() {
         System.out.println("Escriu el nombre d'elements del codi, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         tirada.setCodi(codi);
     }
@@ -114,28 +110,5 @@ public class TiradaDriver {
         String s = tirada.dataToString();
         System.out.println(s);
     }
-
-    private static ArrayList<Integer> readNumsFromCommandLine() {
-
-        Scanner s = new Scanner(System.in);
-
-        int count = s.nextInt();
-        s.nextLine(); // throw away the newline.
-
-        ArrayList<Integer> numbers = new ArrayList<Integer>(count);
-        Scanner numScanner = new Scanner(s.nextLine());
-        for (int i = 0; i < count; i++) {
-            if (numScanner.hasNextInt()) {
-                numbers.add (numScanner.nextInt());
-            } else {
-                System.out.println("Error: no suficients nombres");
-                break;
-            }
-        }
-
-        return numbers;
-    }
-
-
 
 }

@@ -6,7 +6,7 @@ public class Taulell {
     private int torn;
     private Codi codiSolucio;
     private ArrayList<Tirada> tirades;
-    private int maxTorn; // afegit respecte UML
+    private int maxTorn;
 
     public Taulell(int torn, Codi codiSolucio, ArrayList<Tirada> tirades, int maxTorn) {
         this.torn = torn;
