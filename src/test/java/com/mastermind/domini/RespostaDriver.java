@@ -65,38 +65,16 @@ public class RespostaDriver {
     }
 
 
-    private static ArrayList<Integer> readNumsFromCommandLine() {
-
-        Scanner s = new Scanner(System.in);
-
-        int count = s.nextInt();
-        s.nextLine(); // throw away the newline.
-
-        ArrayList<Integer> numbers = new ArrayList<Integer>(count);
-        Scanner numScanner = new Scanner(s.nextLine());
-        for (int i = 0; i < count; i++) {
-            if (numScanner.hasNextInt()) {
-                numbers.add (numScanner.nextInt());
-            } else {
-                System.out.println("Error: no suficients nombres");
-                break;
-            }
-        }
-
-        return numbers;
-    }
-
-
     private static void runResposta() {
         resposta = new Resposta();
         constructorExecuted = true;
     }
     private static void runCalcularResposta() {
         System.out.println("Escriu el nombre d'elements del codi a intriduir, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         System.out.println("Escriu el nombre d'elements del codi solució a intriduir, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> s = readNumsFromCommandLine();
+        ArrayList<Integer> s = Utils.readNumsFromCommandLine();
         Codi codiSolucio = new Codi(s);
         resposta.calcularResposta(codi,codiSolucio);
     }

@@ -61,7 +61,7 @@ public class CodiDriver {
     }
     private static void runCodi() {
         System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> p = readNumsFromCommandLine();
+        ArrayList<Integer> p = Utils.readNumsFromCommandLine();
         codi = new Codi(p);
         constructorExecuted = true;
 
@@ -75,7 +75,7 @@ public class CodiDriver {
 
     private static void runSetPeces() {
         System.out.println("Escriu el nombre d'elements, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> p = readNumsFromCommandLine();
+        ArrayList<Integer> p = Utils.readNumsFromCommandLine();
         codi.setPeces(p);
 
     }
@@ -86,26 +86,7 @@ public class CodiDriver {
     }
 
 
-    private static ArrayList<Integer> readNumsFromCommandLine() {
 
-        Scanner s = new Scanner(System.in);
-
-        int count = s.nextInt();
-        s.nextLine(); // throw away the newline.
-
-        ArrayList<Integer> numbers = new ArrayList<Integer>(count);
-        Scanner numScanner = new Scanner(s.nextLine());
-        for (int i = 0; i < count; i++) {
-            if (numScanner.hasNextInt()) {
-                numbers.add (numScanner.nextInt());
-            } else {
-                System.out.println("Error: no suficients nombres");
-                break;
-            }
-        }
-
-        return numbers;
-    }
 
     private static void runGetFitnessScore() {
 

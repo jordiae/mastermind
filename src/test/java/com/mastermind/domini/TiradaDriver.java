@@ -64,14 +64,14 @@ public class TiradaDriver {
 
     private static void runTiradaCodi() {
         System.out.println("Escriu el nombre d'elements del codi de tirada, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         tirada = new Tirada(codi);
         constructorExecuted = true;
     }
     private static void runTiradaCodiResposta() {
         System.out.println("Escriu el nombre d'elements del codi de tirada, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         System.out.println("Escriu nWhites de la resposta.");
         int nWhites;
@@ -90,7 +90,7 @@ public class TiradaDriver {
     }
     private static void runSetCodi() {
         System.out.println("Escriu el nombre d'elements del codi, salt de línia i els elements separats amb un espai.");
-        ArrayList<Integer> c = readNumsFromCommandLine();
+        ArrayList<Integer> c = Utils.readNumsFromCommandLine();
         Codi codi = new Codi(c);
         tirada.setCodi(codi);
     }
@@ -115,26 +115,6 @@ public class TiradaDriver {
         System.out.println(s);
     }
 
-    private static ArrayList<Integer> readNumsFromCommandLine() {
-
-        Scanner s = new Scanner(System.in);
-
-        int count = s.nextInt();
-        s.nextLine(); // throw away the newline.
-
-        ArrayList<Integer> numbers = new ArrayList<Integer>(count);
-        Scanner numScanner = new Scanner(s.nextLine());
-        for (int i = 0; i < count; i++) {
-            if (numScanner.hasNextInt()) {
-                numbers.add (numScanner.nextInt());
-            } else {
-                System.out.println("Error: no suficients nombres");
-                break;
-            }
-        }
-
-        return numbers;
-    }
 
 
 
