@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Ranking {
 
-    private static final int NUM_RECORD_MAX = 15;
-
     private ArrayList<Record> recordList;
     private int puntuacioMinima;
     private int recordsGuardats;
@@ -16,7 +14,7 @@ public class Ranking {
     }
 
     public String dataToString() {
-        String s = recordList.toString() + " " + puntuacioMinima + " " + recordsGuardats;
+        String s = recordsToString() + " " + recordsGuardats;
         return s;
     }
 
@@ -32,19 +30,19 @@ public class Ranking {
             return true;
         }
         if (puntuacioMinima > record.getScore()) {
-            if (recordsGuardats == NUM_RECORD_MAX) return false;
+            if (recordsGuardats == Constants.NUM_RECORD_MAX) return false;
             recordList.add(record);
             puntuacioMinima = record.getScore();
             ++recordsGuardats;
             return true;
 
         } else {
-            if (recordsGuardats == NUM_RECORD_MAX) {
-                recordList.remove(NUM_RECORD_MAX - 1);
+            if (recordsGuardats == Constants.NUM_RECORD_MAX) {
+                recordList.remove(recordsGuardats - 1);
                 --recordsGuardats;
             }
             recordList.add(buscaPosicioRecord(record),record);
-            puntuacioMinima = recordList.get(NUM_RECORD_MAX-1).getScore();
+            puntuacioMinima = recordList.get(recordsGuardats-1).getScore();
             ++recordsGuardats;
             return true;
         }
@@ -59,6 +57,12 @@ public class Ranking {
             }
         }
         return recordsGuardats;
+    }
+
+    private ArrayList<String> recordsToString() {
+        ArrayList<String> records = new ArrayList<>();
+        for (int i = 0; i < recordsGuardats; ++i) records.add(recordList.get(i).dataToString());
+        return records;
     }
 
 }

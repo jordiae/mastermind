@@ -1,20 +1,19 @@
 package com.mastermind.domini;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.Date;
 import java.util.Scanner;
 
 public class RankingDriver {
     private static Ranking ranking;
-    private static boolean constructorExecuted;
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        constructorExecuted = false;
         boolean runDriver = true;
-        ArrayList<String> availableOptions = new ArrayList<String>();
+        ArrayList<String> availableOptions = new ArrayList<>();
         availableOptions.add("0 - Exit driver");
         availableOptions.add("1 - public Ranking()");
         availableOptions.add("2 - public int getRecordsGuardats()");
@@ -57,7 +56,6 @@ public class RankingDriver {
 
     private static void runRanking() {
         ranking = new Ranking();
-        constructorExecuted = true;
         System.out.println("S'ha creat una nova instància de la classe Ranking.");
     }
 
@@ -75,8 +73,8 @@ public class RankingDriver {
                 "La resta d'informació serà seleccionada arbitràriament.");
         String nom = scanner.next();
         int puntuacio = scanner.nextInt();
-        Random random = new Random();
-        Date date = new Date(random.nextInt(),random.nextInt(),random.nextInt());
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
         Record record = new Record(nom,puntuacio,true, date);
         boolean b = ranking.afegirRecord(record);
         System.out.println(b);

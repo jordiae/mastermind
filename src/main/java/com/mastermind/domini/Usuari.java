@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Usuari {
 
-    private static final int NUM_PARTIDES_MAX = 15;
-
     private ArrayList<Partida> partidaList;
     private int numPartidesGuardades;
     private String nom;
@@ -34,7 +32,7 @@ public class Usuari {
         for (int i = 0; i < numPartidesGuardades; ++i) {
             if (partidaList.get(i).getID() == partida.getID()) return false;
         }
-        if (numPartidesGuardades == NUM_PARTIDES_MAX) {
+        if (numPartidesGuardades == Constants.NUM_PARTIDES_MAX) {
             partidaList.remove(0);
             --numPartidesGuardades;
         }
