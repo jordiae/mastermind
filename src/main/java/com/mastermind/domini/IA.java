@@ -104,6 +104,7 @@ public class IA {
                     sons.add(codis.get(0));
                 }
             }
+            population = sons;
             Collections.sort(population, comp);
             ArrayList<Codi> seleccio = new ArrayList<>();
 
