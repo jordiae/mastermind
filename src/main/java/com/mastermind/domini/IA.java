@@ -1,12 +1,12 @@
 package com.mastermind.domini;
 
 
-import javafx.util.Pair;
+
 
 import java.util.*;
 
 public class IA {
-    public static int MAX_POPULATION = 200;
+    public static int MAX_POPULATION = 150;
     public static int MAX_GENERATION = 100;
     public static int MAX_ELEGIBLES = 60;
     public static Double PROB_CROSSOVER = 0.5;
@@ -69,18 +69,39 @@ public class IA {
             ArrayList<Codi> sons = new ArrayList<>();
 
             for(int i = 0; i < MAX_POPULATION; ++i) {  //generem nova poblacio a partir de l'anterior
-                Codi c;
-                if (i == population.size() - 1) c = population.get(i);
-                else c = crossover(population.get(i), population.get(i + 1));
-
-                if (generator.nextFloat() <= PROB_MUTATION) c = mutation(c);   //apliquem mutacions segons probabilitat
-                if (generator.nextFloat() <= PROB_PERMUTATION) c = permutation(c);
-                if (generator.nextFloat() <= PROB_INVERSION) c = inversion(c);
-
-                if (!sons.contains(c)) sons.add(c);
+                ArrayList<Codi> codis = new ArrayList<>();
+                if (i == population.size() - 1){
+                    if (generator.nextFloat() >= PROB_CROSSOVER) codis = oneSplitCrossover(population.get(i), population.get(i));
+                    else codis = twoSplitCrossover(population.get(i), population.get(i));
+                }
                 else {
-                    while (sons.contains(c)) c = genRandCodi();
-                    sons.add(c);
+                    if (generator.nextFloat() >= PROB_CROSSOVER) codis = oneSplitCrossover(population.get(i), population.get(i + 1));
+                    else codis = twoSplitCrossover(population.get(i), population.get(i + 1));
+                }
+
+                if (generator.nextFloat() <= PROB_MUTATION){
+                    codis.set(0, mutation(codis.get(0)));
+                    codis.set(1, mutation(codis.get(1)));
+                }    //apliquem mutacions segons probabilitat
+                if (generator.nextFloat() <= PROB_PERMUTATION){
+                    codis.set(0, permutation(codis.get(0))) ;
+                    codis.set(1, permutation(codis.get(1))) ;
+                }
+                if (generator.nextFloat() <= PROB_INVERSION){
+                    codis.set(0,inversion(codis.get(0))) ;
+                    codis.set(1, inversion(codis.get(1))) ;
+                }
+
+                if (!sons.contains(codis.get(0))) sons.add(codis.get(0));
+                else {
+                    while (sons.contains(codis.get(0))) codis.set(0, genRandCodi());
+                    sons.add(codis.get(0));
+                }
+
+                if (!sons.contains(codis.get(1))) sons.add(codis.get(1));
+                else {
+                    while (sons.contains(codis.get(1))) codis.set(1, genRandCodi());
+                    sons.add(codis.get(0));
                 }
             }
             Collections.sort(population, comp);
@@ -138,7 +159,7 @@ public class IA {
             sumB = sumB + r.getnBlacks() - prevGuess.get(i).getResposta().getnBlacks();
             sumW = sumW + r.getnWhites() - prevGuess.get(i).getResposta().getnWhites();
         }
-        return 2*sumB + sumW + 2*positions*(prevGuess.size() - 1);
+        return sumB + sumW;
     }
 
     private Codi genRandCodi(){
@@ -147,14 +168,51 @@ public class IA {
         return new Codi(codi);
     }
 
-    private Codi crossover(Codi c1, Codi c2){
-        ArrayList<Integer> c3 = new ArrayList<>();
-        for (int i = 0; i < positions; ++i){
-            if (generator.nextFloat() <= PROB_CROSSOVER) c3.add(c1.getPeces().get(i));
-            else c3.add(c2.getPeces().get(i));
+    private ArrayList<Codi> oneSplitCrossover(Codi son1, Codi son2){
+        int pos = generator.nextInt(positions);
+        ArrayList<Integer> aux1 = new ArrayList<>(positions);
+        ArrayList<Integer> aux2 = new ArrayList<>(positions);
+        for (int i =0; i < pos; ++i){
+            aux1.add(son1.getPeces().get(i));
+            aux2.add(son2.getPeces().get(i));
+        }
+        for (int i = pos; i < positions; ++i){
+            aux1.add(son1.getPeces().get(i));
+            aux2.add(son2.getPeces().get(i));
         }
 
-        return new Codi(c3);
+        ArrayList<Codi> res = new ArrayList<>();
+        res.add(new Codi(aux1));
+        res.add(new Codi(aux2));
+        return res;
+    }
+
+    private ArrayList<Codi> twoSplitCrossover(Codi son1, Codi son2){
+        ArrayList<Integer> aux1 = new ArrayList<>();
+        ArrayList<Integer> aux2 = new ArrayList<>();
+        int min = generator.nextInt(positions);
+        int max = generator.nextInt(positions);
+        if (min > max){
+            int aux = min;
+            max = min;
+            min = max;
+        }
+        for (int i = 0; i < min; ++i){
+            aux1.add(son1.getPeces().get(i));
+            aux2.add(son2.getPeces().get(i));
+        }
+        for (int i = min; i < max; ++i){
+            aux1.add(son1.getPeces().get(i));
+            aux2.add(son2.getPeces().get(i));
+        }
+        for (int i = max; i < positions; ++i){
+            aux1.add(son1.getPeces().get(i));
+            aux2.add(son2.getPeces().get(i));
+        }
+        ArrayList<Codi> res = new ArrayList<>();
+        res.add(new Codi(aux1));
+        res.add(new Codi(aux2));
+        return res;
     }
 
     private Codi mutation(Codi c){

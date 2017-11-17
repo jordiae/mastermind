@@ -41,6 +41,13 @@ public class Usuari {
     }
 
     public String dataToString() {
-        return partidaList.toString() + " " + numPartidesGuardades + " " + nom + " " + contrasenya;
+        String partides = partidesToString().toString();
+        return partides + " " + numPartidesGuardades + " " + nom + " " + contrasenya;
+    }
+
+    private ArrayList<String> partidesToString() {
+        ArrayList<String> partides = new ArrayList<>();
+        for (int i = 0; i < numPartidesGuardades; ++i) partides.add(partidaList.get(i).dataToString());
+        return partides;
     }
 }

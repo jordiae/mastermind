@@ -8,11 +8,9 @@ import java.util.Scanner;
 
 public class UsuariDriver {
     private static Usuari usuari;
-    private static boolean constructorExecuted;
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        constructorExecuted = false;
         boolean runDriver = true;
         ArrayList<String> availableOptions = new ArrayList<String>();
         availableOptions.add("0 - Exit driver");
@@ -76,7 +74,6 @@ public class UsuariDriver {
         String nom = scanner.next();
         String contrasenya = scanner.next();
         usuari = new Usuari(nom,contrasenya);
-        constructorExecuted = true;
         System.out.println("S'ha creat una nova instància d'usuari.");
     }
 

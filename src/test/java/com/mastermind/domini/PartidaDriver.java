@@ -217,18 +217,14 @@ public class PartidaDriver {
     private static void runSetID(){
         System.out.println("Introdueix ID(int): ");
         partida.setID(scan.nextInt());
-        scan.nextLine();
         System.out.println("ID de la partida: " + partida.getID());
     }
 
     private static void runSetTime(){
         System.out.println("Introdueix temps acumulat: hores, minuts i segons.");
         int h  = scan.nextInt();
-        scan.nextLine();
         int m  = scan.nextInt();
-        scan.nextLine();
         int s  = scan.nextInt();
-        scan.nextLine();
         Time.valueOf(h + ":" + m + ":" + s);
         System.out.println("Temps de la partida: " + partida.getTime());
     }
