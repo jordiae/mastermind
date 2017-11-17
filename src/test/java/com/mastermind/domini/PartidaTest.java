@@ -1,17 +1,15 @@
 package com.mastermind.domini;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.sql.Time;
-import java.time.Instant;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class PartidaTest {
-    @org.junit.jupiter.api.Test
-    void Partida() {
+public class PartidaTest {
+    @Test
+    public void Partida() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(2); s.add(3); s.add(4);
         Codi solucio = new Codi(s);
@@ -35,8 +33,8 @@ class PartidaTest {
         Assert.assertEquals(taulell, partida.getTaulell());
 
     }
-    @org.junit.jupiter.api.Test
-    void setHelp() {
+    @Test
+    public void setHelp() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(1); s.add(2); s.add(3); s.add(4);
         Codi solucio = new Codi(s);
@@ -50,8 +48,8 @@ class PartidaTest {
         Assert.assertEquals(false,partida.isHelp());
     }
 
-    @org.junit.jupiter.api.Test
-    void setID() {
+    @Test
+    public void setID() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(7); s.add(3); s.add(4); s.add(3);
         Codi solucio = new Codi(s);
@@ -63,8 +61,8 @@ class PartidaTest {
         Assert.assertEquals(666,partida.getID());
     }
 
-    @org.junit.jupiter.api.Test
-    void setTaulell() {
+    @Test
+    public void setTaulell() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(2); s.add(3); s.add(4);
         Codi solucio = new Codi(s);
@@ -108,8 +106,8 @@ class PartidaTest {
         Assert.assertEquals(taulell2, partida.getTaulell());
     }
 
-    @org.junit.jupiter.api.Test
-    void setTime() {
+    @Test
+    public void setTime() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(9); s.add(3); s.add(4); s.add(3);
         Codi solucio = new Codi(s);
@@ -121,15 +119,15 @@ class PartidaTest {
         Assert.assertEquals(Time.valueOf("3:40:15"),partida.getTime());
     }
 
-    @org.junit.jupiter.api.Test
-    void dataToString() {
+    @Test
+    public void dataToString() {
         Taulell taulell = new Taulell(1, new Codi(new ArrayList<Integer>()), new ArrayList<Tirada>(), 1);
         Partida partida = new Partida(195, 2, false, false,Time.valueOf("2:30:23"),taulell);
         Assert.assertEquals("195 2 false false 5423000 1 [] [] 1",partida.dataToString());
     }
 
-    @org.junit.jupiter.api.Test
-    void getDifficulty() {
+    @Test
+    public void getDifficulty() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(9); s.add(3); s.add(2);
         Codi solucio = new Codi(s);
@@ -140,8 +138,8 @@ class PartidaTest {
         Assert.assertEquals(2,partida.getDifficulty());
     }
 
-    @org.junit.jupiter.api.Test
-    void getID() {
+    @Test
+    public void getID() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(2); s.add(9); s.add(3); s.add(5);
         Codi solucio = new Codi(s);
@@ -152,8 +150,8 @@ class PartidaTest {
         Assert.assertEquals(787,partida.getID());
     }
 
-    @org.junit.jupiter.api.Test
-    void getTaulell() {
+    @Test
+    public void getTaulell() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(8); s.add(8); s.add(3); s.add(4);
         Codi solucio = new Codi(s);
@@ -179,8 +177,8 @@ class PartidaTest {
         Assert.assertEquals(taulell, partida.getTaulell());
     }
 
-    @org.junit.jupiter.api.Test
-    void getTime() {
+    @Test
+    public void getTime() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(2); s.add(8); s.add(3); s.add(5);
         Codi solucio = new Codi(s);
@@ -191,8 +189,8 @@ class PartidaTest {
         Assert.assertEquals(Time.valueOf("21:21:25"),partida.getTime());
     }
 
-    @org.junit.jupiter.api.Test
-    void isCodeMaker() {
+    @Test
+    public void isCodeMaker() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(8); s.add(3); s.add(9); s.add(3); s.add(1);
         Codi solucio = new Codi(s);
@@ -203,8 +201,8 @@ class PartidaTest {
         Assert.assertEquals(true,partida.isCodeMaker());
     }
 
-    @org.junit.jupiter.api.Test
-    void isHelp() {
+    @Test
+    public void isHelp() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(9); s.add(3); s.add(9); s.add(3);
         Codi solucio = new Codi(s);
@@ -215,8 +213,8 @@ class PartidaTest {
         Assert.assertEquals(false,partida.isHelp());
     }
 
-    @org.junit.jupiter.api.Test
-    void setCodeMaker() {
+    @Test
+    public void setCodeMaker() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(4); s.add(5); s.add(3); s.add(9);
         Codi solucio = new Codi(s);
@@ -229,8 +227,8 @@ class PartidaTest {
         Assert.assertEquals(true,partida.isCodeMaker());
     }
 
-    @org.junit.jupiter.api.Test
-    void setDifficulty() {
+    @Test
+    public void setDifficulty() {
         ArrayList<Integer> s = new ArrayList<>();
         s.add(2); s.add(5); s.add(1); s.add(9);
         Codi solucio = new Codi(s);
