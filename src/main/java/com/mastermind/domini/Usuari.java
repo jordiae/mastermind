@@ -31,6 +31,9 @@ public class Usuari {
     public ArrayList<Partida> getPartidesGuardades() {return partidaList;}
 
     public boolean afegirPartida(Partida partida){
+        for (int i = 0; i < numPartidesGuardades; ++i) {
+            if (partidaList.get(i).getID() == partida.getID()) return false;
+        }
         if (numPartidesGuardades == NUM_PARTIDES_MAX) {
             partidaList.remove(0);
             --numPartidesGuardades;

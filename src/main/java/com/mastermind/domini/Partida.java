@@ -69,8 +69,8 @@ public class Partida {
     }
 
     public String dataToString() {
-        String s = this.ID + " " + this.difficulty + " " + String.valueOf(this.codeMaker) + " " + String.valueOf(this.help) + " " + this.time.getTime() + " " + this.taulell.dataToString();
-        return s;
+        return this.ID + " " + this.difficulty + " " + String.valueOf(this.codeMaker) + " "
+                + String.valueOf(this.help) + " " + this.time.getTime() + " " + this.taulell.dataToString();
     }
 
     private boolean fesTirada(Codi codi){

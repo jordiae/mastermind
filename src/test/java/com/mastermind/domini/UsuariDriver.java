@@ -104,12 +104,18 @@ public class UsuariDriver {
     }
 
     private static void runAfegirPartida() {
-        System.out.println("S'afegirà una instància de partida amb uns parametres qualsevols.");
+        System.out.println("Introdueix un ID (per a fer distinció).\n" +
+                "La resta de paràmetres de partida seran aleatoris i/o preseleccionats.");
         Random rand = new Random();
-        int id = rand.nextInt((int) 1e6);
+        int id = scanner.nextInt();
         int dificulty = rand.nextInt(3);
+        ArrayList<Integer> s = new ArrayList<>();
+        s.add(2); s.add(5); s.add(1); s.add(9);
+        Codi solucio = new Codi(s);
+        ArrayList<Tirada> tirades = new ArrayList<>();
         Time time = new Time(rand.nextInt((int) 1e6));
-        Partida partida = new Partida(id,dificulty,true,true,time,null);
+        Taulell taulell = new Taulell(1,solucio,tirades,10);
+        Partida partida = new Partida(id,dificulty,true,true,time,taulell);
         System.out.println(usuari.afegirPartida(partida));
     }
 
