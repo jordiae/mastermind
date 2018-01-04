@@ -47,54 +47,54 @@ public class Ranking {
     public void inicialitzaComponents() {
         textArea1.setText("Ranking");
         ArrayList<Record> rec = controladorPresentacio.getRecords();
-        int size = -1;
-        if (rec != null) size = rec.size();
-        if (size >= 1){
-            Record r = rec.get(0);
+        Record r;
+        r = rec.get(0);
+        if (r != null){
             textArea2.setText(r.getName() + " " + r.getScore());
         }
         else {textArea2.setText("No s'ha aconseguit cap record");}
-        if (size >= 2){
-            Record r = rec.get(1);
+        r = rec.get(1);
+        if (r != null){
+
             textArea3.setText(r.getName() + " " + r.getScore());
         }
         else {textArea3.setText("No s'ha aconseguit cap record");}
-        if (size >= 3){
+        if (r != null){
             Record r = rec.get(2);
             textArea4.setText(r.getName() + " " + r.getScore());
         }
         else {textArea4.setText("No s'ha aconseguit cap record");}
-        if (size >= 4){
+        if (r != null){
             Record r = rec.get(3);
             textArea5.setText(r.getName() + " " + r.getScore());
         }
         else {textArea5.setText("No s'ha aconseguit cap record");}
-        if (size >= 5){
+        if (r != null){
             Record r = rec.get(4);
             textArea6.setText(r.getName() + " " + r.getScore());
         }
         else {textArea6.setText("No s'ha aconseguit cap record");}
-        if (size >= 6){
+        if (r != null){
             Record r = rec.get(5);
             textArea7.setText(r.getName() + " " + r.getScore());
         }
         else {textArea7.setText("No s'ha aconseguit cap record");}
-        if (size >= 7){
+        if (r != null){
             Record r = rec.get(6);
             textArea8.setText(r.getName() + " " + r.getScore());
         }
         else {textArea8.setText("No s'ha aconseguit cap record");}
-        if (size >= 8){
+        if (r != null){
             Record r = rec.get(7);
             textArea9.setText(r.getName() + " " + r.getScore());
         }
         else {textArea9.setText("No s'ha aconseguit cap record");}
-        if (size >= 9){
+        if (r != null){
             Record r = rec.get(8);
             textArea10.setText(r.getName() + " " + r.getScore());
         }
         else {textArea10.setText("No s'ha aconseguit cap record");}
-        if (size >= 10){
+        if (r != null){
             Record r = rec.get(9);
             textArea11.setText(r.getName() + " " + r.getScore());
         }
