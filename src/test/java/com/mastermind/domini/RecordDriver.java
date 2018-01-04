@@ -129,7 +129,7 @@ public class RecordDriver {
     }
 
     private static void runGetData() throws ParseException {
-        System.out.println("Data del record: "+record.getData().toString());
+        System.out.println("Data del record: "+record.getTime().toString());
     }
 
     private static void runGetScore() {
