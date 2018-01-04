@@ -16,6 +16,11 @@ public class ConfiguracioPartida {
     private JRadioButton codebreakerRadioButton;
     private JRadioButton codemakerRadioButton;
     private JButton comencaButton;
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
+    private JButton button5;
 
 
     public ConfiguracioPartida(ControladorPresentacio controladorPresentacio) {
@@ -105,7 +110,7 @@ public class ConfiguracioPartida {
         if (correcte) {
 
         } else {
-
+            System.out.println("Posaho be.");
         }
     }
 

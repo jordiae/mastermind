@@ -49,8 +49,6 @@ public class MenuUsuari {
         novaPartidaButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         novaPartidaButtonAction();
                     }
                 });
@@ -58,8 +56,6 @@ public class MenuUsuari {
         carregarPartidaButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         carregarPartidaButtonAction();
                     }
                 });
@@ -67,8 +63,6 @@ public class MenuUsuari {
         rankingButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         rankingButtonAction();
                     }
                 });
@@ -76,8 +70,6 @@ public class MenuUsuari {
         tutorialButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         tutorialButtonAction();
                     }
                 });
@@ -85,8 +77,6 @@ public class MenuUsuari {
         tancarSessioButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         tancarSessioButtonAction();
                     }
                 });

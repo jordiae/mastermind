@@ -11,6 +11,7 @@ public class ControladorPresentacio {
     private ControladorRanking controladorRanking;
     private PantallaPrincipal pantallaPrincipal = null;
     private MenuUsuari menuUsuari = null;
+    private ConfiguracioPartida configuracioPartida = null;
     private Ranking ranking = null;
 
     public ControladorPresentacio() {
@@ -50,7 +51,10 @@ public class ControladorPresentacio {
 
     public void novaPartida() {
         menuUsuari.desactivar();
-
+        if (configuracioPartida == null) {
+            configuracioPartida = new ConfiguracioPartida(this);
+            configuracioPartida.visualitza();
+        } else configuracioPartida.activar();
     }
 
     public void tancaSessio() {
@@ -62,7 +66,6 @@ public class ControladorPresentacio {
         Record[] r = controladorRanking.carregaInfoRecords();
         return new ArrayList<>(Arrays.asList(r));
     }
-
 
     public void mostraRanking(){
         menuUsuari.desactivar();
