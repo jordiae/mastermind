@@ -43,7 +43,7 @@ public class ConfiguracioPartida {
         logInButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        loginButtonAction();
+                        //loginButtonAction();
                     }
                 });
 
