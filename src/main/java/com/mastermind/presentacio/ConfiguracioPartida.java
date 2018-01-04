@@ -9,12 +9,14 @@ public class ConfiguracioPartida {
     private ControladorPresentacio controladorPresentacio;
 
     private JFrame framePresentacio = new JFrame("Pantalla Principal");
-    private JButton logInButton;
-    private JButton registerButton;
-    private JPanel initView;
-    private JTextField campContrasenya;
-    private JTextField campUsuari;
-    private JPanel panel1;
+    private JPanel panelConfiguracio;
+    private JRadioButton facilRadioButton;
+    private JRadioButton dificilRadioButton;
+    private JRadioButton normalRadioButton;
+    private JRadioButton codebreakerRadioButton;
+    private JRadioButton codemakerRadioButton;
+    private JButton comencaButton;
+
 
     public ConfiguracioPartida(ControladorPresentacio controladorPresentacio) {
         this.controladorPresentacio = controladorPresentacio;
@@ -37,20 +39,74 @@ public class ConfiguracioPartida {
     }
 
     public void inicialitzaComponents() {
-        framePresentacio.setContentPane(this.initView);
+        framePresentacio.setContentPane(this.panelConfiguracio);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        logInButton.addActionListener
+        ActionListener listenerDificultat = new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                String dificultat = ((JRadioButton) event.getSource()).getText();
+                if (dificultat.equals("Fàcil")) {
+                    normalRadioButton.setSelected(false);
+                    dificilRadioButton.setSelected(false);
+                } else if (dificultat.equals("Normal")) {
+                    facilRadioButton.setSelected(false);
+                    dificilRadioButton.setSelected(false);
+                } else if (dificultat.equals("Difícil")) {
+                    facilRadioButton.setSelected(false);
+                    normalRadioButton.setSelected(false);
+                }
+            }
+        };
+        facilRadioButton.addActionListener(listenerDificultat);
+        normalRadioButton.addActionListener(listenerDificultat);
+        dificilRadioButton.addActionListener(listenerDificultat);
+
+        ActionListener listenerRol = new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                String rol = ((JRadioButton) event.getSource()).getText();
+                if (rol.equals("Codebreaker")) {
+                    codemakerRadioButton.setSelected(false);
+                } else if (rol.equals("Codemaker")){
+                    codebreakerRadioButton.setSelected(false);
+                }
+            }
+        };
+        codebreakerRadioButton.addActionListener(listenerRol);
+        codemakerRadioButton.addActionListener(listenerRol);
+
+
+        comencaButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        //loginButtonAction();
+                        comencaButtonAction();
                     }
                 });
 
     }
 
+    private void comencaButtonAction () {
+        boolean correcte = true;
+        //seleccio de dificultat
+        int dificultat;
+        if (facilRadioButton.isSelected()) {
+            dificultat = 0;
+        } else if (normalRadioButton.isSelected()) {
+            dificultat = 1;
+        } else if (dificilRadioButton.isSelected()) {
+            dificultat = 2;
+        } else correcte = false;
+        //seleccio de rol
+        boolean codemaker;
+        if (codemakerRadioButton.isSelected()) {
+            codemaker = true;
+        } else if (codebreakerRadioButton.isSelected()) {
+            codemaker = false;
+        } else correcte = false;
+        if (correcte) {
 
+        } else {
 
-
+        }
+    }
 
 }
