@@ -124,7 +124,7 @@ public class RecordDriver {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         System.out.println(dateFormat.format(date));
-        record = new Record(nom, score, codemaker, date);
+        //record = new Record(nom, score, codemaker, date);
         System.out.println("record creat! ja pots provar les funcions!");
     }
 
@@ -159,7 +159,7 @@ public class RecordDriver {
         String data = scan.nextLine();
         SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
         Date date = sdf.parse(data);
-        record.setData(date);
+        //record.setData(date);
         runGetData();
     }
 

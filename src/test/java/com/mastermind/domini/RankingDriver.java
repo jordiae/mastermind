@@ -75,9 +75,9 @@ public class RankingDriver {
         int puntuacio = scanner.nextInt();
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
-        Record record = new Record(nom,puntuacio,true, date);
-        boolean b = ranking.afegirRecord(record);
-        System.out.println(b);
+        //Record record = new Record(nom,puntuacio,true, date);
+        //boolean b = ranking.afegirRecord(record);
+       // System.out.println(b);
     }
 
     private static void runDataToString() {

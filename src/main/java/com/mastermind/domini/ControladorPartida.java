@@ -83,6 +83,10 @@ public class ControladorPartida {
         return ia.nextGuess();
     }
 
+    public Codi getFirstGuess() {
+        return iaFirstGuess;
+    }
+
     // Nota: mai no hem provat amb una mida diferent de 4
     private int sizeByDifficulty(int difficulty) {
         int mida = 4 + difficulty;
@@ -111,6 +115,8 @@ public class ControladorPartida {
             Tirada tirada = new Tirada(codiIA, resposta);
             tirades.add(tirada);
             taulell.setTirades(tirades);
+            taulell.setTorn(taulell.getTorn()+1);
+            partida.setTaulell(taulell);
             return taulell;
         }
         return null;
@@ -139,6 +145,13 @@ public class ControladorPartida {
         Taulell taulell = new Taulell(torn, codiSolucio,tirades,maxTorn);
         return taulell;
 
+    }
+
+    public int getCurrentTurn() {
+        return partida.getTaulell().getTorn();
+    }
+    public int getMaxTurn() {
+        return partida.getTaulell().getMaxTorn();
     }
 
 }
