@@ -9,6 +9,12 @@ public class DataController {
 
     static public Usuari getUser(String name){
         Usuari u = null;
+        File f = new File("users.txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -28,6 +34,12 @@ public class DataController {
     }
 
     static public Partida[] getPartidesUser(String usuari){  //cal controlar nomes 15 ID guardats
+        File f = new File("IDs" + usuari + ".txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try (BufferedReader br = new BufferedReader(new FileReader("IDs" + usuari + ".txt"))) {
             String line;
             Partida[] partides = new Partida[15];
@@ -104,6 +116,12 @@ public class DataController {
     static private String getByID(int ID, String user){
 
         String partida = new String();
+        File f = new File("partides" + user + ".txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try {
             File inFile = new File("partides" + user + ".txt");
@@ -189,16 +207,33 @@ public class DataController {
         String data = ID + " " + cm + " " + time + " " + codi_sol + " " + max_torn + " " + torn + " " + tirades;
 
         Writer output;
+
+        File f = new File("partides" + user + ".txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         try{
-            output = new BufferedWriter(new FileWriter("partides" + user + ".txt"));  //clears file every time
+            output = new BufferedWriter(new FileWriter("partides" + user + ".txt", true));  //clears file every time
             output.append(data + "\n");
             output.close();
         }
         catch(Throwable e){
             System.out.println("no s'ha pogut desar la partida");
         }
+
+        f = new File("IDs" + user + ".txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         try{
-            output = new BufferedWriter(new FileWriter("IDs" + user + ".txt"));  //clears file every time
+            output = new BufferedWriter(new FileWriter("IDs" + user + ".txt", true));  //clears file every time
             output.append(ID + "\n");
             output.close();
         }
@@ -215,8 +250,16 @@ public class DataController {
 
         Writer output;
 
+        File f = new File("users.txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
         try{
-            output = new BufferedWriter(new FileWriter("users.txt"));
+            output = new BufferedWriter(new FileWriter("users.txt", true));
             if (userExists(user)){
                 return false;
             }
@@ -234,6 +277,12 @@ public class DataController {
     }
 
     static public boolean userExists(String User){
+        File f = new File("users.txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -250,6 +299,13 @@ public class DataController {
 
     static public void saveRecord(Record r){
         Writer output;
+
+        File f = new File("records.txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         try{
             output = new BufferedWriter(new FileWriter("records.txt", true));  //clears file every time
@@ -270,6 +326,12 @@ public class DataController {
 
     static public Record[] getRecords(){
         Record[] records = null;
+        File f = new File("records.txt");
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         try (BufferedReader br = new BufferedReader(new FileReader("records.txt"))) {
             String line;
             records = new Record[10];
