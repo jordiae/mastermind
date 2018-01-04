@@ -17,4 +17,18 @@ public class ControladorPresentacio {
     public void inicialitzar() {
         pantallaPrincipal.visualitza();
     }
+
+    public void registraUsuari(String nom, String contrasenya) {
+        controladorUsuari.creaUsuari(nom,contrasenya);
+        carregaMenuUsuari();
+    }
+
+    public void logInUsuari (String nom, String contrasenya) {
+        controladorUsuari.carregaUsuari(nom, contrasenya);
+        carregaMenuUsuari();
+    }
+
+    public void carregaMenuUsuari() {
+        System.out.println(controladorUsuari.getUsuari());
+    }
 }

@@ -65,5 +65,7 @@ public class ControladorUsuari {
         //int ID, int difficulty, boolean codeMaker, boolean help, Time time, Taulell taulell
     }
 
-
+    public Usuari getUsuari() {
+        return usuari;
+    }
 }

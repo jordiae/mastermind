@@ -34,8 +34,6 @@ public class PantallaPrincipal {
         logInButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         loginButtonAction();
                     }
                 });
@@ -43,8 +41,6 @@ public class PantallaPrincipal {
         registerButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {
-                        String texto = ((JButton) event.getSource()).getText();
-                        System.out.println("Has clickado el boton con texto: " + texto);
                         registerButtonAction();
                     }
                 });
@@ -52,11 +48,17 @@ public class PantallaPrincipal {
     }
 
     private void loginButtonAction() {
-        System.exit(0);
+        String nom = campUsuari.getText();
+        String contrasenya = campContrasenya.getText();
+        controladorPresentacio.logInUsuari(nom, contrasenya);
     }
 
     private void registerButtonAction() {
-        System.exit(0);
+        String nom = campUsuari.getText();
+        String contrasenya = campContrasenya.getText();
+        controladorPresentacio.registraUsuari(nom, contrasenya);
     }
+
+
 
 }
