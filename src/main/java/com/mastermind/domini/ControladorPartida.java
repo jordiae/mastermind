@@ -17,8 +17,8 @@ public class ControladorPartida {
     private int N_COLORS = 6; // Nota: mai no hem provat amb una mida diferent de 6
     private Codi iaFirstGuess;
     private boolean codeMakerTurn;
-    long initTime;
-    String user;
+    private long initTime;
+    private String user;
 
     // Constructora nova partida
     public ControladorPartida(int difficulty, boolean codeMaker, Codi codiSolució, String username) {
@@ -99,6 +99,21 @@ public class ControladorPartida {
         else {
             return null; // retorna null si ens hem passat de torns o no era el seu torn
         }
+    }
+
+    public Taulell novaRespostaCodemaker(Codi codiIA, Resposta resposta) {
+        if (codeMakerTurn && partida.getTaulell().getTorn() <= partida.getTaulell().getMaxTorn()) {
+
+
+            ia.updateLastGuess(resposta.getnBlacks(), resposta.getnWhites());
+            Taulell taulell = partida.getTaulell();
+            ArrayList<Tirada> tirades = taulell.getTirades();
+            Tirada tirada = new Tirada(codiIA, resposta);
+            tirades.add(tirada);
+            taulell.setTirades(tirades);
+            return taulell;
+        }
+        return null;
     }
 
 
