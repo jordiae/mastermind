@@ -3,11 +3,12 @@ package com.mastermind.domini;
 import com.mastermind.persistencia.DataController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ControladorUsuari {
     private Usuari usuari;
 
-    public ControladorUsuari {
+    public ControladorUsuari() {
         usuari = null;
     }
 
@@ -51,8 +52,15 @@ public class ControladorUsuari {
 
 
     public ArrayList<String> carregaInfoPartides() {
-        ArrayList<String> partides =  DataController.getPartidesByUser(usuari);
-        return partides;
+        Partida[] partidesArray = DataController.getPartidesUser(usuari.getNom());
+        ArrayList<Partida> partides = new ArrayList<>(Arrays.asList(partidesArray));
+        if (partides == null)
+            return null;
+        ArrayList<String> p = new ArrayList<>();
+        for (Partida partida : partides) {
+            p.add(partida.dataToString());
+        }
+        return p;
 
         //int ID, int difficulty, boolean codeMaker, boolean help, Time time, Taulell taulell
     }
