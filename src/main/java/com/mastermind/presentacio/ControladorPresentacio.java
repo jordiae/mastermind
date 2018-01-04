@@ -94,4 +94,9 @@ public class ControladorPresentacio {
         menuC.desactivar();
         menuUsuari.activar();
     }
+
+    public ArrayList<String> getPartidesGuardades(){
+        ArrayList<String> data = controladorUsuari.carregaInfoPartides();
+        return data;
+    }
 }

@@ -3,6 +3,7 @@ package com.mastermind.presentacio;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class MenuCarrega {
 
@@ -51,7 +52,117 @@ public class MenuCarrega {
             }
         });
 
+        ArrayList<String> partides = controladorPresentacio.getPartidesGuardades();
+        button1.setText(partides.get(0).split(" ")[0]);
+        button2.setText(partides.get(1).split(" ")[0]);
+        button3.setText(partides.get(2).split(" ")[0]);
+        button4.setText(partides.get(3).split(" ")[0]);
+        button5.setText(partides.get(4).split(" ")[0]);
+        button6.setText(partides.get(5).split(" ")[0]);
+        button7.setText(partides.get(6).split(" ")[0]);
+        button8.setText(partides.get(7).split(" ")[0]);
+        button9.setText(partides.get(8).split(" ")[0]);
+        button10.setText(partides.get(9).split(" ")[0]);
 
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(0).equals("empty")){
+                    String[] p = partides.get(0).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(1).equals("empty")){
+                    String[] p = partides.get(1).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(2).equals("empty")){
+                    String[] p = partides.get(2).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(3).equals("empty")){
+                    String[] p = partides.get(3).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(4).equals("empty")){
+                    String[] p = partides.get(4).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(5).equals("empty")){
+                    String[] p = partides.get(5).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(6).equals("empty")){
+                    String[] p = partides.get(6).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(7).equals("empty")){
+                    String[] p = partides.get(7).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(8).equals("empty")){
+                    String[] p = partides.get(8).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
+
+        button10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!partides.get(9).equals("empty")){
+                    String[] p = partides.get(9).split(" ");
+                    //fer coses amb info partida
+                }
+            }
+        });
     }
 
 

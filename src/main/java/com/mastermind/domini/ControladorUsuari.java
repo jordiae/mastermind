@@ -61,7 +61,12 @@ public class ControladorUsuari {
             return null;
         ArrayList<String> p = new ArrayList<>();
         for (Partida partida : partides) {
+            if (partida == null) break;
             p.add(partida.dataToString());
+        }
+        for (int i = p.size(); i < 10; ++i){
+            p.add("empty");
+            System.out.println("hola");
         }
         return p;
 
