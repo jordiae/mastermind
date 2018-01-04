@@ -23,12 +23,6 @@ public class MenuUsuari {
     public MenuUsuari(ControladorPresentacio controladorPresentacio) {
         this.controladorPresentacio = controladorPresentacio;
         inicialitzaComponents();
-        novaPartidaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
     }
 
     public void visualitza() {
@@ -40,6 +34,60 @@ public class MenuUsuari {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.initView);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Listeners para los botones
+
+        novaPartidaButton.addActionListener
+                (new ActionListener() {
+                    public void actionPerformed (ActionEvent event) {
+                        String texto = ((JButton) event.getSource()).getText();
+                        System.out.println("Has clickado el boton con texto: " + texto);
+                        novaPartidaButtonAction();
+                    }
+                });
+
+        carregarPartidaButton.addActionListener
+                (new ActionListener() {
+                    public void actionPerformed (ActionEvent event) {
+                        String texto = ((JButton) event.getSource()).getText();
+                        System.out.println("Has clickado el boton con texto: " + texto);
+                        carregarPartidaButtonAction();
+                    }
+                });
+
+        rankingButton.addActionListener
+                (new ActionListener() {
+                    public void actionPerformed (ActionEvent event) {
+                        String texto = ((JButton) event.getSource()).getText();
+                        System.out.println("Has clickado el boton con texto: " + texto);
+                        rankingButtonAction();
+                    }
+                });
+
+        tutorialButton.addActionListener
+                (new ActionListener() {
+                    public void actionPerformed (ActionEvent event) {
+                        String texto = ((JButton) event.getSource()).getText();
+                        System.out.println("Has clickado el boton con texto: " + texto);
+                        tutorialButtonAction();
+                    }
+                });
+
+    }
+
+    private void novaPartidaButtonAction() {
+
+    }
+
+    private void carregarPartidaButtonAction() {
+
+    }
+
+    private void rankingButtonAction() {
+
+    }
+
+    private void tutorialButtonAction() {
+
     }
 
 }
