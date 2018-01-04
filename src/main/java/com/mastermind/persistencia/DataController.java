@@ -45,7 +45,7 @@ public class DataController {
     }
 
 
-   static public Partida getPartida(int ID, String user){
+    static public Partida getPartida(int ID, String user){
         String line = getByID(ID, user);
         Partida p = null;
         if(line != null){
@@ -252,14 +252,14 @@ public class DataController {
         Writer output;
 
         try{
-            output = new BufferedWriter(new FileWriter("records" + r.getName() + ".txt", true));  //clears file every time
+            output = new BufferedWriter(new FileWriter("records.txt", true));  //clears file every time
             String score = "" + r.getScore();
             String cm = new String();
             if (r.isCodeMaker()) cm = "1";
             else cm = "0";
-
+            String name = r.getName();
             String time = r.getTime().toString();
-            String record = score + " " + cm + " " + time;
+            String record = score + " " + name + " " + cm + " " + time;
             output.append(record);
             output.close();
         }
@@ -268,17 +268,18 @@ public class DataController {
         }
     }
 
-    static public Record[] getRecords(String user){
+    static public Record[] getRecords(){
         Record[] records = null;
-        try (BufferedReader br = new BufferedReader(new FileReader("records" + user + ".txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("records.txt"))) {
             String line;
             records = new Record[10];
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(" ");
                 int score = Integer.parseInt(data[0]);
-                boolean cm = "1" == data[1];
+                String user = data[1];
+                boolean cm = "1" == data[2];
 
-                String[] t = data[2].split(":");
+                String[] t = data[3].split(":");
                 Time time = new Time(Integer.parseInt(t[0])*60*60*1000 + Integer.parseInt(t[1])*60*1000 + Integer.parseInt(t[2])*1000);
                 Record r = new Record(user, score, cm, time);
             }
