@@ -7,6 +7,43 @@ import java.util.ArrayList;
 public class DataController {
 
 
+    static public Usuari getUser(String name){
+        Usuari u = null;
+        try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] info = line.split(" ");
+                if (info[0].equals(name)) {
+                    u = new Usuari(name, info[1]);
+                    return u;
+                }
+            }
+            return u;
+        }
+        catch(Throwable t){
+            System.out.println("no s'ha pogut obrir el fitxer");
+            return u;
+        }
+
+    }
+
+    static public Partida[] getPartidesUser(String usuari){  //cal controlar nomes 15 ID guardats
+        try (BufferedReader br = new BufferedReader(new FileReader("IDs" + usuari + ".txt"))) {
+            String line;
+            Partida[] partides = new Partida[15];
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                partides[i] = getPartida(Integer.parseInt(line), usuari);
+                ++i;
+            }
+            return partides;
+        }
+        catch(Throwable t){
+            System.out.println("no s'ha pogut obrir el fitxer");
+            return null;
+        }
+    }
+
 
    static public Partida getPartida(int ID, String user){
         String line = getByID(ID, user);
@@ -112,7 +149,7 @@ public class DataController {
         return partida;
     }
 
-    static public void savePartida(Partida p){
+    static public void savePartida(Partida p, String user){
         String ID = "" + p.getID();
         boolean aux = p.isCodeMaker();
         String cm = new String();
@@ -153,8 +190,16 @@ public class DataController {
 
         Writer output;
         try{
-            output = new BufferedWriter(new FileWriter("partides.txt"));  //clears file every time
+            output = new BufferedWriter(new FileWriter("partides" + user + ".txt"));  //clears file every time
             output.append(data + "\n");
+            output.close();
+        }
+        catch(Throwable e){
+            System.out.println("no s'ha pogut desar la partida");
+        }
+        try{
+            output = new BufferedWriter(new FileWriter("IDs" + user + ".txt"));  //clears file every time
+            output.append(ID + "\n");
             output.close();
         }
         catch(Throwable e){
@@ -164,25 +209,7 @@ public class DataController {
 
     }
 
-    static public Usuari getUser(String name){
-        Usuari u = null;
-        try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] info = line.split(" ");
-                if (info[0].equals(name)) {
-                    u = new Usuari(name, info[1]);
-                    return u;
-                }
-            }
-            return u;
-        }
-        catch(Throwable t){
-            System.out.println("no s'ha pogut obrir el fitxer");
-            return u;
-        }
 
-    }
 
     static public boolean saveUser(String user, String password){
 
