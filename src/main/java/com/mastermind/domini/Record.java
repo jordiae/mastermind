@@ -1,5 +1,6 @@
 package com.mastermind.domini;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Record {
@@ -7,17 +8,17 @@ public class Record {
     private String name;
     private int score;
     private boolean codeMaker;
-    private Date data;
+    private Time time;
 
-    public Record(String name, int score, boolean codeMaker, Date data){
+    public Record(String name, int score, boolean codeMaker, Time time){
         this.name = name;
         this.score = score;
         this.codeMaker = codeMaker;
-        this.data = data;
+        this.time = time;
     }
 
-    public Date getData() {
-        return data;
+    public Time getTime() {
+        return time;
     }
 
     public int getScore() {
@@ -36,8 +37,8 @@ public class Record {
         this.codeMaker = codeMaker;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public void setName(String name) {
@@ -49,7 +50,7 @@ public class Record {
     }
 
     public String dataToString() {
-        String s = this.name + " " + this.score + " " + " " + this.codeMaker + " " + this.data;
+        String s = this.name + " " + this.score + " " + " " + this.codeMaker + " " + this.time;
         return s;
     }
 }

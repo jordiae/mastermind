@@ -1,13 +1,8 @@
 package com.mastermind.persistencia;
 import com.mastermind.domini.*;
-import com.sun.tools.internal.ws.wsdl.document.jaxws.Exception;
-import org.omg.PortableInterceptor.INACTIVE;
-
 import java.io.*;
-import java.sql.Array;
 import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class DataController {
 
