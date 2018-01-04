@@ -1,5 +1,7 @@
 package com.mastermind.presentacio;
 
+import com.mastermind.domini.ControladorUsuari;
+
 import javax.swing.*;
 
 public class InitScreen {
@@ -12,6 +14,6 @@ public class InitScreen {
         frame.setContentPane(new InitScreen().initView);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setVisible(true);
+        frame.setVisible(true);;
     }
 }
