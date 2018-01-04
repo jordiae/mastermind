@@ -88,7 +88,7 @@ public class MenuUsuari {
     }
 
     private void carregarPartidaButtonAction() {
-
+            controladorPresentacio.mostraPantallaCarga();
     }
 
     private void rankingButtonAction() {
