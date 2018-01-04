@@ -23,6 +23,7 @@ public class Ranking {
     private JTextArea textArea9;
     private JTextArea textArea10;
     private JTextArea textArea11;
+    private JPanel panelRanking;
 
     public Ranking(ControladorPresentacio controladorPresentacio) {
         this.controladorPresentacio = controladorPresentacio;
@@ -45,6 +46,9 @@ public class Ranking {
     }
 
     public void inicialitzaComponents() {
+        framePresentacio.setContentPane(this.panelRanking);
+        framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         textArea1.setText("Ranking");
         ArrayList<Record> rec = controladorPresentacio.getRecords();
         Record r;
