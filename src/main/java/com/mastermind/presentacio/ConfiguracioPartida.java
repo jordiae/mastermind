@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PantallaPrincipal {
+public class ConfiguracioPartida {
 
     private ControladorPresentacio controladorPresentacio;
 
@@ -14,8 +14,9 @@ public class PantallaPrincipal {
     private JPanel initView;
     private JTextField campContrasenya;
     private JTextField campUsuari;
+    private JPanel panel1;
 
-    public PantallaPrincipal(ControladorPresentacio controladorPresentacio) {
+    public ConfiguracioPartida(ControladorPresentacio controladorPresentacio) {
         this.controladorPresentacio = controladorPresentacio;
         inicialitzaComponents();
     }
@@ -38,7 +39,6 @@ public class PantallaPrincipal {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.initView);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Listeners para los botones
 
         logInButton.addActionListener
                 (new ActionListener() {
@@ -47,26 +47,9 @@ public class PantallaPrincipal {
                     }
                 });
 
-        registerButton.addActionListener
-                (new ActionListener() {
-                    public void actionPerformed (ActionEvent event) {
-                        registerButtonAction();
-                    }
-                });
-
     }
 
-    private void loginButtonAction() {
-        String nom = campUsuari.getText();
-        String contrasenya = campContrasenya.getText();
-        controladorPresentacio.logInUsuari(nom, contrasenya);
-    }
 
-    private void registerButtonAction() {
-        String nom = campUsuari.getText();
-        String contrasenya = campContrasenya.getText();
-        controladorPresentacio.registraUsuari(nom, contrasenya);
-    }
 
 
 

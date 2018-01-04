@@ -7,6 +7,7 @@ public class ControladorPresentacio {
     private ControladorUsuari controladorUsuari;
     private ControladorRanking controladorRanking;
     private PantallaPrincipal pantallaPrincipal = null;
+    private MenuUsuari menuUsuari = null;
 
     public ControladorPresentacio() {
         controladorUsuari = new ControladorUsuari();
@@ -19,16 +20,36 @@ public class ControladorPresentacio {
     }
 
     public void registraUsuari(String nom, String contrasenya) {
-        controladorUsuari.creaUsuari(nom,contrasenya);
-        carregaMenuUsuari();
+        if (controladorUsuari.creaUsuari(nom,contrasenya)) {
+            carregaMenuUsuari();
+        }
+
     }
 
     public void logInUsuari (String nom, String contrasenya) {
-        controladorUsuari.carregaUsuari(nom, contrasenya);
-        carregaMenuUsuari();
+        if (controladorUsuari.carregaUsuari(nom, contrasenya)) {
+            carregaMenuUsuari();
+        }
+
     }
 
     public void carregaMenuUsuari() {
-        System.out.println(controladorUsuari.getUsuari());
+        pantallaPrincipal.desactivar();
+        if (menuUsuari == null) {
+            menuUsuari = new MenuUsuari(this);
+            menuUsuari.visualitza();
+        } else menuUsuari.activar();
+        String nomUsuari = controladorUsuari.getUsuari().getNom();
+        menuUsuari.setNomUsuari(nomUsuari);
+    }
+
+    public void novaPartida() {
+        menuUsuari.desactivar();
+
+    }
+
+    public void tancaSessio() {
+        menuUsuari.desactivar();
+        pantallaPrincipal.activar();
     }
 }

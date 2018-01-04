@@ -17,6 +17,7 @@ public class ControladorUsuari {
             return false;
         else {
             if (DataController.saveUser(nom,contrasenya)) {
+                usuari = new Usuari(nom, contrasenya);
                 return true;
             }
             else
@@ -25,16 +26,18 @@ public class ControladorUsuari {
     }
 
     public boolean carregaUsuari(String nom, String contrasenya) {
-        if (DataController.userExists(nom)) {
+        if (!DataController.userExists(nom)) {
             return false;
         }
         else {
             Usuari u = DataController.getUser(nom);
+            System.out.println(u.getNom());
+            System.out.println(u.getContrasenya());
             if (u == null) {
                 return false;
             }
             else {
-                if (u.getContrasenya() == contrasenya) {
+                if (u.getContrasenya().equals(contrasenya)) {
                     usuari = u;
                     return true;
                 }
