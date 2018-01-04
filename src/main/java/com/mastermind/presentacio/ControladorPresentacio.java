@@ -11,13 +11,13 @@ public class ControladorPresentacio {
     private ControladorRanking controladorRanking;
     private PantallaPrincipal pantallaPrincipal = null;
     private MenuUsuari menuUsuari = null;
-    private Ranking ranking;
+    private Ranking ranking = null;
 
     public ControladorPresentacio() {
         controladorUsuari = new ControladorUsuari();
         controladorRanking = new ControladorRanking();
         pantallaPrincipal = new PantallaPrincipal(this);
-        ranking = new Ranking(this);
+
     }
 
     public void inicialitzar() {
@@ -66,6 +66,9 @@ public class ControladorPresentacio {
 
     public void mostraRanking(){
         menuUsuari.desactivar();
-        ranking.activar();
+        if (ranking == null) {
+            ranking = new Ranking(this);
+            ranking.visualitza();
+        } else ranking.activar();
     }
 }

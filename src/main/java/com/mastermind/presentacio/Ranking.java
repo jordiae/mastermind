@@ -47,7 +47,8 @@ public class Ranking {
     public void inicialitzaComponents() {
         textArea1.setText("Ranking");
         ArrayList<Record> rec = controladorPresentacio.getRecords();
-        int size = rec.size();
+        int size = -1;
+        if (rec != null) size = rec.size();
         if (size >= 1){
             Record r = rec.get(0);
             textArea2.setText(r.getName() + " " + r.getScore());
