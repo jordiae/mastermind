@@ -353,7 +353,7 @@ public class DataController {
             return records;
         }
         catch(Throwable t){
-            System.out.println("no s'ha pogut obrir el fitxer");
+            System.out.println("no s'ha pogut obrir el fitxer!!");
             return records;
         }
 
