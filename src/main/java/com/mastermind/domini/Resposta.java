@@ -6,6 +6,11 @@ public class Resposta {
     private int nBlacks;
     private int nWhites;
 
+    public Resposta(int nBlacks, int nWhites) {
+        this.nBlacks = nBlacks;
+        this.nWhites = nWhites;
+    }
+
 
     public Resposta() {
         nBlacks = 0;
