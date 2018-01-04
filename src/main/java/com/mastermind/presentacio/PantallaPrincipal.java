@@ -8,7 +8,7 @@ public class PantallaPrincipal {
 
     private ControladorPresentacio controladorPresentacio;
 
-    private JFrame framePresentacio = new JFrame("Inici");
+    private JFrame framePresentacio = new JFrame("Pantalla Principal");
     private JButton logInButton;
     private JButton registerButton;
     private JPanel initView;
@@ -25,7 +25,8 @@ public class PantallaPrincipal {
     }
 
     public void inicialitzaComponents() {
-
+        framePresentacio.setContentPane(this.initView);
+        framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class ControladorRanking {
 
     public ArrayList<String> carregaInfoRecords() {
-        return DataController.getRecords();
+       // return DataController.getRecords();
+        return null;
     }
 }
