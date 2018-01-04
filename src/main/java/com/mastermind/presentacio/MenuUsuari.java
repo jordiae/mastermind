@@ -102,7 +102,7 @@ public class MenuUsuari {
     }
 
     private void rankingButtonAction() {
-
+        controladorPresentacio.mostraRanking();
     }
 
     private void tutorialButtonAction() {

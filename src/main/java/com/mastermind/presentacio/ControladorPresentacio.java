@@ -2,17 +2,22 @@ package com.mastermind.presentacio;
 
 import com.mastermind.domini.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ControladorPresentacio {
 
     private ControladorUsuari controladorUsuari;
     private ControladorRanking controladorRanking;
     private PantallaPrincipal pantallaPrincipal = null;
     private MenuUsuari menuUsuari = null;
+    private Ranking ranking;
 
     public ControladorPresentacio() {
         controladorUsuari = new ControladorUsuari();
         controladorRanking = new ControladorRanking();
         pantallaPrincipal = new PantallaPrincipal(this);
+        ranking = new Ranking(this);
     }
 
     public void inicialitzar() {
@@ -51,5 +56,16 @@ public class ControladorPresentacio {
     public void tancaSessio() {
         menuUsuari.desactivar();
         pantallaPrincipal.activar();
+    }
+
+    public ArrayList<Record> getRecords(){
+        Record[] r = controladorRanking.carregaInfoRecords();
+        return new ArrayList<>(Arrays.asList(r));
+    }
+
+
+    public void mostraRanking(){
+        menuUsuari.desactivar();
+        ranking.activar();
     }
 }
