@@ -24,6 +24,7 @@ public class Ranking {
     private JTextArea textArea10;
     private JTextArea textArea11;
     private JPanel panelRanking;
+    private JButton button1;
 
     public Ranking(ControladorPresentacio controladorPresentacio) {
         this.controladorPresentacio = controladorPresentacio;
@@ -48,6 +49,15 @@ public class Ranking {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelRanking);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        button1.setText("surt");
+        button1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String texto = ((JButton) e.getSource()).getText();
+                System.out.println("Has clickado el boton con texto: " + texto);
+                surtRanking();
+            }
+        });
 
         textArea1.setText("Ranking");
         ArrayList<Record> rec = controladorPresentacio.getRecords();
@@ -104,6 +114,8 @@ public class Ranking {
         else {textArea11.setText("No s'ha aconseguit cap record");}
 
     }
+
+    private void surtRanking(){controladorPresentacio.surtRanking();}
 
 
 

@@ -74,4 +74,9 @@ public class ControladorPresentacio {
             ranking.visualitza();
         } else ranking.activar();
     }
+
+    public void surtRanking(){
+        ranking.desactivar();
+        menuUsuari.activar();
+    }
 }
