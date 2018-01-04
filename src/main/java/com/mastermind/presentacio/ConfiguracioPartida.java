@@ -16,11 +16,12 @@ public class ConfiguracioPartida {
     private JRadioButton codebreakerRadioButton;
     private JRadioButton codemakerRadioButton;
     private JButton comencaButton;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
+    private JButton redButton;
+    private JButton greenButton;
+    private JButton blueButton;
+    private JButton purpleButton;
+    private JButton orangeButton;
+    private JButton yellowButton;
 
 
     public ConfiguracioPartida(ControladorPresentacio controladorPresentacio) {
