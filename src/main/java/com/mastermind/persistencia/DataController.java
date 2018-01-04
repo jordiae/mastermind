@@ -167,7 +167,7 @@ public class DataController {
         return partida;
     }
 
-    static public void savePartida(Partida p, String user){
+    static public boolean savePartida(Partida p, String user){
         String ID = "" + p.getID();
         boolean aux = p.isCodeMaker();
         String cm = new String();
@@ -213,6 +213,7 @@ public class DataController {
             f.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
 
@@ -223,6 +224,7 @@ public class DataController {
         }
         catch(Throwable e){
             System.out.println("no s'ha pogut desar la partida");
+            return false;
         }
 
         f = new File("IDs" + user + ".txt");
@@ -230,15 +232,18 @@ public class DataController {
             f.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
         try{
             output = new BufferedWriter(new FileWriter("IDs" + user + ".txt", true));  //clears file every time
             output.append(ID + "\n");
             output.close();
+            return true;
         }
         catch(Throwable e){
             System.out.println("no s'ha pogut desar la partida");
+            return false;
         }
 
 
