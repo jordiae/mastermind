@@ -2,6 +2,9 @@ package com.mastermind.presentacio;
 
 import com.mastermind.domini.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class ControladorPresentacio {
 
     private ControladorUsuari controladorUsuari;
@@ -51,5 +54,10 @@ public class ControladorPresentacio {
     public void tancaSessio() {
         menuUsuari.desactivar();
         pantallaPrincipal.activar();
+    }
+
+    public ArrayList<Record> getRecords(){
+        Record[] r = controladorRanking.carregaInfoRecords();
+        return new ArrayList<>(Arrays.asList(r));
     }
 }
