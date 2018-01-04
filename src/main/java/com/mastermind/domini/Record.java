@@ -50,7 +50,8 @@ public class Record {
     }
 
     public String dataToString() {
-        String s = this.name + " " + this.score + " "  + this.codeMaker + " " + this.time;
+        // String s = this.name + " " + this.score + " "  + this.codeMaker + " " + this.time;
+        String s = this.name + " " + this.score;
         return s;
     }
 }

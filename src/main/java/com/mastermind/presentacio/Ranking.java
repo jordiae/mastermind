@@ -60,58 +60,18 @@ public class Ranking {
         });
 
         textArea1.setText("Ranking");
-        ArrayList<Record> rec = controladorPresentacio.getRecords();
-        Record r;
-        r = rec.get(0);
-        if (r != null){
-            textArea2.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea2.setText("No s'ha aconseguit cap record");}
-        r = rec.get(1);
-        if (r != null){
-            textArea3.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea3.setText("No s'ha aconseguit cap record");}
-        r = rec.get(2);
-        if (r != null){
-            textArea4.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea4.setText("No s'ha aconseguit cap record");}
-        r = rec.get(3);
-        if (r != null){
-            textArea5.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea5.setText("No s'ha aconseguit cap record");}
-        r = rec.get(4);
-        if (r != null){
-            textArea6.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea6.setText("No s'ha aconseguit cap record");}
-        r = rec.get(5);
-        if (r != null){
-            textArea7.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea7.setText("No s'ha aconseguit cap record");}
-        r = rec.get(6);
-        if (r != null){
-            textArea8.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea8.setText("No s'ha aconseguit cap record");}
-        r = rec.get(7);
-        if (r != null){
-            textArea9.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea9.setText("No s'ha aconseguit cap record");}
-        r = rec.get(8);
-        if (r != null){
-            textArea10.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea10.setText("No s'ha aconseguit cap record");}
-        r = rec.get(9);
-        if (r != null){
-            textArea11.setText(r.getName() + " " + r.getScore());
-        }
-        else {textArea11.setText("No s'ha aconseguit cap record");}
+        ArrayList<String> rec = controladorPresentacio.getRecords();
+
+        textArea2.setText(rec.get(0));
+        textArea3.setText(rec.get(1));
+        textArea4.setText(rec.get(2));
+        textArea5.setText(rec.get(3));
+        textArea6.setText(rec.get(4));
+        textArea7.setText(rec.get(5));
+        textArea8.setText(rec.get(6));
+        textArea9.setText(rec.get(7));
+        textArea10.setText(rec.get(8));
+        textArea11.setText(rec.get(9));
 
     }
 

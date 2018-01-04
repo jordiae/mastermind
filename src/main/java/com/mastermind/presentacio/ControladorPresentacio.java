@@ -62,9 +62,9 @@ public class ControladorPresentacio {
         pantallaPrincipal.activar();
     }
 
-    public ArrayList<Record> getRecords(){
-        Record[] r = controladorRanking.carregaInfoRecords();
-        return new ArrayList<>(Arrays.asList(r));
+    public ArrayList<String> getRecords(){
+        ArrayList<String> r = controladorRanking.carregaInfoRecords();
+        return r;
     }
 
     public void mostraRanking(){

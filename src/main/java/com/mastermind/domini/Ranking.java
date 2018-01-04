@@ -59,7 +59,7 @@ public class Ranking {
         return recordsGuardats;
     }
 
-    private ArrayList<String> recordsToString() {
+    public ArrayList<String> recordsToString() {
         ArrayList<String> records = new ArrayList<>();
         for (int i = 0; i < recordsGuardats; ++i) records.add(recordList.get(i).dataToString());
         return records;
