@@ -15,6 +15,7 @@ public class ControladorPresentacio {
     private ConfiguracioPartida configuracioPartida = null;
     private Ranking ranking = null;
     private MenuCarrega  menuC = null;
+    private PantallaTutorial pantallaTut = null;
 
     public ControladorPresentacio() {
         controladorUsuari = new ControladorUsuari();
@@ -98,5 +99,18 @@ public class ControladorPresentacio {
     public ArrayList<String> getPartidesGuardades(){
         ArrayList<String> data = controladorUsuari.carregaInfoPartides();
         return data;
+    }
+
+    public void mostraTutorial(){
+        menuUsuari.desactivar();
+        if (pantallaTut == null) {
+            pantallaTut = new PantallaTutorial(this);
+            pantallaTut.visualitza();
+        } else pantallaTut.activar();
+    }
+
+    public void surtTutorial(){
+        pantallaTut.desactivar();
+        menuUsuari.activar();
     }
 }

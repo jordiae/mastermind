@@ -96,7 +96,7 @@ public class MenuUsuari {
     }
 
     private void tutorialButtonAction() {
-
+            controladorPresentacio.mostraTutorial();
     }
 
     private void tancarSessioButtonAction() {
