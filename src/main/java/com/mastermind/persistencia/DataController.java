@@ -6,11 +6,9 @@ import java.util.ArrayList;
 
 public class DataController {
 
-    public DataController(){
-        super();
-    }
 
-    public static Partida getPartida(int ID, String user){
+
+   static public Partida getPartida(int ID, String user){
         String line = getByID(ID, user);
         Partida p = null;
         if(line != null){
@@ -66,7 +64,7 @@ public class DataController {
 
     }
 
-    private static String getByID(int ID, String user){
+    static private String getByID(int ID, String user){
 
         String partida = new String();
 
@@ -114,7 +112,7 @@ public class DataController {
         return partida;
     }
 
-    public static void savePartida(Partida p){
+    static public void savePartida(Partida p){
         String ID = "" + p.getID();
         boolean aux = p.isCodeMaker();
         String cm = new String();
@@ -166,25 +164,54 @@ public class DataController {
 
     }
 
-    public static void saveUser(String user){
+    static public Usuari getUser(String name){
+        Usuari u = null;
+        try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] info = line.split(" ");
+                if (info[0].equals(name)) {
+                    u = new Usuari(name, info[1]);
+                    return u;
+                }
+            }
+            return u;
+        }
+        catch(Throwable t){
+            System.out.println("no s'ha pogut obrir el fitxer");
+            return u;
+        }
+
+    }
+
+    static public boolean saveUser(String user, String password){
 
         Writer output;
 
         try{
-            output = new BufferedWriter(new FileWriter("users.txt"));  //clears file every time
-            output.append(user + "\n");
-            output.close();
+            output = new BufferedWriter(new FileWriter("users.txt"));
+            if (userExists(user)){
+                return false;
+            }
+            else{
+                output.append(user + " " + password + "\n");
+                output.close();
+                return true;
+            }
+
         }
         catch(Throwable t){
             System.out.println("no s'ha pogut guardar l'usuari");
+            return false;
         }
     }
 
-    public static boolean userExists(String User){
+    static public boolean userExists(String User){
         try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
-                if (line.equals(User)) return true;
+                String[] info = line.split(" ");
+                if (info[0].equals(User)) return true;
             }
             return false;
         }
@@ -194,7 +221,7 @@ public class DataController {
         }
     }
 
-    public static void saveRecord(Record r){
+    static public void saveRecord(Record r){
         Writer output;
 
         try{
@@ -214,7 +241,7 @@ public class DataController {
         }
     }
 
-    public static Record[] getRecords(String user){
+    static public Record[] getRecords(String user){
         Record[] records = null;
         try (BufferedReader br = new BufferedReader(new FileReader("records" + user + ".txt"))) {
             String line;
