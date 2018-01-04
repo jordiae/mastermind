@@ -10,7 +10,7 @@ public class DataController {
         super();
     }
 
-    public Partida getPartida(int ID, String user){
+    public static Partida getPartida(int ID, String user){
         String line = getByID(ID, user);
         Partida p = null;
         if(line != null){
@@ -66,7 +66,7 @@ public class DataController {
 
     }
 
-    private String getByID(int ID, String user){
+    private static String getByID(int ID, String user){
 
         String partida = new String();
 
@@ -114,7 +114,7 @@ public class DataController {
         return partida;
     }
 
-    public void savePartida(Partida p){
+    public static void savePartida(Partida p){
         String ID = "" + p.getID();
         boolean aux = p.isCodeMaker();
         String cm = new String();
@@ -166,7 +166,7 @@ public class DataController {
 
     }
 
-    public void saveUser(String user){
+    public static void saveUser(String user){
 
         Writer output;
 
@@ -180,7 +180,7 @@ public class DataController {
         }
     }
 
-    public boolean userExists(String User){
+    public static boolean userExists(String User){
         try (BufferedReader br = new BufferedReader(new FileReader("users.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -194,7 +194,7 @@ public class DataController {
         }
     }
 
-    public void saveRecord(Record r){
+    public static void saveRecord(Record r){
         Writer output;
 
         try{
@@ -214,7 +214,7 @@ public class DataController {
         }
     }
 
-    public Record[] getRecords(String user){
+    public static Record[] getRecords(String user){
         Record[] records = null;
         try (BufferedReader br = new BufferedReader(new FileReader("records" + user + ".txt"))) {
             String line;
