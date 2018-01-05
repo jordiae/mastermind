@@ -10,9 +10,11 @@ public class ControladorPresentacio {
 
     private ControladorUsuari controladorUsuari;
     private ControladorRanking controladorRanking;
+    private ControladorPartida controladorPartida;
     private PantallaPrincipal pantallaPrincipal = null;
     private MenuUsuari menuUsuari = null;
     private ConfiguracioPartida configuracioPartida = null;
+    private PantallaPartida pantallaPartida = null;
     private Ranking ranking = null;
     private MenuCarrega  menuC = null;
     private PantallaTutorial pantallaTut = null;
@@ -48,7 +50,7 @@ public class ControladorPresentacio {
             menuUsuari = new MenuUsuari(this);
             menuUsuari.visualitza();
         } else menuUsuari.activar();
-        String nomUsuari = controladorUsuari.getUsuari().getNom();
+        String nomUsuari = controladorUsuari.getNomUsuari();
         menuUsuari.setNomUsuari(nomUsuari);
     }
 
@@ -58,6 +60,19 @@ public class ControladorPresentacio {
             configuracioPartida = new ConfiguracioPartida(this);
             configuracioPartida.visualitza();
         } else configuracioPartida.activar();
+    }
+
+    public void comencaNovaPartida(int dificultat, boolean codemaker, String codi) {
+        String nomUsuari = controladorUsuari.getNomUsuari();
+        configuracioPartida.desactivar();
+        controladorPartida = new ControladorPartida(dificultat, codemaker, codi, nomUsuari);
+        pantallaPartida = new PantallaPartida(this);
+        pantallaPartida.visualitza();
+    }
+
+    public void surtConfigurarPartida () {
+        configuracioPartida.desactivar();
+        menuUsuari.activar();
     }
 
     public void tancaSessio() {
