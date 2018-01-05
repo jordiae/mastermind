@@ -69,7 +69,8 @@ public class MenuCarrega {
             public void actionPerformed(ActionEvent e) {
                 if (!partides.get(0).equals("empty")){
                     String[] p = partides.get(0).split(" ");
-                    //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -80,6 +81,8 @@ public class MenuCarrega {
                 if (!partides.get(1).equals("empty")){
                     String[] p = partides.get(1).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -90,6 +93,8 @@ public class MenuCarrega {
                 if (!partides.get(2).equals("empty")){
                     String[] p = partides.get(2).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -100,6 +105,8 @@ public class MenuCarrega {
                 if (!partides.get(3).equals("empty")){
                     String[] p = partides.get(3).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -110,6 +117,8 @@ public class MenuCarrega {
                 if (!partides.get(4).equals("empty")){
                     String[] p = partides.get(4).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -120,6 +129,8 @@ public class MenuCarrega {
                 if (!partides.get(5).equals("empty")){
                     String[] p = partides.get(5).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -130,6 +141,8 @@ public class MenuCarrega {
                 if (!partides.get(6).equals("empty")){
                     String[] p = partides.get(6).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -140,6 +153,8 @@ public class MenuCarrega {
                 if (!partides.get(7).equals("empty")){
                     String[] p = partides.get(7).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -150,6 +165,8 @@ public class MenuCarrega {
                 if (!partides.get(8).equals("empty")){
                     String[] p = partides.get(8).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
@@ -160,9 +177,15 @@ public class MenuCarrega {
                 if (!partides.get(9).equals("empty")){
                     String[] p = partides.get(9).split(" ");
                     //fer coses amb info partida
+                    String id = ((JButton) e.getSource()).getText();
+                    controladorPresentacio.carregaPartida(id);
                 }
             }
         });
+    }
+
+    public void error() {
+        JOptionPane.showMessageDialog(framePresentacio, "S'ha produït un error en carregar la partida desitjada.");
     }
 
 

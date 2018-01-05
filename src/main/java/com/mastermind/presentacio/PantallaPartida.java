@@ -73,8 +73,19 @@ public class PantallaPartida {
 
     }
     private void sortirButtonAction() {
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int resultat = JOptionPane.showConfirmDialog (framePresentacio, "Voldries desar la partida actual?","Atenció",dialogButton);
+        if (resultat == JOptionPane.YES_OPTION) {
+            if (controladorPresentacio.desarPartida()) {
+                JOptionPane.showMessageDialog(framePresentacio, "Eggs are not supposed to be green.");
+            } else {
+                JOptionPane.showMessageDialog(framePresentacio, "S'ha produït un error inesperat i la partida serà borrada permanentment.");
+            }
 
-
+        } else {
+            JOptionPane.showMessageDialog(framePresentacio, "La partida serà borrada per sempre!");
+        }
+        controladorPresentacio.surtPartida();
     }
 
     public void novaTirada(String codi) {

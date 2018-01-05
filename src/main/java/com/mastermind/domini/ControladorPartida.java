@@ -94,17 +94,9 @@ public class ControladorPartida {
     public boolean comprovarPartidaCarregada() {
         return partidaCarregadaCorrectament;
     }
+
     private long getCurrentElapsedTime() {
         return System.nanoTime() - initTime;
-    }
-
-    public boolean desaPartida() {
-        partida.setTime(new Time(this.getCurrentElapsedTime()));
-        if (DataController.savePartida(partida,user))
-            return true;
-        else {
-            return false;
-        }
     }
 
     public Codi nextGuessIA() {
@@ -220,6 +212,11 @@ public class ControladorPartida {
     }
     public int getMaxTurn() {
         return partida.getTaulell().getMaxTorn();
+    }
+
+    public boolean desarPartida() {
+        partida.setTime(new Time(this.getCurrentElapsedTime()));
+        return DataController.savePartida(partida,user);
     }
 
 }

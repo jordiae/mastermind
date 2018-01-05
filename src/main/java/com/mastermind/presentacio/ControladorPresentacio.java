@@ -65,10 +65,28 @@ public class ControladorPresentacio {
     public void comencaNovaPartida(int dificultat, boolean codemaker, String codi) {
         String nomUsuari = controladorUsuari.getNomUsuari();
         configuracioPartida.desactivar();
+        configuracioPartida = null;
         controladorPartida = new ControladorPartida(dificultat, codemaker, codi, nomUsuari);
         String firstGuess = controladorPartida.getFirstGuessString();
         pantallaPartida = new PantallaPartida(this,dificultat + 4, codi, firstGuess);
         pantallaPartida.visualitza();
+    }
+
+    public void carregaPartida(String id) {
+        String nomUsuari = controladorUsuari.getNomUsuari();
+        controladorPartida = new ControladorPartida(Integer.parseInt(id), nomUsuari);
+        if (!controladorPartida.comprovarPartidaCarregada()) {
+            menuC.error();
+        } else {
+            menuC.desactivar();
+            menuC = null;
+            controladorPartida = new ControladorPartida(Integer.parseInt(id), nomUsuari);
+
+        }
+    }
+
+    public boolean desarPartida() {
+        return controladorPartida.desarPartida();
     }
 
     public String nextGuessIA(String codi,int blanques, int negres) {
@@ -76,8 +94,15 @@ public class ControladorPresentacio {
         return controladorPartida.nextGuessIAString();
     }
 
+    public void surtPartida() {
+        pantallaPartida.desactivar();
+        pantallaPartida = null;
+        menuUsuari.activar();
+    }
+
     public void surtConfigurarPartida () {
         configuracioPartida.desactivar();
+        configuracioPartida = null;
         menuUsuari.activar();
     }
 
