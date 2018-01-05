@@ -198,12 +198,14 @@ public class ConfiguracioPartida {
             System.out.println("Posaho be.");
         } else {
             boolean isCodemaker;
-            if (codemaker == 1) isCodemaker = true;
-            else isCodemaker = false;
             String codiStr = "";
-            for (int i = 0; i < dificultat+4; ++i) {
-                codiStr += String.valueOf(codi.get(i));
+            if (codemaker == 1) {
+                isCodemaker = true;
+                for (int i = 0; i < dificultat+4; ++i) {
+                    codiStr += String.valueOf(codi.get(i));
+                }
             }
+            else isCodemaker = false;
             controladorPresentacio.comencaNovaPartida(dificultat, isCodemaker, codiStr);
         }
     }
