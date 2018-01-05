@@ -1,7 +1,11 @@
 package com.mastermind.domini;
 
+import com.mastermind.persistencia.DataController;
+
+import javax.naming.ldap.Control;
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -118,6 +122,85 @@ public class ControladorPartidaDriver {
 
         else {
             //ControladorPartida controladorPartida = ControladorPartida(int id, String username);
+            String user = "Carles";
+
+            //int id = (int) (new Date().getTime()/1000);
+            int id = 1515109006;
+            int difficulty = 0;
+            boolean codeMaker = true;
+            boolean help = false;
+            Time time = new Time(50);
+            int torn = 3; // (no 2, ja s'han fet els anteriors)
+            ArrayList<Integer> pecesSolucio = new ArrayList<>();
+            pecesSolucio.add(3);
+            pecesSolucio.add(4);
+            pecesSolucio.add(5);
+            pecesSolucio.add(6);
+            Codi codiSolucio = new Codi(pecesSolucio);
+            ArrayList<Integer> peces1 = new ArrayList<>();
+            peces1.add(3);
+            peces1.add(4);
+            peces1.add(5);
+            peces1.add(6);
+            ArrayList<Integer> peces2 = new ArrayList<>();
+            peces2.add(3);
+            peces2.add(4);
+            peces2.add(5);
+            peces2.add(6);
+            ArrayList<Integer> peces3 = new ArrayList<>();
+            peces3.add(3);
+            peces3.add(4);
+            peces3.add(5);
+            peces3.add(6);
+
+
+            Codi codi1 = new Codi(peces1);
+            Codi codi2 = new Codi(peces2);
+            Codi codi3 = new Codi(peces3);
+            Tirada tirada1 = new Tirada(codi1);
+            Tirada tirada2 = new Tirada(codi2);
+            Tirada tirada3 = new Tirada(codi3);
+            ArrayList<Tirada> tirades = new ArrayList<>();
+            tirades.add(tirada1);
+            tirades.add(tirada2);
+            tirades.add(tirada3);
+
+            int maxTorn = 10;
+            Taulell taulell = new Taulell(torn,codiSolucio,tirades,maxTorn);
+            Partida partidaADesar = new Partida(id,difficulty,codeMaker,help,time,taulell);
+
+            DataController.savePartida(partidaADesar,user);
+
+
+            ControladorPartida controladorPartida = new ControladorPartida(id, user);
+
+            boolean guessed = false;
+
+            while (controladorPartida.getCurrentTurn() <= controladorPartida.getMaxTurn() && !guessed) { // segurament sobra "="
+                System.out.println("Torn: " + controladorPartida.getCurrentTurn());
+                Codi guessIA;
+                if (controladorPartida.getCurrentTurn() == 0) {
+                    guessIA = controladorPartida.getFirstGuess();
+                }
+                else {
+                    guessIA = controladorPartida.nextGuessIA();
+
+                }
+                System.out.println("Guess IA: " + guessIA.dataToString());
+                System.out.println("nBlacks i nWhites:");
+                int nBlacks = scan.nextInt();
+                int nWhites = scan.nextInt();
+                Resposta resposta = new Resposta();
+                resposta.setnWhites(nWhites);
+                resposta.setnBlacks(nBlacks);
+                controladorPartida.novaRespostaCodemaker(guessIA,resposta);
+                if (nBlacks == 4) {
+                    guessed = true;
+                    System.out.println("Guessed!");
+                }
+            }
+
+
 
 
 

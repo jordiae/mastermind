@@ -84,11 +84,11 @@ public class DataController {
             boolean help = dades[7] == "1";
 
             ArrayList<Tirada> tirades = new ArrayList<>();
-            for (int i = 1; i < torn; ++i){   ///////el primer torn ha de ser l'1 no el 0!!
+            for (int i = 1; i < torn+1; ++i){   ///////el primer torn ha de ser l'1 no el 0!!
 
                 ArrayList<Integer> codi = new ArrayList<>();
                 for (int j = 0; j < dades[8 + 2*(i - 1)].length(); j++){
-                    codi.add(j, Character.getNumericValue(dades[6 + 2*(i - 1)].charAt(j)));
+                    codi.add(j, Character.getNumericValue(dades[8 + 2*(i - 1)].charAt(j)));
                 }
                 Codi guess = new Codi(codi);
 
@@ -131,7 +131,7 @@ public class DataController {
             }
             //Construct the new file that will later be renamed to the original filename.
             File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
-            BufferedReader br = new BufferedReader(new FileReader("Parameter is not an existing file"));
+            BufferedReader br = new BufferedReader(new FileReader("partides" + user + ".txt"));
             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
             String line;
             //Read from the original file and write to the new
@@ -187,6 +187,16 @@ public class DataController {
 
         String torn = "" + p.getTaulell().getTorn();
 
+        String dificultat = "" + p.getDifficulty();
+
+        String help;
+        if (p.getHelp()) {
+            help = "1";
+        }
+        else {
+            help = "0";
+        }
+
         ArrayList<Tirada> tir = p.getTaulell().getTirades();
 
         String tirades = "";
@@ -204,7 +214,7 @@ public class DataController {
 
         }
 
-        String data = ID + " " + cm + " " + time + " " + codi_sol + " " + max_torn + " " + torn + " " + tirades;
+        String data = ID + " " + cm + " " + time + " " + codi_sol + " " + max_torn + " " + torn + " " + dificultat + " " + help + " " + tirades;
 
         Writer output;
 

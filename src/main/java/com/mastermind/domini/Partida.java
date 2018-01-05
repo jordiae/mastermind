@@ -80,4 +80,8 @@ public class Partida {
     private int getPuntuacio(){
         return difficulty*taulell.getTorn()/ ((int) time.getTime()); // time -> long -> int
     }
+
+    public boolean getHelp() {
+        return help;
+    }
 }
