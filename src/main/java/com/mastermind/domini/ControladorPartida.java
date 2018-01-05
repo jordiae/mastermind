@@ -17,7 +17,7 @@ public class ControladorPartida {
     private boolean partidaCarregadaCorrectament;
     private int N_COLORS = 6; // Nota: mai no hem provat amb una mida diferent de 6
     private Codi iaFirstGuess;
-    private boolean codeMakerTurn;
+    //private boolean codeMakerTurn;
     private long initTime;
     private String user;
 
@@ -38,10 +38,10 @@ public class ControladorPartida {
         int nColors = N_COLORS;
         int mida = sizeByDifficulty(difficulty);
         ia = new IA(nColors,mida);
-        codeMakerTurn = false;
+        //codeMakerTurn = false;
         if (codeMaker) {
             iaFirstGuess = ia.firstGuess();
-            codeMakerTurn = true;
+            //codeMakerTurn = true;
         }
         initTime = System.nanoTime();
 
@@ -58,10 +58,10 @@ public class ControladorPartida {
         int nColors = N_COLORS;
         int mida = sizeByDifficulty(difficulty);
         ia = new IA(nColors,mida);
-        codeMakerTurn = false;
+        //codeMakerTurn = false;
         if (codeMaker) {
             iaFirstGuess = ia.firstGuess();
-            codeMakerTurn = true;
+            //codeMakerTurn = true;
         }
         initTime = System.nanoTime();
 
@@ -79,6 +79,11 @@ public class ControladorPartida {
             int nColors = N_COLORS;
             int mida = sizeByDifficulty(partida.getDifficulty());
             ia = new IA(nColors,mida,partida.getTaulell().getTirades());
+
+            ArrayList<Tirada> tirades = partida.getTaulell().getTirades();
+            for (Tirada tirada : tirades) {
+                System.out.println(tirada.dataToString());
+            }
         }
         else {
             partidaCarregadaCorrectament = false;
@@ -123,7 +128,7 @@ public class ControladorPartida {
     public Taulell novaTiradaUsuariCodebreaker(Codi codi) {
         Taulell taulell = partida.getTaulell();
         boolean tiradaValida = taulell.ferTirada(codi);
-        if (tiradaValida && !codeMakerTurn) {
+        if (tiradaValida) { //&& !codeMakerTurn) {
             partida.setTaulell(taulell);
             return taulell;
         }
@@ -133,7 +138,7 @@ public class ControladorPartida {
     }
 
     public Taulell novaRespostaCodemaker(Codi codiIA, Resposta resposta) {
-        if (codeMakerTurn && partida.getTaulell().getTorn() <= partida.getTaulell().getMaxTorn()) {
+        if (partida.getTaulell().getTorn() <= partida.getTaulell().getMaxTorn()) { // codeMakerTurn unic borrat
 
 
             ia.updateLastGuess(resposta.getnBlacks(), resposta.getnWhites());
