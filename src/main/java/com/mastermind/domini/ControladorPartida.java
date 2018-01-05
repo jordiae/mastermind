@@ -244,7 +244,7 @@ public class ControladorPartida {
 
     public ArrayList<String> informacioPartida() {
         ArrayList<String> tau = new ArrayList<>();
-        ArrayList<Tirada> tirades = new ArrayList<>();
+        ArrayList<Tirada> tirades = partida.getTaulell().getTirades();
         for (int i = 0; i < tirades.size(); i++) {
             ArrayList<Integer> peces = new ArrayList<>();
             peces = tirades.get(i).getCodi().getPeces();
