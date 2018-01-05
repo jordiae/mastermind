@@ -29,4 +29,34 @@ public class ControladorRanking {
         }
         return a;
     }
+
+    public ArrayList<String> carregaInfoRecords2() {
+        ArrayList<String> a =  ranking.recordsToString();
+        return a;
+    }
+
+    public boolean addRecord(Record r){
+        boolean guardat = false;
+        if (ranking.getRecordList().size() < 10){
+            ranking.getRecordList().add(r);
+            guardat = true;
+        }
+        else{
+            for (int i = 0; i < ranking.getRecordList().size(); ++i){
+                if (ranking.getRecordList().get(i).getScore() < r.getScore()) {
+                    ranking.getRecordList().set(i, r);
+                    guardat = true;
+                    break;
+                }
+            }
+        }
+
+        if (guardat){
+            ranking.ordenaRecords();
+            ArrayList<String> re = carregaInfoRecords2();
+            DataController.saveRecords(re);
+
+        }
+        return guardat;
+    }
 }

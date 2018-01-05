@@ -1,6 +1,8 @@
 package com.mastermind.domini;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Ranking {
 
@@ -11,6 +13,17 @@ public class Ranking {
     public Ranking() {
         recordList = new ArrayList<>();
         recordsGuardats = 0;
+    }
+
+    public class CustomComparator implements Comparator<Record> {
+        @Override
+        public int compare(Record o1, Record o2) {
+            return o1.getScore() - (o2.getScore());
+        }
+    }
+
+    public void ordenaRecords(){
+        Collections.sort(recordList, new CustomComparator());
     }
 
     public String dataToString() {
