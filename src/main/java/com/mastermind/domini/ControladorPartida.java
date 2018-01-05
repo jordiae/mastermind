@@ -119,6 +119,20 @@ public class ControladorPartida {
         return iaFirstGuess;
     }
 
+    public String nextGuessIAString() {
+        /*if (nova || partida.getTaulell().getTorn() == 0) {}
+        else {
+            return ia.nextGuess();
+        }*/
+        return ia.nextGuess().dataToString();
+    }
+
+
+    public String getFirstGuessString() {
+        return iaFirstGuess.dataToString();
+    }
+
+
     // Nota: mai no hem provat amb una mida diferent de 4
     private int sizeByDifficulty(int difficulty) {
         int mida = 4 + difficulty;
@@ -155,6 +169,29 @@ public class ControladorPartida {
     }
 
 
+    public void novaRespostaCodemakerVoid(String codiIA, int nBlacks, int nWhites) {
+       // if (partida.getTaulell().getTorn() < partida.getTaulell().getMaxTorn()) { // codeMakerTurn unic borrat
+
+        ArrayList<Integer> pecesCodi = new ArrayList<>();
+        for (int i = 0; i < codiIA.length(); i++) {
+            pecesCodi.add(Integer.parseInt(String.valueOf(codiIA.charAt(i))));
+        }
+        Codi codi = new Codi(pecesCodi);
+            ia.updateLastGuess(nBlacks, nWhites);
+            Taulell taulell = partida.getTaulell();
+            ArrayList<Tirada> tirades = taulell.getTirades();
+            Resposta resposta = new Resposta(nBlacks,nWhites);
+            Tirada tirada = new Tirada(codi, resposta);
+            tirades.add(tirada);
+            taulell.setTirades(tirades);
+            taulell.setTorn(taulell.getTorn()+1);
+            partida.setTaulell(taulell);
+            //return taulell;
+       // }
+       // return null;
+    }
+
+
 
     private Taulell createTaulell(int difficulty, boolean codeMaker, Codi codiSolucio) {
         int mida = sizeByDifficulty(difficulty);
@@ -164,8 +201,7 @@ public class ControladorPartida {
         Codi codiSol;
         if (codeMaker) {
             codiSol = codiSolucio;
-        }
-        else {
+        } else {
             for (Integer peca : peces) {
                 peces.add(peca, random.nextInt(nColors));
             }
@@ -174,7 +210,7 @@ public class ControladorPartida {
         int torn = 0;
         ArrayList<Tirada> tirades = new ArrayList<>();
         int maxTorn = 10;
-        Taulell taulell = new Taulell(torn, codiSolucio,tirades,maxTorn);
+        Taulell taulell = new Taulell(torn, codiSolucio, tirades, maxTorn);
         return taulell;
 
     }

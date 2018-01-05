@@ -66,8 +66,14 @@ public class ControladorPresentacio {
         String nomUsuari = controladorUsuari.getNomUsuari();
         configuracioPartida.desactivar();
         controladorPartida = new ControladorPartida(dificultat, codemaker, codi, nomUsuari);
-        pantallaPartida = new PantallaPartida(this);
+        String firstGuess = controladorPartida.getFirstGuessString();
+        pantallaPartida = new PantallaPartida(this,dificultat + 4, codi, firstGuess);
         pantallaPartida.visualitza();
+    }
+
+    public String nextGuessIA(String codi,int blanques, int negres) {
+        controladorPartida.novaRespostaCodemakerVoid(codi, negres, blanques);
+        return controladorPartida.nextGuessIAString();
     }
 
     public void surtConfigurarPartida () {
