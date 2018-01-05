@@ -113,6 +113,8 @@ public class DataController {
 
     }
 
+
+
     static private String getByID(int ID, String user){
 
         String partida = new String();
@@ -140,6 +142,8 @@ public class DataController {
                 String[] parts = line.split(" ");
                 if (Integer.parseInt(parts[0]) == ID){
                     partida = line;
+                    pw.println(line);
+                    pw.flush();
                 }
                 else{
                     pw.println(line);
@@ -226,17 +230,6 @@ public class DataController {
             return false;
         }
 
-
-        try{
-            output = new BufferedWriter(new FileWriter("partides" + user + ".txt", true));  //clears file every time
-            output.append(data + "\n");
-            output.close();
-        }
-        catch(Throwable e){
-            System.out.println("no s'ha pogut desar la partida");
-            return false;
-        }
-
         f = new File("IDs" + user + ".txt");
         try {
             f.createNewFile();
@@ -245,16 +238,28 @@ public class DataController {
             return false;
         }
 
-        try{
-            output = new BufferedWriter(new FileWriter("IDs" + user + ".txt", true));  //clears file every time
-            output.append(ID + "\n");
-            output.close();
-            return true;
+
+        try (BufferedReader br = new BufferedReader(new FileReader("partides" + user + ".txt"))) {
+            String line;
+            Partida[] partides = new Partida[15];
+            int i = 0;
+            while ((line = br.readLine()) != null) {
+                ++i;
+            }
+            if (i == 10){
+                updatePartides(data, user, ID);
+                return true;
+            }
+            else{
+                afegeixPartida(data, user, ID);
+                return true;
+            }
         }
-        catch(Throwable e){
-            System.out.println("no s'ha pogut desar la partida");
+        catch(Throwable t){
+            System.out.println("no s'ha pogut obrir el fitxer");
             return false;
         }
+
 
 
     }
@@ -370,5 +375,113 @@ public class DataController {
     }
 
 
+     static private void updatePartides(String data, String user, String ID){
+         try {
+             File inFile = new File("partides" + user + ".txt");
+             if (!inFile.isFile()) {
+                 System.out.println("Parameter is not an existing file");
 
+             }
+             //Construct the new file that will later be renamed to the original filename.
+             File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
+             BufferedReader br = new BufferedReader(new FileReader("partides" + user + ".txt"));
+             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+             String line;
+             boolean first = true;
+             //Read from the original file and write to the new
+             //unless content matches data to be removed.
+             while ((line = br.readLine()) != null) {
+                 if (first){
+                    first = false;
+                 }
+                 else{
+                     pw.println(line);
+                     pw.flush();
+                 }
+             }
+             pw.println(data);
+             pw.flush();
+             pw.close();
+             br.close();
+
+             //Delete the original file
+             if (!inFile.delete()) {
+                 System.out.println("Could not delete file");
+
+             }
+             //Rename the new file to the filename the original file had.
+             if (!tempFile.renameTo(inFile))
+                 System.out.println("Could not rename file");
+
+         } catch (FileNotFoundException ex) {
+             ex.printStackTrace();
+         } catch (IOException ex) {
+             ex.printStackTrace();
+         }
+
+         try {
+             File inFile = new File("IDs" + user + ".txt");
+             if (!inFile.isFile()) {
+                 System.out.println("Parameter is not an existing file");
+
+             }
+             //Construct the new file that will later be renamed to the original filename.
+             File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
+             BufferedReader br = new BufferedReader(new FileReader("IDs" + user + ".txt"));
+             PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+             String line;
+             boolean first = true;
+             //Read from the original file and write to the new
+             //unless content matches data to be removed.
+             while ((line = br.readLine()) != null) {
+                 if (first){
+                    first = false;
+                 }
+                 else{
+                     pw.println(line);
+                     pw.flush();
+                 }
+             }
+             pw.println(ID);
+             pw.flush();
+             pw.close();
+             br.close();
+
+             //Delete the original file
+             if (!inFile.delete()) {
+                 System.out.println("Could not delete file");
+
+             }
+             //Rename the new file to the filename the original file had.
+             if (!tempFile.renameTo(inFile))
+                 System.out.println("Could not rename file");
+
+         } catch (FileNotFoundException ex) {
+             ex.printStackTrace();
+         } catch (IOException ex) {
+             ex.printStackTrace();
+         }
+     }
+
+     static private void afegeixPartida(String data, String user, String ID){
+         Writer output;
+
+         try{
+             output = new BufferedWriter(new FileWriter("partides" + user + ".txt", true));  //clears file every time
+             output.append(data + "\n");
+             output.close();
+         }
+         catch(Throwable e){
+             System.out.println("no s'ha pogut desar la partida");
+         }
+
+         try{
+             output = new BufferedWriter(new FileWriter("IDs" + user + ".txt", true));  //clears file every time
+             output.append(ID + "\n");
+             output.close();
+         }
+         catch(Throwable e){
+             System.out.println("no s'ha pogut desar la partida");
+         }
+     }
 }
