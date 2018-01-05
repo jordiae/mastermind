@@ -261,4 +261,9 @@ public class ControladorPartida {
         return tau;
     }
 
+    public int calcularPuntuacio() {
+        partida.setTime(new Time(this.getCurrentElapsedTime()));
+        return partida.getPuntuacio();
+    }
+
 }
