@@ -203,6 +203,37 @@ public class DataController {
         catch(Throwable t){
             System.out.println("no s'ha pogut obrir el fitxer");
         }
+
+        try {
+            File inFile = new File("IDs" + user + ".txt");
+            if (!inFile.isFile()) {
+                System.out.println("Parameter is not an existing file");
+
+            }
+            //Construct the new file that will later be renamed to the original filename.
+            File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader("IDs" + user + ".txt"));
+            PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+            String line;
+            boolean first = true;
+            //Read from the original file and write to the new
+            //unless content matches data to be removed.
+            while ((line = br.readLine()) != null) {
+
+                if (line.equals(ID)) {
+                    erased = true;
+                } else {
+                    pw.println(line);
+                    pw.flush();
+                }
+            }
+            pw.close();
+            br.close();
+
+        }
+        catch(Throwable t){
+            System.out.println("no s'ha pogut obrir el fitxer");
+        }
         return erased;
 
     }

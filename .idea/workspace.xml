@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19d2390d-c26d-4f7d-8fb6-be4e3fc21c5e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mastermind/persistencia/DataController.java" afterPath="$PROJECT_DIR$/src/main/java/com/mastermind/persistencia/DataController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -20,8 +19,8 @@
       <file leaf-file-name="DataController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mastermind/persistencia/DataController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="693">
-              <caret line="203" column="64" lean-forward="false" selection-start-line="203" selection-start-column="64" selection-end-line="203" selection-end-column="64" />
+            <state relative-caret-position="594">
+              <caret line="222" column="24" lean-forward="false" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -275,8 +274,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mastermind/persistencia/DataController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="693">
-          <caret line="203" column="64" lean-forward="false" selection-start-line="203" selection-start-column="64" selection-end-line="203" selection-end-column="64" />
+        <state relative-caret-position="594">
+          <caret line="222" column="24" lean-forward="false" selection-start-line="222" selection-start-column="24" selection-end-line="222" selection-end-column="24" />
           <folding />
         </state>
       </provider>
