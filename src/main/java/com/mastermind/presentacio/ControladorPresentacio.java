@@ -101,7 +101,7 @@ public class ControladorPresentacio {
                 System.out.println(tiradaActual[1]);
                 pantallaPartida = new PantallaPartida(this, midaTaulell, codi, tiradaActual[0], codemaker);
                 pantallaPartida.visualitza();
-                for (int i = 0; i < tirades.size(); ++i) {
+                for (int i = 1; i < tirades.size(); ++i) {
                     pantallaPartida.colocaBlanquesNegres(tiradaActual[1]);
                     tiradaActual = tirades.get(i).split(" ");
                     pantallaPartida.novaTirada(tiradaActual[0]);
@@ -138,6 +138,11 @@ public class ControladorPresentacio {
         menuUsuari.activar();
     }
 
+    public boolean afegirRecord() {
+        int puntuacio = controladorPartida.getPuntuacio();
+        return controladorRanking.addRecord(controladorUsuari.getNomUsuari(),puntuacio);
+    }
+
     public void surtConfigurarPartida () {
         configuracioPartida.desactivar();
         configuracioPartida = null;
@@ -169,10 +174,8 @@ public class ControladorPresentacio {
 
     public void mostraPantallaCarga(){
         menuUsuari.desactivar();
-        if (menuC == null) {
-            menuC = new MenuCarrega(this);
-            menuC.visualitza();
-        } else menuC.activar();
+        menuC = new MenuCarrega(this);
+        menuC.visualitza();
     }
 
     public void surtPantallaCarga(){

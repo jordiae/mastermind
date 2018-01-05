@@ -46,7 +46,7 @@ public class MenuCarrega {
     private void inicialitzaComponents(){
         framePresentacio.setContentPane(this.panelCarrega);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelCarrega.setPreferredSize(new Dimension(500,750));
+        panelCarrega.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
         surtButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

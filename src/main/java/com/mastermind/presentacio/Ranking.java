@@ -50,7 +50,7 @@ public class Ranking {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelRanking);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelRanking.setPreferredSize(new Dimension(500,750));
+        panelRanking.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
         button1.setText("surt");
         button1.addActionListener(new ActionListener() {

@@ -39,7 +39,7 @@ public class PantallaPrincipal {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.initView);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        initView.setPreferredSize(new Dimension(500,750));
+        initView.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
         // Listeners para los botones
 

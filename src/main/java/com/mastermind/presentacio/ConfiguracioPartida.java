@@ -62,7 +62,7 @@ public class ConfiguracioPartida {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelConfiguracio);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelConfiguracio.setPreferredSize(new Dimension(500,750));
+        panelConfiguracio.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
         dificultat = -1;
         codemaker = -1;
@@ -195,7 +195,7 @@ public class ConfiguracioPartida {
 
     private void comencaButtonAction () {
         if (dificultat == -1 || codemaker == -1 || (codemaker == 1 && !colorSet)) {
-            System.out.println("Posaho be.");
+            JOptionPane.showMessageDialog(framePresentacio, "Ep! Em sembla que no has configurat bé la partida!");
         } else {
             boolean isCodemaker;
             String codiStr = "";

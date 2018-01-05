@@ -41,6 +41,7 @@ public class ControladorPartida {
         //codeMakerTurn = false;
         if (codeMaker) {
             iaFirstGuess = ia.firstGuess();
+            partida.getTaulell().ferTirada(iaFirstGuess);
             //codeMakerTurn = true;
         }
         initTime = System.nanoTime();
@@ -61,6 +62,7 @@ public class ControladorPartida {
         //codeMakerTurn = false;
         if (codeMaker) {
             iaFirstGuess = ia.firstGuess();
+            partida.getTaulell().ferTirada(iaFirstGuess);
             //codeMakerTurn = true;
         }
         initTime = System.nanoTime();
@@ -80,6 +82,7 @@ public class ControladorPartida {
 
     // Constructora carregar partida
     public ControladorPartida(int id, String username) {
+        user = username;
         Partida p = DataController.getPartida(id,username);
         if (p != null) {
             partida = p;
@@ -124,7 +127,9 @@ public class ControladorPartida {
         else {
             return ia.nextGuess();
         }*/
-        return ia.nextGuess().dataToString();
+        Codi codi = ia.nextGuess();
+        partida.getTaulell().ferTirada(codi);
+        return codi.dataToString();
     }
 
 
@@ -178,14 +183,14 @@ public class ControladorPartida {
         }
         Codi codi = new Codi(pecesCodi);
             ia.updateLastGuess(nBlacks, nWhites);
-            Taulell taulell = partida.getTaulell();
-            ArrayList<Tirada> tirades = taulell.getTirades();
-            Resposta resposta = new Resposta(nBlacks,nWhites);
-            Tirada tirada = new Tirada(codi, resposta);
-            tirades.add(tirada);
-            taulell.setTirades(tirades);
-            taulell.setTorn(taulell.getTorn()+1);
-            partida.setTaulell(taulell);
+            //Taulell taulell = partida.getTaulell();
+            //ArrayList<Tirada> tirades = taulell.getTirades();
+            //Resposta resposta = new Resposta(nBlacks,nWhites);
+            //Tirada tirada = new Tirada(codi, resposta);
+            //tirades.add(tirada);
+            //taulell.setTirades(tirades);
+            //taulell.setTorn(taulell.getTorn()+1);
+            //partida.setTaulell(taulell);
             //return taulell;
        // }
        // return null;
@@ -197,12 +202,13 @@ public class ControladorPartida {
             pecesCodiAux.add(Integer.parseInt(String.valueOf(codi.charAt(i))));
         }
         Codi pecesCodi = new Codi(pecesCodiAux);
-        Taulell taulell = this.novaTiradaUsuariCodebreaker(pecesCodi);
+        //Taulell taulell = this.novaTiradaUsuariCodebreaker(pecesCodi);
         /*if (taulell == null) {
             System.out.println("Nova tirada ha fallat");
             System.exit(0);
         }*/
-        Resposta resposta = taulell.getTirades().get(taulell.getTirades().size()-1).getResposta();
+        partida.getTaulell().ferTirada(pecesCodi);
+        Resposta resposta = partida.getTaulell().getTirades().get(partida.getTaulell().getTirades().size()-1).getResposta();
         return String.valueOf(resposta.getnBlacks()) + String.valueOf(resposta.getnWhites());
 
     }
@@ -284,4 +290,5 @@ public class ControladorPartida {
 
     public boolean isCodemaker() {return partida.isCodeMaker();}
 
+    public int getPuntuacio() {return partida.getPuntuacio();}
 }

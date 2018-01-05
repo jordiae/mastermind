@@ -46,7 +46,7 @@ public class MenuUsuari {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelMenu);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelMenu.setPreferredSize(new Dimension(500,750));
+        panelMenu.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
         novaPartidaButton.addActionListener
                 (new ActionListener() {

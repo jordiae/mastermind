@@ -1,6 +1,7 @@
 package com.mastermind.domini;
 
 import java.sql.Time;
+import java.util.Random;
 
 public class Partida {
 
@@ -70,7 +71,7 @@ public class Partida {
 
     public String dataToString() {
         return this.ID + " " + this.difficulty + " " + String.valueOf(this.codeMaker) + " "
-                + String.valueOf(this.help) + " " + this.time.getTime() + " " + this.taulell.dataToString();
+               + String.valueOf(this.help) + " " + this.time.getTime() + " " + this.taulell.dataToString();
     }
 
     private boolean fesTirada(Codi codi){
@@ -78,7 +79,8 @@ public class Partida {
     } // int -> boolean
 
     public int getPuntuacio(){
-        return difficulty*taulell.getTorn()/ ((int) time.getTime()); // time -> long -> int
+        Random r = new Random();
+        return r.nextInt(1000); // time -> long -> int
     }
 
     public boolean getHelp() {

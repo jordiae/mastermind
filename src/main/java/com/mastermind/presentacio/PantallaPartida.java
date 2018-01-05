@@ -31,6 +31,7 @@ public class PantallaPartida {
     private int midaTaulell;
     private int numTirada;
     private int offsetCodi;
+    private int longitudFrame;
 
     public PantallaPartida(ControladorPresentacio controladorPresentacio, int mida, String codi, String firstGuess, boolean codemaker) {
         this.controladorPresentacio = controladorPresentacio;
@@ -38,6 +39,7 @@ public class PantallaPartida {
         numTirada = 0;
         codiAEsbrinar = codi;
         this.codemaker = codemaker;
+        longitudFrame = 264/midaTaulell;
         inicialitzaComponents();
         if (codemaker) {
             codiAnterior = firstGuess;
@@ -60,7 +62,7 @@ public class PantallaPartida {
         panelPartida = new JPanel();
         framePresentacio.setContentPane(this.panelPartida);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        panelPartida.setPreferredSize(new Dimension(500,750));
+        panelPartida.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
         confirmaButton = new JButton(  "Confirmar");
         confirmaButton.addActionListener(new ActionListener() {
@@ -90,9 +92,9 @@ public class PantallaPartida {
             for (int i = 0; i < midaTaulell; ++i) {
                 JPanel panel = new JPanel();
                 panel.setBackground(Color.LIGHT_GRAY);
-                panel.setMinimumSize(new Dimension(50,50));
-                panel.setMaximumSize(new Dimension(50,50));
-                panel.setPreferredSize(new Dimension(50,50));
+                panel.setMinimumSize(new Dimension(longitudFrame,30));
+                panel.setMaximumSize(new Dimension(longitudFrame,30));
+                panel.setPreferredSize(new Dimension(longitudFrame,30));
                 panelCodi.add(panel);
                 codiColors.add(panel);
             }
@@ -234,15 +236,27 @@ public class PantallaPartida {
 
     private void confirmaButtonAction() {
         if (codemaker) {
-            int blanques = Integer.parseInt(nBlanques.getText());
-            int negres = Integer.parseInt(nNegres.getText());
-            if (checkBlanquesNegresCorrecte(blanques, negres)) {
+            String negresStr = nNegres.getText();
+            String blanquesStr = nBlanques.getText();
+            if (checkBlanquesNegresCorrecte(negresStr+blanquesStr)) {
                 nNegres.disable();
                 nBlanques.disable();
+                int blanques = Integer.parseInt(blanquesStr);
+                int negres = Integer.parseInt(negresStr);
                 codiAnterior = controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres);
                 novaTirada(codiAnterior);
+                if (codiAnterior.equals(codiAEsbrinar)) {
+                    JOptionPane.showMessageDialog(framePresentacio, "La IA ha guanyat la partida! És un Mastermind!");
+                    controladorPresentacio.borraPartida();
+                    controladorPresentacio.surtPartida();
+                } else if (numTirada == 10) {
+                    JOptionPane.showMessageDialog(framePresentacio, "La IA ha perdut la partida. Llàstima...");
+                    controladorPresentacio.borraPartida();
+                    controladorPresentacio.surtPartida();
+                }
             } else {
                 JOptionPane.showMessageDialog(framePresentacio, "Has introduït malament la informació.");
+
             }
         } else {
             codiAnterior = "";
@@ -257,9 +271,12 @@ public class PantallaPartida {
             nBlanques.setEnabled(false);
             reiniciarInputs();
             if (Integer.parseInt(String.valueOf(resposta.charAt(0))) == midaTaulell) {
-                String s = "I a més, estàs entre els 10 nostres millors jugadors!";
-                JOptionPane.showMessageDialog(framePresentacio, "Has guanyat la partida. Felicitats!");
-                
+                String s = "";
+                if (controladorPresentacio.afegirRecord()) {
+                    s = "I a més, estàs entre els 10 nostres millors jugadors!";
+                }
+                JOptionPane.showMessageDialog(framePresentacio, "Has guanyat la partida. Felicitats!" + s);
+
                 controladorPresentacio.surtPartida();
             } else if (numTirada == 10){
                 JOptionPane.showMessageDialog(framePresentacio, "Oh vaja! Has perdut la partida");
@@ -269,10 +286,8 @@ public class PantallaPartida {
 
     }
 
-    private boolean checkBlanquesNegresCorrecte(int blanques, int negres) {
-        String resposta = controladorPresentacio.generarResposta(codiAnterior);
-        return (Integer.parseInt(String.valueOf(resposta.charAt(0))) == negres
-            && Integer.parseInt(String.valueOf(resposta.charAt(1))) == blanques);
+    private boolean checkBlanquesNegresCorrecte(String res) {
+        return res.equals(controladorPresentacio.generarResposta(codiAnterior));
     }
 
     private void sortirButtonAction() {
@@ -317,9 +332,9 @@ public class PantallaPartida {
         for (int i = 0; i < midaTaulell; ++i) {
             int color = Character.getNumericValue(codi.charAt(i));
             JPanel panel = new JPanel();
-            panel.setMinimumSize(new Dimension(66,60));
-            panel.setMaximumSize(new Dimension(66,60));
-            panel.setPreferredSize(new Dimension(66,60));
+            panel.setMinimumSize(new Dimension(longitudFrame,40));
+            panel.setMaximumSize(new Dimension(longitudFrame,40));
+            panel.setPreferredSize(new Dimension(longitudFrame,40));
             Color colorPanel = Color.GRAY;
             switch (color) {
                 case 1:
