@@ -199,6 +199,14 @@ public class DataController {
             pw.close();
             br.close();
 
+            if (!inFile.delete()) {
+                System.out.println("Could not delete file");
+
+            }
+            //Rename the new file to the filename the original file had.
+            if (!tempFile.renameTo(inFile))
+                System.out.println("Could not rename file");
+
         }
         catch(Throwable t){
             System.out.println("no s'ha pogut obrir el fitxer");
@@ -229,6 +237,14 @@ public class DataController {
             }
             pw.close();
             br.close();
+
+            if (!inFile.delete()) {
+                System.out.println("Could not delete file");
+                
+            }
+            //Rename the new file to the filename the original file had.
+            if (!tempFile.renameTo(inFile))
+                System.out.println("Could not rename file");
 
         }
         catch(Throwable t){
