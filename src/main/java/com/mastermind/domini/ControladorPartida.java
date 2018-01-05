@@ -69,6 +69,14 @@ public class ControladorPartida {
 
 
 
+    public static String generarCodiAleatori(int size) {
+        Random random = new Random();
+        String pecesAEndevinar = "";
+        for (int i = 0; i < size; i++) {
+            pecesAEndevinar += String.valueOf(random.nextInt(6)+1);
+        }
+        return pecesAEndevinar;
+    }
 
     // Constructora carregar partida
     public ControladorPartida(int id, String username) {
@@ -183,6 +191,21 @@ public class ControladorPartida {
        // return null;
     }
 
+    public String generaResposta(String codi) {
+        ArrayList<Integer> pecesCodiAux = new ArrayList<>();
+        for (int i = 0; i < codi.length(); i++) {
+            pecesCodiAux.add(Integer.parseInt(String.valueOf(codi.charAt(i))));
+        }
+        Codi pecesCodi = new Codi(pecesCodiAux);
+        Taulell taulell = this.novaTiradaUsuariCodebreaker(pecesCodi);
+        /*if (taulell == null) {
+            System.out.println("Nova tirada ha fallat");
+            System.exit(0);
+        }*/
+        Resposta resposta = taulell.getTirades().get(taulell.getTirades().size()-1).getResposta();
+        return String.valueOf(resposta.getnBlacks()) + String.valueOf(resposta.getnWhites());
+
+    }
 
 
     private Taulell createTaulell(int difficulty, boolean codeMaker, Codi codiSolucio) {

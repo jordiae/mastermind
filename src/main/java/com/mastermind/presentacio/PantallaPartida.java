@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class PantallaPartida {
     private ControladorPresentacio controladorPresentacio;
@@ -16,21 +17,32 @@ public class PantallaPartida {
     private JTextField nNegres;
     private JLabel nBlanquesText;
     private JLabel nNegresText;
-
+    private JButton redButton;
+    private JButton greenButton;
+    private JButton blueButton;
+    private JButton yellowButton;
+    private JButton orangeButton;
+    private JButton purpleButton;
+    private ArrayList<JPanel> codiColors;
+    private ArrayList<Integer> codiColorsNum;
     private String codiAnterior;
+    private String codiAEsbrinar;
+    private boolean codemaker;
     private int midaTaulell;
     private int numTirada;
+    private int offsetCodi;
 
-    public PantallaPartida(ControladorPresentacio controladorPresentacio, int mida, String codi, String firstGuess) {
+    public PantallaPartida(ControladorPresentacio controladorPresentacio, int mida, String codi, String firstGuess, boolean codemaker) {
         this.controladorPresentacio = controladorPresentacio;
         midaTaulell = mida;
         numTirada = 0;
+        codiAEsbrinar = codi;
+        this.codemaker = codemaker;
         inicialitzaComponents();
-        JPanel tirada = new JPanel();
-        parseCodiToPanel(codi, tirada);
-        panelPartida.add(tirada);
-        codiAnterior = parseCodiToString(firstGuess);
-        novaTirada(codiAnterior);
+        if (codemaker) {
+            codiAnterior = parseCodiToString(firstGuess);
+            novaTirada(codiAnterior);
+        }
     }
 
     public void visualitza() {
@@ -44,6 +56,7 @@ public class PantallaPartida {
     }
 
     public void inicialitzaComponents() {
+        System.out.println(codiAEsbrinar);
         panelPartida = new JPanel();
         framePresentacio.setContentPane(this.panelPartida);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,15 +74,190 @@ public class PantallaPartida {
         });
         panelPartida.add(confirmaButton);
         panelPartida.add(sortirButton);
+        if (codemaker) {
+            JPanel tirada = new JPanel();
+            parseCodiToPanel(codiAEsbrinar, tirada);
+            panelPartida.add(tirada);
+        } else {
+            confirmaButton.setEnabled(false);
+            offsetCodi = 0;
+            codiColorsNum = new ArrayList<>();
+            for (int i = 0; i < midaTaulell; ++i) codiColorsNum.add(0);
+            codiColors = new ArrayList<>();
+            JPanel panelCodi = new JPanel();
+            for (int i = 0; i < midaTaulell; ++i) {
+                JPanel panel = new JPanel();
+                panel.setBackground(Color.LIGHT_GRAY);
+                panel.setMinimumSize(new Dimension(50,50));
+                panel.setMaximumSize(new Dimension(50,50));
+                panel.setPreferredSize(new Dimension(50,50));
+                panelCodi.add(panel);
+                codiColors.add(panel);
+            }
+            panelPartida.add(panelCodi);
+            JPanel panelBotons = new JPanel();
+            redButton = new JButton();
+            redButton.setBackground(Color.RED);
+            redButton.setMinimumSize(new Dimension(30,30));
+            redButton.setMaximumSize(new Dimension(30,30));
+            redButton.setPreferredSize(new Dimension(30,30));
+            panelBotons.add(redButton);
+            redButton.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent event) {
+                    redButtonAction();
+                }
+            });
+
+            greenButton = new JButton();
+            greenButton.setBackground(Color.GREEN);
+            greenButton.setMinimumSize(new Dimension(30,30));
+            greenButton.setMaximumSize(new Dimension(30,30));
+            greenButton.setPreferredSize(new Dimension(30,30));
+            panelBotons.add(greenButton);
+            greenButton.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent event) {
+                    greenButtonAction();
+                }
+            });
+
+            blueButton = new JButton();
+            blueButton.setBackground(Color.BLUE);
+            blueButton.setMinimumSize(new Dimension(30,30));
+            blueButton.setMaximumSize(new Dimension(30,30));
+            blueButton.setPreferredSize(new Dimension(30,30));
+            panelBotons.add(blueButton);
+            blueButton.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent event) {
+                    blueButtonAction();
+                }
+            });
+
+            yellowButton = new JButton();
+            yellowButton.setBackground(Color.YELLOW);
+            yellowButton.setMinimumSize(new Dimension(30,30));
+            yellowButton.setMaximumSize(new Dimension(30,30));
+            yellowButton.setPreferredSize(new Dimension(30,30));
+            panelBotons.add(yellowButton);
+            yellowButton.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent event) {
+                    yellowButtonAction();
+                }
+            });
+
+            orangeButton = new JButton();
+            orangeButton.setBackground(new Color(255,145,0));
+            orangeButton.setMinimumSize(new Dimension(30,30));
+            orangeButton.setMaximumSize(new Dimension(30,30));
+            orangeButton.setPreferredSize(new Dimension(30,30));
+            panelBotons.add(orangeButton);
+            orangeButton.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent event) {
+                    orangeButtonAction();
+                }
+            });
+
+            purpleButton = new JButton();
+            purpleButton.setBackground(new Color(235,0,255));
+            purpleButton.setMinimumSize(new Dimension(30,30));
+            purpleButton.setMaximumSize(new Dimension(30,30));
+            purpleButton.setPreferredSize(new Dimension(30,30));
+            panelBotons.add(purpleButton);
+            purpleButton.addActionListener(new ActionListener() {
+                public void actionPerformed (ActionEvent event) {
+                    purpleButtonAction();
+                }
+            });
+
+            panelPartida.add(panelBotons);
+
+        }
+
+    }
+
+    private void redButtonAction() {
+        afegeixColor(1);
+    }
+
+    private void greenButtonAction() {
+        afegeixColor(2);
+    }
+
+    private void blueButtonAction() {
+        afegeixColor(3);
+    }
+
+    private void yellowButtonAction() {
+        afegeixColor(4);
+    }
+
+    private void orangeButtonAction() {
+        afegeixColor(5);
+    }
+
+    private void purpleButtonAction() {
+        afegeixColor(6);
+    }
+
+    private void afegeixColor(int color) {
+        int numPanel = offsetCodi;
+        codiColorsNum.set(offsetCodi, color);
+        ++offsetCodi;
+        if (midaTaulell == offsetCodi) {
+            offsetCodi = 0;
+            confirmaButton.setEnabled(true);
+        }
+        Color colorPanel = Color.LIGHT_GRAY;
+        switch (color) {
+            case 1:
+                colorPanel = Color.RED;
+                break;
+            case 2:
+                colorPanel = Color.GREEN;
+                break;
+            case 3:
+                colorPanel = Color.BLUE;
+                break;
+            case 4:
+                colorPanel = Color.YELLOW;
+                break;
+            case 5:
+                colorPanel = new Color(255, 145,0);
+                break;
+            case 6:
+                colorPanel = new Color(235, 0, 255);
+                break;
+        }
+        codiColors.get(numPanel).setBackground(colorPanel);
     }
 
     private void confirmaButtonAction() {
-        int blanques = Integer.parseInt(nBlanques.getText());
-        int negres = Integer.parseInt(nNegres.getText());
-        nNegres.disable();
-        nBlanques.disable();
-        codiAnterior = parseCodiToString(controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres));
-        novaTirada(codiAnterior);
+        if (codemaker) {
+            int blanques = Integer.parseInt(nBlanques.getText());
+            int negres = Integer.parseInt(nNegres.getText());
+            nNegres.disable();
+            nBlanques.disable();
+            codiAnterior = parseCodiToString(controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres));
+            novaTirada(codiAnterior);
+        } else {
+            codiAnterior = "";
+            for (int i = 0; i < midaTaulell; ++i) {
+                codiAnterior += String.valueOf(codiColorsNum.get(i));
+            }
+            String resposta = controladorPresentacio.generarResposta(codiAnterior);
+            novaTirada(codiAnterior);
+            nNegres.setText(String.valueOf(resposta.charAt(0)));
+            nBlanques.setText(String.valueOf(resposta.charAt(1)));
+            nNegres.setEnabled(false);
+            nBlanques.setEnabled(false);
+            reiniciarInputs();
+            if (Integer.parseInt(String.valueOf(resposta.charAt(0))) == midaTaulell) {
+                JOptionPane.showMessageDialog(framePresentacio, "Has guanyat la partida. Felicitats!");
+                controladorPresentacio.surtPartida();
+            } else if (numTirada == 10){
+                JOptionPane.showMessageDialog(framePresentacio, "Oh vaja! Has perdut la partida");
+                controladorPresentacio.surtPartida();
+            }
+        }
 
     }
     private void sortirButtonAction() {
@@ -151,6 +339,14 @@ public class PantallaPartida {
         tirada.add(nNegresText);
         tirada.add(nNegres);
 
+    }
+
+    private void reiniciarInputs() {
+        confirmaButton.setEnabled(false);
+        offsetCodi = 0;
+        for (int i = 0; i < midaTaulell; ++i) {
+            codiColors.get(i).setBackground(Color.LIGHT_GRAY);
+        }
     }
 
     private String parseCodiToString(String codi) {

@@ -30,17 +30,21 @@ public class ControladorPresentacio {
         pantallaPrincipal.visualitza();
     }
 
-    public void registraUsuari(String nom, String contrasenya) {
+    public boolean registraUsuari(String nom, String contrasenya) {
         if (controladorUsuari.creaUsuari(nom,contrasenya)) {
             carregaMenuUsuari();
+            return true;
         }
+        else return false;
 
     }
 
-    public void logInUsuari (String nom, String contrasenya) {
+    public boolean logInUsuari (String nom, String contrasenya) {
         if (controladorUsuari.carregaUsuari(nom, contrasenya)) {
             carregaMenuUsuari();
+            return true;
         }
+        else return false;
 
     }
 
@@ -66,9 +70,12 @@ public class ControladorPresentacio {
         String nomUsuari = controladorUsuari.getNomUsuari();
         configuracioPartida.desactivar();
         configuracioPartida = null;
+        String firstGuess = "";
+        int midaTaulell = dificultat + 4;
+        if (!codemaker) codi = ControladorPartida.generarCodiAleatori(midaTaulell);
         controladorPartida = new ControladorPartida(dificultat, codemaker, codi, nomUsuari);
-        String firstGuess = controladorPartida.getFirstGuessString();
-        pantallaPartida = new PantallaPartida(this,dificultat + 4, codi, firstGuess);
+        if (codemaker) firstGuess = controladorPartida.getFirstGuessString();
+        pantallaPartida = new PantallaPartida(this,midaTaulell, codi, firstGuess,codemaker);
         pantallaPartida.visualitza();
     }
 
@@ -92,6 +99,10 @@ public class ControladorPresentacio {
     public String nextGuessIA(String codi,int blanques, int negres) {
         controladorPartida.novaRespostaCodemakerVoid(codi, negres, blanques);
         return controladorPartida.nextGuessIAString();
+    }
+
+    public String generarResposta(String codi) {
+        return controladorPartida.generaResposta(codi);
     }
 
     public void surtPartida() {

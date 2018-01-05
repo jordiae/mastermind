@@ -59,15 +59,30 @@ public class PantallaPrincipal {
     private void loginButtonAction() {
         String nom = campUsuari.getText();
         String contrasenya = campContrasenya.getText();
-        controladorPresentacio.logInUsuari(nom, contrasenya);
+        campContrasenya.setText("");
+        if (checkUserIsCorrect(nom, contrasenya))
+            if (!controladorPresentacio.logInUsuari(nom, contrasenya)) {
+                JOptionPane.showMessageDialog(framePresentacio, "L'usuari i/o la contrasenya no existeixen en la base de dades.");
+            }
     }
 
     private void registerButtonAction() {
         String nom = campUsuari.getText();
         String contrasenya = campContrasenya.getText();
-        controladorPresentacio.registraUsuari(nom, contrasenya);
+        campContrasenya.setText("");
+        if (checkUserIsCorrect(nom, contrasenya))
+            if(!controladorPresentacio.registraUsuari(nom, contrasenya)) {
+                JOptionPane.showMessageDialog(framePresentacio, "L'usuari ja està registrat en la base de dades.");
+            }
     }
 
-
+    private boolean checkUserIsCorrect(String nom, String contrasenya) {
+        if (4 <= nom.length() && nom.length() <= 20 && 4 <= contrasenya.length() && contrasenya.length() <= 20)
+            return true;
+        else {
+            JOptionPane.showMessageDialog(framePresentacio, "L'usuari i la contrasenya han de tenir entre 4 i 20 caràcters.");
+            return false;
+        }
+    }
 
 }
