@@ -242,4 +242,23 @@ public class ControladorPartida {
         return DataController.savePartida(partida,user);
     }
 
+    public ArrayList<String> informacioPartida() {
+        ArrayList<String> tau = new ArrayList<>();
+        ArrayList<Tirada> tirades = new ArrayList<>();
+        for (int i = 0; i < tirades.size(); i++) {
+            ArrayList<Integer> peces = new ArrayList<>();
+            peces = tirades.get(i).getCodi().getPeces();
+            String s = "";
+            for (int j = 0; j < peces.size(); j++) {
+                s += peces.get(j);
+            }
+            s += " ";
+            int nBlacks = tirades.get(i).getResposta().getnBlacks();
+            int nWhites = tirades.get(i).getResposta().getnWhites();
+            s += String.valueOf(nBlacks) + String.valueOf(nWhites);
+            tau.add(s);
+        }
+        return tau;
+    }
+
 }
