@@ -303,13 +303,20 @@ public class PantallaPartida {
 
     }
 
+    public void colocaBlanquesNegres(String negreBlanc) {
+        nNegres.setText(String.valueOf(negreBlanc.charAt(0)));
+        nBlanques.setText(String.valueOf(negreBlanc.charAt(1)));
+        nNegres.setEnabled(false);
+        nBlanques.setEnabled(false);
+    }
+
     private void parseCodiToPanel(String codi, JPanel tirada) {
         for (int i = 0; i < midaTaulell; ++i) {
             int color = Character.getNumericValue(codi.charAt(i));
             JPanel panel = new JPanel();
-            panel.setMinimumSize(new Dimension(50,50));
-            panel.setMaximumSize(new Dimension(50,50));
-            panel.setPreferredSize(new Dimension(50,50));
+            panel.setMinimumSize(new Dimension(66,60));
+            panel.setMaximumSize(new Dimension(66,60));
+            panel.setPreferredSize(new Dimension(66,60));
             Color colorPanel = Color.GRAY;
             switch (color) {
                 case 1:
