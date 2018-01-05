@@ -39,6 +39,7 @@ public class IA {
         for (int i = positions / 2; i < positions; ++i) {
             aux.add(i, 2);
         }
+
         Codi c = new Codi(aux);
         prevGuess.add(new Tirada(c));
     }
