@@ -244,7 +244,7 @@ public class ControladorPartida {
 
     public ArrayList<String> informacioPartida() {
         ArrayList<String> tau = new ArrayList<>();
-        ArrayList<Tirada> tirades = new ArrayList<>();
+        ArrayList<Tirada> tirades = partida.getTaulell().getTirades();
         for (int i = 0; i < tirades.size(); i++) {
             ArrayList<Integer> peces = new ArrayList<>();
             peces = tirades.get(i).getCodi().getPeces();
@@ -260,5 +260,24 @@ public class ControladorPartida {
         }
         return tau;
     }
+
+    public int calcularPuntuacio() {
+        partida.setTime(new Time(this.getCurrentElapsedTime()));
+        return partida.getPuntuacio();
+    }
+
+    public String getCodiSolucio() {
+        Codi codiSolucio = partida.getTaulell().getCodiSolucio();
+        ArrayList<Integer> peces = codiSolucio.getPeces();
+        String s = "";
+        for (int i = 0; i < peces.size(); i++) {
+            s += String.valueOf(peces.get(i));
+        }
+        return s;
+    }
+
+    public int getMidaTaulell() {return partida.getDifficulty()+4;}
+
+    public boolean isCodemaker() {return partida.isCodeMaker();}
 
 }

@@ -77,7 +77,7 @@ public class Partida {
         return this.taulell.ferTirada(codi);
     } // int -> boolean
 
-    private int getPuntuacio(){
+    public int getPuntuacio(){
         return difficulty*taulell.getTorn()/ ((int) time.getTime()); // time -> long -> int
     }
 
