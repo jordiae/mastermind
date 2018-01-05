@@ -32,6 +32,7 @@ public class ConfiguracioPartida {
     private JPanel color6;
     private JLabel codiHint;
     private JLabel codiText;
+    private JButton enrereButton;
 
     private int dificultat;
     private int codemaker;
@@ -159,6 +160,13 @@ public class ConfiguracioPartida {
                     }
                 });
 
+        enrereButton.addActionListener
+                (new ActionListener() {
+                    public void actionPerformed (ActionEvent event) {
+                        controladorPresentacio.surtConfigurarPartida();
+                    }
+                });
+
     }
 
     private void redButtonAction() {
@@ -189,7 +197,16 @@ public class ConfiguracioPartida {
         if (dificultat == -1 || codemaker == -1 || (codemaker == 1 && !colorSet)) {
             System.out.println("Posaho be.");
         } else {
-            System.out.println("Success!");
+            boolean isCodemaker;
+            String codiStr = "";
+            if (codemaker == 1) {
+                isCodemaker = true;
+                for (int i = 0; i < dificultat+4; ++i) {
+                    codiStr += String.valueOf(codi.get(i));
+                }
+            }
+            else isCodemaker = false;
+            controladorPresentacio.comencaNovaPartida(dificultat, isCodemaker, codiStr);
         }
     }
 
@@ -232,12 +249,12 @@ public class ConfiguracioPartida {
             }
             offsetCodi = 0;
             codi = new ArrayList<>();
-            for (int i = 0; i < dificultat+4; ++i) codi.add(new Integer(0));
+            for (int i = 0; i < dificultat+4; ++i) codi.add(0);
         }
     }
 
     private void afegeixColor(int color) {
-        codi.set(offsetCodi, new Integer(color));
+        codi.set(offsetCodi, color);
         int numPanel = offsetCodi+1;
         ++offsetCodi;
         if (dificultat == 0) {
