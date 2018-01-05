@@ -442,6 +442,34 @@ public class DataController {
 
     }
 
+    static public void saveRecords(ArrayList<String> records){
+        File inFile = new File("records.txt");
+        if (!inFile.isFile()) {
+            System.out.println("Parameter is not an existing file");
+
+        }
+        if (!inFile.delete()) {
+            System.out.println("Could not delete file");
+            return;
+        }
+        inFile = new File("records.txt");
+        try {
+            inFile.createNewFile();
+            PrintWriter pw = new PrintWriter(new FileWriter(inFile));
+            for (int i = 0; i < records.size(); ++i){
+                pw.println(records.get(i));
+                pw.flush();
+            }
+            pw.close();
+        } catch (IOException e) {
+            System.out.println("no s'ha pogut crear el fitxer");
+            return;
+        }
+
+
+
+    }
+
 
      static private void updatePartides(String data, String user, String ID){
          try {
