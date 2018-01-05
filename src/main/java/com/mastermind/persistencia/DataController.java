@@ -203,18 +203,18 @@ public class DataController {
 
         ArrayList<Tirada> tir = p.getTaulell().getTirades();
 
-        String tirades = "";
+        String tirades = new String();
 
         for (int i = 0; i < tir.size(); ++i){
             Tirada t = tir.get(i);
             Codi cod = t.getCodi();
-            String auxiliar = "";
+            String auxiliar = new String();
             for (int j = 0; j < cod.getPeces().size(); ++j){
                 auxiliar = auxiliar + cod.getPeces().get(j);
             }
-            tirades = tirades + " " + auxiliar;
-            auxiliar = "" + t.getResposta().getnBlacks() + "" + t.getResposta().getnWhites();
-            tirades = tirades + " " + auxiliar;
+            tirades = tirades + auxiliar ;
+            auxiliar =  t.getResposta().getnBlacks() + "" + t.getResposta().getnWhites();
+            tirades = tirades + " " + auxiliar + " ";
 
         }
 

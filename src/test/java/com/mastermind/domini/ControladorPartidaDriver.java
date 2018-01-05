@@ -130,6 +130,7 @@ public class ControladorPartidaDriver {
             boolean codeMaker = true;
             boolean help = false;
             Time time = new Time(50);
+
             int torn = 3; // (no 2, ja s'han fet els anteriors)
             ArrayList<Integer> pecesSolucio = new ArrayList<>();
             pecesSolucio.add(3);
@@ -138,28 +139,34 @@ public class ControladorPartidaDriver {
             pecesSolucio.add(6);
             Codi codiSolucio = new Codi(pecesSolucio);
             ArrayList<Integer> peces1 = new ArrayList<>();
-            peces1.add(3);
+            peces1.add(1);
             peces1.add(4);
-            peces1.add(5);
-            peces1.add(6);
+            peces1.add(3);
+            peces1.add(1);
             ArrayList<Integer> peces2 = new ArrayList<>();
             peces2.add(3);
-            peces2.add(4);
-            peces2.add(5);
+            peces2.add(6);
+            peces2.add(6);
             peces2.add(6);
             ArrayList<Integer> peces3 = new ArrayList<>();
             peces3.add(3);
+            peces3.add(2);
             peces3.add(4);
-            peces3.add(5);
             peces3.add(6);
 
 
             Codi codi1 = new Codi(peces1);
             Codi codi2 = new Codi(peces2);
             Codi codi3 = new Codi(peces3);
-            Tirada tirada1 = new Tirada(codi1);
-            Tirada tirada2 = new Tirada(codi2);
-            Tirada tirada3 = new Tirada(codi3);
+            Resposta resposta1 = new Resposta();
+            resposta1.calcularResposta(codi1,codiSolucio);
+            Resposta resposta2 = new Resposta();
+            resposta2.calcularResposta(codi2,codiSolucio);
+            Resposta resposta3 = new Resposta();
+            resposta3.calcularResposta(codi3,codiSolucio);
+            Tirada tirada1 = new Tirada(codi1,resposta1);
+            Tirada tirada2 = new Tirada(codi2,resposta2);
+            Tirada tirada3 = new Tirada(codi3,resposta3);
             ArrayList<Tirada> tirades = new ArrayList<>();
             tirades.add(tirada1);
             tirades.add(tirada2);

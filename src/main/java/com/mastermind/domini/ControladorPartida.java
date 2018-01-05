@@ -4,6 +4,7 @@ package com.mastermind.domini;
 
 import com.mastermind.persistencia.DataController;
 
+import javax.management.StringValueExp;
 import javax.xml.crypto.Data;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -20,13 +21,39 @@ public class ControladorPartida {
     private long initTime;
     private String user;
 
-    // Constructora nova partida
-    public ControladorPartida(int difficulty, boolean codeMaker, Codi codiSolució, String username) {
+    public ControladorPartida(int difficulty, boolean codeMaker, String codiSolucio, String username) {
+        ArrayList<Integer> pecesCodiSol = new ArrayList<>();
+        for (int i = 0; i < codiSolucio.length(); i++) {
+            pecesCodiSol.add(Integer.parseInt(String.valueOf(codiSolucio.charAt(i))));
+        }
+        Codi codiSol = new Codi(pecesCodiSol);
+        //this(difficulty, codeMaker,codiSol,username);
+
         user = username;
         int id = (int) (new Date().getTime()/1000);
         boolean help = false;
         Time time = new Time(0);
-        Taulell taulell = createTaulell(difficulty, codeMaker, codiSolució);
+        Taulell taulell = createTaulell(difficulty, codeMaker, codiSol);
+        partida = new Partida(id, difficulty, codeMaker, help, time, taulell);
+        int nColors = N_COLORS;
+        int mida = sizeByDifficulty(difficulty);
+        ia = new IA(nColors,mida);
+        codeMakerTurn = false;
+        if (codeMaker) {
+            iaFirstGuess = ia.firstGuess();
+            codeMakerTurn = true;
+        }
+        initTime = System.nanoTime();
+
+    }
+
+    // Constructora nova partida
+    public ControladorPartida(int difficulty, boolean codeMaker, Codi codiSolucio, String username) {
+        user = username;
+        int id = (int) (new Date().getTime()/1000);
+        boolean help = false;
+        Time time = new Time(0);
+        Taulell taulell = createTaulell(difficulty, codeMaker, codiSolucio);
         partida = new Partida(id, difficulty, codeMaker, help, time, taulell);
         int nColors = N_COLORS;
         int mida = sizeByDifficulty(difficulty);
