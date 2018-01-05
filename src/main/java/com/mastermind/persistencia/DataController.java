@@ -171,6 +171,43 @@ public class DataController {
         return partida;
     }
 
+    static public boolean deletePartida(String ID, String user) {
+        boolean erased = false;
+        try {
+            File inFile = new File("partides" + user + ".txt");
+            if (!inFile.isFile()) {
+                System.out.println("Parameter is not an existing file");
+
+            }
+            //Construct the new file that will later be renamed to the original filename.
+            File tempFile = new File(inFile.getAbsolutePath() + ".tmp");
+            BufferedReader br = new BufferedReader(new FileReader("partides" + user + ".txt"));
+            PrintWriter pw = new PrintWriter(new FileWriter(tempFile));
+            String line;
+            boolean first = true;
+            //Read from the original file and write to the new
+            //unless content matches data to be removed.
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(" ");
+                if (data[0].equals(ID)) {
+                    erased = true;
+                } else {
+                    pw.println(line);
+                    pw.flush();
+                }
+            }
+            pw.close();
+            br.close();
+
+        }
+        catch(Throwable t){
+            System.out.println("no s'ha pogut obrir el fitxer");
+        }
+        return erased;
+
+    }
+
+
     static public boolean savePartida(Partida p, String user){
         String ID = "" + p.getID();
         boolean aux = p.isCodeMaker();
