@@ -1,6 +1,7 @@
 package com.mastermind.presentacio;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -38,6 +39,8 @@ public class PantallaPrincipal {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.initView);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initView.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         // Listeners para los botones
 
         logInButton.addActionListener

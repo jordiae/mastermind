@@ -1,6 +1,7 @@
 package com.mastermind.presentacio;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -45,7 +46,8 @@ public class MenuUsuari {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelMenu);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        panelMenu.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         novaPartidaButton.addActionListener
                 (new ActionListener() {
                     public void actionPerformed (ActionEvent event) {

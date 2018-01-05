@@ -62,12 +62,12 @@ public class ConfiguracioPartida {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelConfiguracio);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        panelConfiguracio.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         dificultat = -1;
         codemaker = -1;
         colorSet = false;
         desactivaCodemaker();
-
         ActionListener listenerDificultat = new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 String nomDificultat = ((JRadioButton) event.getSource()).getText();

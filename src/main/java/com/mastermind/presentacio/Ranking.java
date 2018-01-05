@@ -3,6 +3,7 @@ package com.mastermind.presentacio;
 import com.mastermind.domini.Record;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -49,7 +50,8 @@ public class Ranking {
     public void inicialitzaComponents() {
         framePresentacio.setContentPane(this.panelRanking);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        panelRanking.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         button1.setText("surt");
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {

@@ -60,6 +60,8 @@ public class PantallaPartida {
         panelPartida = new JPanel();
         framePresentacio.setContentPane(this.panelPartida);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        panelPartida.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         confirmaButton = new JButton(  "Confirmar");
         confirmaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {

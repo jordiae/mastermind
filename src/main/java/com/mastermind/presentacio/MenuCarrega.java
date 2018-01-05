@@ -1,6 +1,7 @@
 package com.mastermind.presentacio;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -45,7 +46,8 @@ public class MenuCarrega {
     private void inicialitzaComponents(){
         framePresentacio.setContentPane(this.panelCarrega);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        panelCarrega.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         surtButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 controladorPresentacio.surtPantallaCarga();

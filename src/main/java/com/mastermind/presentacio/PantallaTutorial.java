@@ -1,6 +1,7 @@
 package com.mastermind.presentacio;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -37,7 +38,8 @@ public class PantallaTutorial {
     private void inicialitzaComponents(){
         framePresentacio.setContentPane(this.panelTutorial);
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        panelTutorial.setPreferredSize(new Dimension(500,750));
+        framePresentacio.setResizable(false);
         textArea1.setText("si jugues com a CodeMaker, nomes cal que triis una combinació de colors qualsevol \n i esperis a veure si la nostra IA és capaç d'endevinar-lo en 5 torns com a molt!");
         textArea3.setText("si jugues com a CodeBreaker, la IA inventarà un codi que has d'endevinar. \n Per a fer-ho disposes d'un màxim de 5 torns. Per cada suposició que facis la IA \n et donarà un feed" +
                 "back en forma de peçes blanques i negres. Cada peça blanca simbolitza que has encertat un color pero no la seva \n posició. Cada peça negra simbolitza que has encertat tant el color" +
