@@ -74,9 +74,13 @@ public class ControladorPresentacio {
         int midaTaulell = dificultat + 4;
         if (!codemaker) codi = ControladorPartida.generarCodiAleatori(midaTaulell);
         controladorPartida = new ControladorPartida(dificultat, codemaker, codi, nomUsuari);
-        if (codemaker) firstGuess = controladorPartida.getFirstGuessString();
+        if (codemaker) firstGuess = parseCodiToString(controladorPartida.getFirstGuessString());
         pantallaPartida = new PantallaPartida(this,midaTaulell, codi, firstGuess,codemaker);
         pantallaPartida.visualitza();
+    }
+
+    public void borraPartida() {
+        controladorPartida.borraPartida(controladorUsuari.getNomUsuari());
     }
 
     public void carregaPartida(String id) {
@@ -87,8 +91,31 @@ public class ControladorPresentacio {
         } else {
             menuC.desactivar();
             menuC = null;
-            controladorPartida = new ControladorPartida(Integer.parseInt(id), nomUsuari);
-
+            ArrayList<String> tirades = controladorPartida.informacioPartida();
+            boolean codemaker = controladorPartida.isCodemaker();
+            int midaTaulell = controladorPartida.getMidaTaulell();
+            String codi = controladorPartida.getCodiSolucio();
+            if (codemaker) {
+                String[] tiradaActual = tirades.get(0).split(" ");
+                System.out.println(tiradaActual[0]);
+                System.out.println(tiradaActual[1]);
+                pantallaPartida = new PantallaPartida(this, midaTaulell, codi, tiradaActual[0], codemaker);
+                pantallaPartida.visualitza();
+                for (int i = 0; i < tirades.size(); ++i) {
+                    pantallaPartida.colocaBlanquesNegres(tiradaActual[1]);
+                    tiradaActual = tirades.get(i).split(" ");
+                    pantallaPartida.novaTirada(tiradaActual[0]);
+                }
+            } else {
+                String[] tiradaActual;
+                pantallaPartida = new PantallaPartida(this, midaTaulell, codi, "", codemaker);
+                pantallaPartida.visualitza();
+                for (int i = 0; i < tirades.size(); ++i) {
+                    tiradaActual = tirades.get(i).split(" ");
+                    pantallaPartida.novaTirada(tiradaActual[0]);
+                    pantallaPartida.colocaBlanquesNegres(tiradaActual[1]);
+                }
+            }
         }
     }
 
@@ -98,7 +125,7 @@ public class ControladorPresentacio {
 
     public String nextGuessIA(String codi,int blanques, int negres) {
         controladorPartida.novaRespostaCodemakerVoid(codi, negres, blanques);
-        return controladorPartida.nextGuessIAString();
+        return parseCodiToString(controladorPartida.nextGuessIAString());
     }
 
     public String generarResposta(String codi) {
@@ -169,5 +196,13 @@ public class ControladorPresentacio {
     public void surtTutorial(){
         pantallaTut.desactivar();
         menuUsuari.activar();
+    }
+
+    private String parseCodiToString(String codi) {
+        String resultat = "";
+        for(int i = 1; i < codi.length(); i += 3) {
+            resultat += Character.toString(codi.charAt(i));
+        }
+        return resultat;
     }
 }

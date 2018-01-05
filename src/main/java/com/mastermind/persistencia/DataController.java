@@ -63,7 +63,7 @@ public class DataController {
         if(line != null){
             String[] dades = line.split(" ");
 
-            boolean cm =  "1" == dades[1];
+            boolean cm =  "1".equals(dades[1]);
 
             String[] t = dades[2].split(":");
 

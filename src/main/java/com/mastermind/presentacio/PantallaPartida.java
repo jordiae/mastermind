@@ -40,7 +40,7 @@ public class PantallaPartida {
         this.codemaker = codemaker;
         inicialitzaComponents();
         if (codemaker) {
-            codiAnterior = parseCodiToString(firstGuess);
+            codiAnterior = firstGuess;
             novaTirada(codiAnterior);
         }
     }
@@ -239,7 +239,7 @@ public class PantallaPartida {
             if (checkBlanquesNegresCorrecte(blanques, negres)) {
                 nNegres.disable();
                 nBlanques.disable();
-                codiAnterior = parseCodiToString(controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres));
+                codiAnterior = controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres);
                 novaTirada(codiAnterior);
             } else {
                 JOptionPane.showMessageDialog(framePresentacio, "Has introduït malament la informació.");
@@ -257,7 +257,9 @@ public class PantallaPartida {
             nBlanques.setEnabled(false);
             reiniciarInputs();
             if (Integer.parseInt(String.valueOf(resposta.charAt(0))) == midaTaulell) {
+                String s = "I a més, estàs entre els 10 nostres millors jugadors!";
                 JOptionPane.showMessageDialog(framePresentacio, "Has guanyat la partida. Felicitats!");
+                
                 controladorPresentacio.surtPartida();
             } else if (numTirada == 10){
                 JOptionPane.showMessageDialog(framePresentacio, "Oh vaja! Has perdut la partida");
@@ -274,6 +276,7 @@ public class PantallaPartida {
     }
 
     private void sortirButtonAction() {
+        controladorPresentacio.borraPartida();
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int resultat = JOptionPane.showConfirmDialog (framePresentacio, "Voldries desar la partida actual?","Atenció",dialogButton);
         if (resultat == JOptionPane.YES_OPTION) {
@@ -367,14 +370,6 @@ public class PantallaPartida {
         for (int i = 0; i < midaTaulell; ++i) {
             codiColors.get(i).setBackground(Color.LIGHT_GRAY);
         }
-    }
-
-    private String parseCodiToString(String codi) {
-        String resultat = "";
-        for(int i = 1; i < codi.length(); i += 3) {
-            resultat += Character.toString(codi.charAt(i));
-        }
-        return resultat;
     }
 
 }

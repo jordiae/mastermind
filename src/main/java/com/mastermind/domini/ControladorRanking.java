@@ -3,6 +3,7 @@ package com.mastermind.domini;
 import com.mastermind.persistencia.DataController;
 
 import java.awt.image.AreaAveragingScaleFilter;
+import java.sql.Time;
 import java.util.ArrayList;
 
 public class ControladorRanking {
@@ -35,7 +36,8 @@ public class ControladorRanking {
         return a;
     }
 
-    public boolean addRecord(Record r){
+    public boolean addRecord(String user, int score){
+        Record r = new Record(user, score, false, new Time(1));
         boolean guardat = false;
         if (ranking.getRecordList().size() < 10){
             ranking.getRecordList().add(r);

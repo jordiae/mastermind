@@ -276,6 +276,10 @@ public class ControladorPartida {
         return s;
     }
 
+    public void borraPartida(String user) {
+        DataController.deletePartida(String.valueOf(partida.getID()),user);
+    }
+
     public int getMidaTaulell() {return partida.getDifficulty()+4;}
 
     public boolean isCodemaker() {return partida.isCodeMaker();}
