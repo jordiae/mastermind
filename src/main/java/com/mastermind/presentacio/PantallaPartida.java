@@ -236,10 +236,14 @@ public class PantallaPartida {
         if (codemaker) {
             int blanques = Integer.parseInt(nBlanques.getText());
             int negres = Integer.parseInt(nNegres.getText());
-            nNegres.disable();
-            nBlanques.disable();
-            codiAnterior = parseCodiToString(controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres));
-            novaTirada(codiAnterior);
+            if (checkBlanquesNegresCorrecte(blanques, negres)) {
+                nNegres.disable();
+                nBlanques.disable();
+                codiAnterior = parseCodiToString(controladorPresentacio.nextGuessIA(codiAnterior, blanques, negres));
+                novaTirada(codiAnterior);
+            } else {
+                JOptionPane.showMessageDialog(framePresentacio, "Has introduït malament la informació.");
+            }
         } else {
             codiAnterior = "";
             for (int i = 0; i < midaTaulell; ++i) {
@@ -262,6 +266,13 @@ public class PantallaPartida {
         }
 
     }
+
+    private boolean checkBlanquesNegresCorrecte(int blanques, int negres) {
+        String resposta = controladorPresentacio.generarResposta(codiAnterior);
+        return (Integer.parseInt(String.valueOf(resposta.charAt(0))) == negres
+            && Integer.parseInt(String.valueOf(resposta.charAt(1))) == blanques);
+    }
+
     private void sortirButtonAction() {
         int dialogButton = JOptionPane.YES_NO_OPTION;
         int resultat = JOptionPane.showConfirmDialog (framePresentacio, "Voldries desar la partida actual?","Atenció",dialogButton);
