@@ -439,20 +439,23 @@ public class DataController {
         try (BufferedReader br = new BufferedReader(new FileReader("records.txt"))) {
             String line;
             records = new Record[10];
-            while ((line = br.readLine()) != null) {
+            int i = 0;
+            while ((line = br.readLine()) != null && i < 10) {
                 String[] data = line.split(" ");
-                int score = Integer.parseInt(data[0]);
-                String user = data[1];
-                boolean cm = "1" == data[2];
+                int score = Integer.parseInt(data[1]);
+                String user = data[0];
+                //boolean cm = "1" == data[2];
 
-                String[] t = data[3].split(":");
-                Time time = new Time(Integer.parseInt(t[0])*60*60*1000 + Integer.parseInt(t[1])*60*1000 + Integer.parseInt(t[2])*1000);
-                Record r = new Record(user, score, cm, time);
+                //String[] t = data[3].split(":");
+                //Time time = new Time(Integer.parseInt(t[0])*60*60*1000 + Integer.parseInt(t[1])*60*1000 + Integer.parseInt(t[2])*1000);
+                Record r = new Record(user, score, false, new Time(1));
+                records[i] = r;
+                ++i;
             }
             return records;
         }
         catch(Throwable t){
-            System.out.println("no s'ha pogut obrir el fitxer!!");
+            System.out.println("no s'ha pogut obrir el fitxer!!" + t);
             return records;
         }
 
