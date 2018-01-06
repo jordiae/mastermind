@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Ranking {
+public class Ranking extends ArrayList<String> {
 
     private ArrayList<Record> recordList;
     private int puntuacioMinima;

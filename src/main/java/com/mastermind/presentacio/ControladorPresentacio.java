@@ -1,6 +1,7 @@
 package com.mastermind.presentacio;
 
 import com.mastermind.domini.*;
+import com.mastermind.persistencia.DataController;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -140,7 +141,9 @@ public class ControladorPresentacio {
 
     public boolean afegirRecord() {
         int puntuacio = controladorPartida.getPuntuacio();
-        return controladorRanking.addRecord(controladorUsuari.getNomUsuari(),puntuacio);
+        controladorRanking.addRecord(controladorUsuari.getNomUsuari(),puntuacio);
+        DataController.saveRecords(controladorRanking.getRanking().recordsToString());
+        return true;
     }
 
     public void surtConfigurarPartida () {

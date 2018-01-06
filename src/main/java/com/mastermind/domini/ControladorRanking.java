@@ -23,6 +23,10 @@ public class ControladorRanking {
 
     }
 
+    public Ranking getRanking(){
+        return ranking;
+    }
+
     public ArrayList<String> carregaInfoRecords() {
         ArrayList<String> a =  ranking.recordsToString();
         for (int i = a.size(); i < 10; ++i){
@@ -36,29 +40,8 @@ public class ControladorRanking {
         return a;
     }
 
-    public boolean addRecord(String user, int score){
+    public void addRecord(String user, int score){
         Record r = new Record(user, score, false, new Time(1));
-        boolean guardat = false;
-        if (ranking.getRecordList().size() < 10){
-            ranking.getRecordList().add(r);
-            guardat = true;
-        }
-        else{
-            for (int i = 0; i < ranking.getRecordList().size(); ++i){
-                if (ranking.getRecordList().get(i).getScore() < r.getScore()) {
-                    ranking.getRecordList().set(i, r);
-                    guardat = true;
-                    break;
-                }
-            }
-        }
-
-        if (guardat){
-            ranking.ordenaRecords();
-            ArrayList<String> re = carregaInfoRecords2();
-            DataController.saveRecords(re);
-
-        }
-        return guardat;
+        ranking.afegirRecord(r);
     }
 }
