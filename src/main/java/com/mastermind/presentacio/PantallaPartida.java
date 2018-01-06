@@ -42,8 +42,7 @@ public class PantallaPartida {
         longitudFrame = 264/midaTaulell;
         inicialitzaComponents();
         if (codemaker) {
-            codiAnterior = firstGuess;
-            novaTirada(codiAnterior);
+            novaTirada(firstGuess);
         }
     }
 
@@ -308,6 +307,7 @@ public class PantallaPartida {
     }
 
     public void novaTirada(String codi) {
+        codiAnterior = codi;
         System.out.println(codi);
         ++numTirada;
         JPanel tirada = new JPanel();

@@ -89,9 +89,13 @@ public class ControladorPartida {
             partidaCarregadaCorrectament = true;
             int nColors = N_COLORS;
             int mida = sizeByDifficulty(partida.getDifficulty());
-            ia = new IA(nColors,mida,partida.getTaulell().getTirades());
+            ArrayList<Tirada> tirades = new ArrayList<>();
+            for (int i = 0; i < partida.getTaulell().getTorn(); ++i) {
+                Tirada tirada = partida.getTaulell().getTirades().get(i);
+                tirades.add(tirada);
+            }
+            ia = new IA(nColors, mida, tirades);
 
-            ArrayList<Tirada> tirades = partida.getTaulell().getTirades();
             for (Tirada tirada : tirades) {
                 System.out.println(tirada.dataToString());
             }
@@ -207,7 +211,7 @@ public class ControladorPartida {
             System.out.println("Nova tirada ha fallat");
             System.exit(0);
         }*/
-        partida.getTaulell().ferTirada(pecesCodi);
+        if(!partida.isCodeMaker()) partida.getTaulell().ferTirada(pecesCodi);
         Resposta resposta = partida.getTaulell().getTirades().get(partida.getTaulell().getTirades().size()-1).getResposta();
         return String.valueOf(resposta.getnBlacks()) + String.valueOf(resposta.getnWhites());
 
