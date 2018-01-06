@@ -2,10 +2,7 @@ package com.mastermind.presentacio;
 
 import com.mastermind.domini.*;
 import com.mastermind.persistencia.DataController;
-
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ControladorPresentacio {
 
@@ -164,10 +161,8 @@ public class ControladorPresentacio {
 
     public void mostraRanking(){
         menuUsuari.desactivar();
-        if (ranking == null) {
-            ranking = new Ranking(this);
-            ranking.visualitza();
-        } else ranking.activar();
+        ranking = new Ranking(this);
+        ranking.visualitza();
     }
 
     public void surtRanking(){

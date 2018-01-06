@@ -1,7 +1,6 @@
 package com.mastermind.domini;
 
 import java.sql.Time;
-import java.util.Date;
 
 public class Record {
 
