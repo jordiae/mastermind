@@ -17,8 +17,8 @@ public class ControladorRanking {
         Record r = rec[0];
         while (r != null && i < 10){
             ranking.afegirRecord(r);
-            ++i;
             r = rec[i];
+            ++i;
         }
 
     }
