@@ -1,14 +1,12 @@
 package com.mastermind.presentacio;
 
-import com.mastermind.domini.Record;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class Ranking {
+public class PantallaRanking {
 
     private ControladorPresentacio controladorPresentacio;
 
@@ -27,7 +25,7 @@ public class Ranking {
     private JPanel panelRanking;
     private JButton button1;
 
-    public Ranking(ControladorPresentacio controladorPresentacio) {
+    public PantallaRanking(ControladorPresentacio controladorPresentacio) {
         this.controladorPresentacio = controladorPresentacio;
         inicialitzaComponents();
     }

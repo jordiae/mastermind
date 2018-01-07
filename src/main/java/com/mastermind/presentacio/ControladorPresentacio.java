@@ -13,7 +13,7 @@ public class ControladorPresentacio {
     private MenuUsuari menuUsuari = null;
     private ConfiguracioPartida configuracioPartida = null;
     private PantallaPartida pantallaPartida = null;
-    private Ranking ranking = null;
+    private PantallaRanking pantallaRanking = null;
     private MenuCarrega  menuC = null;
     private PantallaTutorial pantallaTut = null;
 
@@ -130,6 +130,14 @@ public class ControladorPresentacio {
         return controladorPartida.generaResposta(codi);
     }
 
+    public boolean usuariAjudat() {
+        return controladorPartida.usuariAjudat();
+    }
+
+    public String nombreColorsCodi() {
+        return controladorPartida.nombreColorsCodi();
+    }
+
     public void surtPartida() {
         pantallaPartida.desactivar();
         pantallaPartida = null;
@@ -161,12 +169,12 @@ public class ControladorPresentacio {
 
     public void mostraRanking(){
         menuUsuari.desactivar();
-        ranking = new Ranking(this);
-        ranking.visualitza();
+        pantallaRanking = new PantallaRanking(this);
+        pantallaRanking.visualitza();
     }
 
     public void surtRanking(){
-        ranking.desactivar();
+        pantallaRanking.desactivar();
         menuUsuari.activar();
     }
 

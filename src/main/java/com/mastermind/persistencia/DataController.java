@@ -81,7 +81,7 @@ public class DataController {
 
             int diff = Integer.parseInt(dades[6]);
 
-            boolean help = dades[7] == "1";
+            boolean help = dades[7].equals("1");
 
             ArrayList<Tirada> tirades = new ArrayList<>();
             for (int i = 1; i < torn+1; ++i){   ///////el primer torn ha de ser l'1 no el 0!!

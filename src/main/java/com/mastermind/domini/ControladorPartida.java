@@ -286,6 +286,25 @@ public class ControladorPartida {
         return s;
     }
 
+    public String nombreColorsCodi() {
+        Codi codi = partida.getTaulell().getCodiSolucio();
+        ArrayList<Integer> codiAEsbrinar = codi.getPeces();
+        int vermell = 0, verd = 0, blau = 0, groc = 0, taronja = 0, lila = 0;
+        for (int i = 0; i < codiAEsbrinar.size(); ++i) {
+            if (codiAEsbrinar.get(i) == 1) ++vermell;
+            if (codiAEsbrinar.get(i) == 2) ++verd;
+            if (codiAEsbrinar.get(i) == 3) ++blau;
+            if (codiAEsbrinar.get(i) == 4) ++groc;
+            if (codiAEsbrinar.get(i) == 5) ++taronja;
+            if (codiAEsbrinar.get(i) == 6) ++lila;
+        }
+        String nombreColors = String.valueOf(vermell) + String.valueOf(verd) +
+                String.valueOf(blau) + String.valueOf(groc) + String.valueOf(taronja) +
+                String.valueOf(lila);
+        if (!usuariAjudat()) partida.setHelp(true);
+        return nombreColors;
+    }
+
     public void borraPartida(String user) {
         DataController.deletePartida(String.valueOf(partida.getID()),user);
     }
@@ -293,6 +312,8 @@ public class ControladorPartida {
     public int getMidaTaulell() {return partida.getDifficulty()+4;}
 
     public boolean isCodemaker() {return partida.isCodeMaker();}
+
+    public boolean usuariAjudat() {return partida.isHelp();}
 
     public int getPuntuacio() {return partida.getPuntuacio();}
 }

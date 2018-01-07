@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class PantallaPartida {
     private ControladorPresentacio controladorPresentacio;
 
-    private JFrame framePresentacio = new JFrame("Pantalla Principal");
+    private JFrame framePresentacio = new JFrame("Pantalla Partida");
     private JPanel panelPartida;
     private JButton confirmaButton;
     private JButton sortirButton;
@@ -23,10 +23,12 @@ public class PantallaPartida {
     private JButton yellowButton;
     private JButton orangeButton;
     private JButton purpleButton;
+    private JButton ajudaButton;
     private ArrayList<JPanel> codiColors;
     private ArrayList<Integer> codiColorsNum;
     private String codiAnterior;
     private String codiAEsbrinar;
+    private String ajudaString;
     private boolean codemaker;
     private int midaTaulell;
     private int numTirada;
@@ -39,7 +41,7 @@ public class PantallaPartida {
         numTirada = 0;
         codiAEsbrinar = codi;
         this.codemaker = codemaker;
-        longitudFrame = 264/midaTaulell;
+        longitudFrame = 300/midaTaulell;
         inicialitzaComponents();
         if (codemaker) {
             novaTirada(firstGuess);
@@ -63,6 +65,10 @@ public class PantallaPartida {
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panelPartida.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
+        ajudaButton = new JButton("Ajuda");
+        ajudaButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent actionEvent) { ajudaButtonAction(); }
+        });
         confirmaButton = new JButton(  "Confirmar");
         confirmaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent actionEvent) {
@@ -75,6 +81,7 @@ public class PantallaPartida {
                 sortirButtonAction();
             }
         });
+        panelPartida.add(ajudaButton);
         panelPartida.add(confirmaButton);
         panelPartida.add(sortirButton);
         if (codemaker) {
@@ -82,6 +89,16 @@ public class PantallaPartida {
             parseCodiToPanel(codiAEsbrinar, tirada);
             panelPartida.add(tirada);
         } else {
+            if (controladorPresentacio.usuariAjudat()) {
+                String colorsCodi = controladorPresentacio.nombreColorsCodi();
+                ajudaString = "En aquesta partida hi ha:\n";
+                if (colorsCodi.charAt(0) != '0') ajudaString += String.valueOf(colorsCodi.charAt(0)) + " peces vermelles.\n";
+                if (colorsCodi.charAt(1) != '0') ajudaString += String.valueOf(colorsCodi.charAt(1)) + " peces verdes.\n";
+                if (colorsCodi.charAt(2) != '0') ajudaString += String.valueOf(colorsCodi.charAt(2)) + " peces blaves.\n";
+                if (colorsCodi.charAt(3) != '0') ajudaString += String.valueOf(colorsCodi.charAt(3)) + " peces grogues.\n";
+                if (colorsCodi.charAt(4) != '0') ajudaString += String.valueOf(colorsCodi.charAt(4)) + " peces taronges.\n";
+                if (colorsCodi.charAt(5) != '0') ajudaString += String.valueOf(colorsCodi.charAt(5)) + " peces liles.\n";
+            }
             confirmaButton.setEnabled(false);
             offsetCodi = 0;
             codiColorsNum = new ArrayList<>();
@@ -233,6 +250,32 @@ public class PantallaPartida {
         codiColors.get(numPanel).setBackground(colorPanel);
     }
 
+    private void ajudaButtonAction() {
+        if (codemaker) {
+            String resposta = controladorPresentacio.generarResposta(codiAnterior);
+            nNegres.setText(String.valueOf(resposta.charAt(0)));
+            nBlanques.setText(String.valueOf(resposta.charAt(1)));
+        } else {
+            if (!controladorPresentacio.usuariAjudat()){
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                int resultat = JOptionPane.showConfirmDialog (framePresentacio, "Si demanes ajuda no tindràs l'opció de sortir al nostre rànquing\n Estas segur que la necessites?","Atenció",dialogButton);
+                if (resultat == JOptionPane.YES_OPTION) {
+                    String colorsCodi = controladorPresentacio.nombreColorsCodi();
+                    ajudaString = "En aquesta partida hi ha:\n";
+                    if (colorsCodi.charAt(0) != '0') ajudaString += String.valueOf(colorsCodi.charAt(0)) + " peces vermelles.\n";
+                    if (colorsCodi.charAt(1) != '0') ajudaString += String.valueOf(colorsCodi.charAt(1)) + " peces verdes.\n";
+                    if (colorsCodi.charAt(2) != '0') ajudaString += String.valueOf(colorsCodi.charAt(2)) + " peces blaves.\n";
+                    if (colorsCodi.charAt(3) != '0') ajudaString += String.valueOf(colorsCodi.charAt(3)) + " peces grogues.\n";
+                    if (colorsCodi.charAt(4) != '0') ajudaString += String.valueOf(colorsCodi.charAt(4)) + " peces taronges.\n";
+                    if (colorsCodi.charAt(5) != '0') ajudaString += String.valueOf(colorsCodi.charAt(5)) + " peces liles.\n";
+                    JOptionPane.showMessageDialog(framePresentacio, ajudaString);
+                }
+            } else {
+                JOptionPane.showMessageDialog(framePresentacio, ajudaString);
+            }
+        }
+    }
+
     private void confirmaButtonAction() {
         if (codemaker) {
             String negresStr = nNegres.getText();
@@ -271,14 +314,17 @@ public class PantallaPartida {
             reiniciarInputs();
             if (Integer.parseInt(String.valueOf(resposta.charAt(0))) == midaTaulell) {
                 String s = "";
-                if (controladorPresentacio.afegirRecord()) {
-                    s = "I a més, estàs entre els 10 nostres millors jugadors!";
+                if (!controladorPresentacio.usuariAjudat()) {
+                    if (controladorPresentacio.afegirRecord()) {
+                        s = "I a més, estàs entre els 10 nostres millors jugadors!";
+                    }
                 }
                 JOptionPane.showMessageDialog(framePresentacio, "Has guanyat la partida. Felicitats!" + s);
-
+                controladorPresentacio.borraPartida();
                 controladorPresentacio.surtPartida();
             } else if (numTirada == 10){
                 JOptionPane.showMessageDialog(framePresentacio, "Oh vaja! Has perdut la partida");
+                controladorPresentacio.borraPartida();
                 controladorPresentacio.surtPartida();
             }
         }
