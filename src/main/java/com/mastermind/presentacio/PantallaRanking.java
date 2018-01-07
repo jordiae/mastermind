@@ -50,7 +50,7 @@ public class PantallaRanking {
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panelRanking.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
-        button1.setText("surt");
+        button1.setText("Surt");
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String texto = ((JButton) e.getSource()).getText();
@@ -60,18 +60,29 @@ public class PantallaRanking {
         });
 
         textArea1.setText("Ranking");
+        textArea1.setEnabled(false);
         ArrayList<String> rec = controladorPresentacio.getRecords();
 
         textArea2.setText(rec.get(0));
+        textArea2.setEnabled(false);
         textArea3.setText(rec.get(1));
+        textArea3.setEnabled(false);
         textArea4.setText(rec.get(2));
+        textArea4.setEnabled(false);
         textArea5.setText(rec.get(3));
+        textArea5.setEnabled(false);
         textArea6.setText(rec.get(4));
+        textArea6.setEnabled(false);
         textArea7.setText(rec.get(5));
+        textArea7.setEnabled(false);
         textArea8.setText(rec.get(6));
+        textArea8.setEnabled(false);
         textArea9.setText(rec.get(7));
+        textArea9.setEnabled(false);
         textArea10.setText(rec.get(8));
+        textArea10.setEnabled(false);
         textArea11.setText(rec.get(9));
+        textArea11.setEnabled(false);
 
     }
 

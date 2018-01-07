@@ -38,11 +38,12 @@ public class PantallaTutorial {
         framePresentacio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panelTutorial.setPreferredSize(new Dimension(500,700));
         framePresentacio.setResizable(false);
-        textArea1.setText("Si jugues com a CodeMaker, només cal que triis una combinació de colors \nqualsevol i esperis a veure si la nostra IA és capaç d'endevinar-lo en 5 \ntorns com a molt!");
+        textArea1.setText("Si jugues com a CodeMaker, només cal que triïs una combinació de colors \nqualsevol i esperis a veure si la nostra IA és capaç d'endevinar-lo en 5 \ntorns com a molt!");
+        textArea1.setEnabled(false);
         textArea3.setText("Si jugues com a CodeBreaker, la IA inventarà un codi que has d'endevinar. \nPer a fer-ho disposes d'un màxim de 10 torns. Per cada suposició que facis \nla IA et donarà un feed" +
-                "back en forma de peçes blanques i negres.Cada peça \nblanca simbolitza que has encertat un color pero no la seva posició. Cada \npeça negra simbolitza que has encertat tant el color" +
-                " com la posicio d'alguna \nde les peçes. Sort!");
-
+                "back en forma de peces blanques i negres.Cada peça \nblanca simbolitza que has encertat un color però no la seva posició. Cada \npeça negra simbolitza que has encertat tant el color" +
+                " com la posició d'alguna \nde les peces. Sort!");
+        textArea3.setEnabled(false);
         surtButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
