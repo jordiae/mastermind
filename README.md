@@ -1,3 +1,3 @@
 # mastermind
 
-#The game for all the family
+# The game for all the family
